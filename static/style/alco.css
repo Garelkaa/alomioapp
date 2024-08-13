@@ -1,0 +1,112 @@
+.alco-user-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 35vh; /* Fixed height */
+    width: 90%; /* Adjust width for responsiveness */
+    max-width: 650px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    position: fixed;
+    overflow: hidden; /* Hide overflow */
+}
+  
+  .header-alco-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the header text */
+    align-items: center;
+  }
+  
+  .header-text-alco {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 30px; /* Responsive font size */
+    color: #5C61A9;
+    margin-right: 50px; /* Space for the close icon */
+  }
+  
+  .close-alco {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    font-size: 45px; /* Responsive font size */
+    cursor: pointer;
+  }
+  
+  .user-status-alco {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    width: 100%;
+    
+  }
+  
+  .alco-item {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    gap: 15px; /* Increase space between circle and text */
+    width: 100%;
+    margin-bottom: 15px; /* Space between each alco-item */
+  }
+  
+  .circle-alco {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; /* Make it a circle */
+    border: 2px solid #8E76F2;
+    background-color: white; /* Default background color */
+    cursor: pointer; /* Show a pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
+    flex-shrink: 0; /* Prevent shrinking of circles */
+  }
+  
+  .circle-alco.active-alco {
+    background-color: #8E76F2; /* Background color when active */
+  }
+  
+  .alco-item span {
+    color: #5C61A9;
+    font-size: 1.25rem; /* Responsive font size */
+  }
+  
+  .save-alco-container {
+    padding-top: 35px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .save-alco-user {
+    font-size: 1.25rem; /* Responsive font size */
+    width: 100%; /* Full width for responsiveness */
+    max-width: 400px;
+    height: 60px;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .save-alco-user:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .save-alco-user:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .save-alco-user:focus {
+    outline: none;
+    border: none;
+  }

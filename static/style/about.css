@@ -1,0 +1,86 @@
+.about-user-account-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto; /* Адаптируется к содержимому */
+    width: 90%; /* Для отзывчивости */
+    max-width: 650px;
+    display: none; /* Изначально скрыто */
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    position: fixed; /* Для фиксированного позиционирования */
+    top: 50%; /* Центрирование по вертикали */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translate(-50%, -50%); /* Центрирование с учетом размера */
+}
+
+.header-about-user-container span {
+    font-size: 25px; /* Отзывчивый размер шрифта */
+    color: #5C61A9;
+}
+
+.cross-icon {
+    font-size: 45px;
+    position: absolute;
+    right: 0px;
+    top: 0px; /* Добавьте отступ сверху, если нужно */
+    cursor: pointer;
+}
+
+.user-about-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.user-about-container label {
+    font-size: 15px; /* Отзывчивый размер шрифта */
+    color: #5C61A9;
+    margin-bottom: 10px; /* Отступ снизу */
+    text-align: center; /* Центрирование текста */
+}
+
+.input-user-about-container {
+    width: 100%; /* Убедитесь, что контейнер занимает всю ширину */
+    display: flex;
+    justify-content: center;
+}
+
+.input-container-about {
+    width: 100%;
+    max-width: 650px;
+    height: 170px;
+    border: 3px solid #8E76F2;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-size: 20px;
+    overflow: hidden;
+    margin: 0 auto; /* Центрирование контейнера */
+}
+
+.button-save-container {
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.save-user-about {
+    font-size: 1.2rem; /* Отзывчивый размер шрифта */
+    width: 90%; /* Для отзывчивости */
+    max-width: 400px;
+    height: 60px;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Центрирование текста внутри кнопки */
+}

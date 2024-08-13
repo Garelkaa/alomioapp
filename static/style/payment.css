@@ -1,0 +1,188 @@
+/* Основной контейнер для модального окна */
+.pay-premium-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 93vh; /* Увеличена высота окна */
+    width: 90%; /* Ширина 90% от ширины окна браузера */
+    max-width: 1000px; /* Максимальная ширина 1000px */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000; /* Делаем его поверх других элементов */
+    position: absolute; /* Для размещения иконки */
+    padding-top: 40px; /* Отступ сверху для крестика */
+}
+
+/* Заголовок модального окна */
+.header-text-page-pay {
+    font-size: 30px; /* Размер шрифта относительно размера экрана */
+    font-family: 'Comfortaa', sans-serif;
+    color: #5C61A9;
+    margin-bottom: 20px;
+    width: 100%;
+    position: relative; /* Для позиционирования крестика */
+}
+
+/* Иконка закрытия */
+.close-payment {
+    font-size: 45px; /* Размер шрифта относительно размера экрана */
+    cursor: pointer;
+    position: absolute;
+    right: -20px; /* Перемещаем иконку в правый угол */
+    top: -35px; /* Устанавливаем отступ сверху */
+}
+
+/* Описание заголовка */
+.header-desc-page {
+    color: #5C61A9;
+    font-size: 1.5rem; /* Размер шрифта относительно размера экрана */
+}
+
+/* Контейнер для ввода данных карты */
+.input-info-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Форма ввода данных карты */
+.form-page-input {
+    display: grid;
+    padding-top: 30px;
+    gap: 25px;
+    width: 100%;
+    max-width: 700px;
+}
+
+/* Поле ввода номера карты */
+.card-number-input {
+    padding: 10px;
+    font-size: 1.25rem; /* Размер шрифта относительно размера экрана */
+    border: 2px solid #8E76F2;
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* Контейнер для полей даты и CVC */
+.expiry-cvc-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Поля ввода даты и CVC */
+.expiry-input,
+.cvc-input {
+    padding: 10px;
+    font-size: 1rem; /* Размер шрифта относительно размера экрана */
+    border: 2px solid #8E76F2;
+    border-radius: 8px;
+}
+
+/* Контейнер для сохранения карты */
+.save-card-container {
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали */
+    justify-content: flex-start;
+    width: 100%;
+    padding-top: 35px; /* Отступ сверху для выравнивания */
+    gap: 10px; /* Расстояние между иконкой и текстом */
+}
+
+/* Иконка для сохранения карты */
+.circle-icon {
+    width: 35px;
+    height: 25px; /* Высота равна ширине */
+    border: 2px solid #8E76F2;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 15px; /* Отступ справа для выравнивания */
+}
+
+/* Иконка для сохранения карты, когда она выбрана */
+.circle-icon.checked {
+    background-color: #8E76F2;
+}
+
+/* Текст для сохранения карты */
+.save-card {
+    font-size: 17px; /* Размер шрифта относительно размера экрана */
+    color: #5C61A9;
+}
+
+/* Контейнер для информации о платеже */
+.payment-container {
+    padding-top: 50px;
+    width: 100%;
+}
+
+/* Заголовок платежной информации */
+.payment-header-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 700px;
+    background-color: #f9f9f9;
+    border: 2px solid #8E76F2;
+    border-radius: 10px;
+    padding: 30px;
+    position: relative; /* Для полоски */
+    margin: 0 auto; /* Центрируем контейнер */
+}
+
+/* Основной контейнер для строк информации о платеже */
+.name-and-price, .tax-and-price, .total-price {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Полоска для разделения налогов и итоговой цены */
+.tax-separator {
+    position: absolute;
+    bottom: 70px;
+    left: 30px;
+    width: calc(100% - 60px); /* Корректировка ширины полоски */
+    height: 2px;
+    background-color: #8E76F2;
+}
+
+/* Метка информации о платеже */
+.label {
+    font-size: 1.25rem; /* Размер шрифта относительно размера экрана */
+    color: #5C61A9;
+    font-weight: bold;
+}
+
+/* Цена информации о платеже */
+.price {
+    font-size: 1.25rem; /* Размер шрифта относительно размера экрана */
+    text-align: right;
+    padding-left: 20px;
+}
+
+/* Контейнер для кнопки оплаты */
+.button-pay-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрируем кнопку по горизонтали */
+    padding: 35px;
+}
+
+/* Кнопка оплаты */
+.payment-button {
+    font-size: 1.25rem; /* Размер шрифта относительно размера экрана */
+    width: 100%;
+    height: 70px;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF); /* Градиентный фон */
+}

@@ -1,0 +1,64 @@
+.settings-user-header-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 65vh; /* Увеличена высота окна */
+    width: 90%; /* Ширина 90% от ширины окна браузера */
+    max-width: 1000px; /* Максимальная ширина 1000px */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000; /* Делаем его поверх других элементов */
+    position: absolute; /* Добавляем это для размещения иконки */
+    overflow: hidden;
+}
+
+.modal-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Positioning context for the cross icon */
+}
+
+.settings-user-header {
+    font-size: 2rem; /* Используем rem для масштабирования шрифта */
+    font-family: 'Comfortaa', sans-serif;
+    color: #5C61A9;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+}
+
+.cross-icon {
+    font-size: 40px; /* Размер шрифта крестика */
+    cursor: pointer;
+}
+
+.modal-container .cross-icon {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+
+.settings-menu-container {
+    color: #5C61A9;
+    font-size: 15px; /* Используем rem для масштабирования шрифта */
+    gap: 15px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.settings-menu-container span {
+    padding: 10px;
+}
+
+.open-detail-settings {
+    font-size: 1.5rem; /* Используем rem для адаптивности */
+    padding-left: 10px;
+}

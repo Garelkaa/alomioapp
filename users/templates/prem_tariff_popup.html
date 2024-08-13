@@ -1,0 +1,40 @@
+<div id="ActivatePremium" class="detail-activate-premium-container">
+    <div class="modal-container">
+        <div class="header-text-page-tariff">
+            Перейти на Alamio Premium
+            <i class="bi bi-x cross-icon" onclick="closepagepremium()"></i>
+        </div>
+        <div class="text-center header-desc-page">
+            Активируй и получай преимущества
+        </div>
+        <div class="detail-page-container">
+            <button class="detail-page" onclick='OpenDetailPrem()'>
+                Поподробнее
+            </button>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="actual-tariff-container">
+            <div class="tariff">
+                <div class="tariff-box" onclick="selectTariff(this)" data-price="800.00" data-duration="1">
+                    <h2>1 Месяц</h2>
+                    <span>800 руб/мес</span>
+                </div>
+                <div class="tariff-box" onclick="selectTariff(this)" data-price="400.00" data-duration="6">
+                    <h2>6 Месяцев</h2>
+                    <span><s>800 руб/мес</s> 400 руб/мес</span>
+                </div>
+                <div class="tariff-box" onclick="selectTariff(this)" data-price="300.00" data-duration="12">
+                    <h2>12 Месяцев</h2>
+                    <span><s>800 руб/мес</s> 300 руб/мес</span>
+                </div>
+                <div class="tariff-box" onclick="selectTariff(this)" data-price="4000.00" data-duration="Навсегда">
+                    <h2>Навсегда</h2>
+                    <span>4000 руб</span>
+                </div>
+            </div>
+        </div>
+        <div class="next-page-payment-container">
+            <button class="page-payment" onclick='PayPremiumForm()'>Продолжить</button>
+        </div>
+    </div>

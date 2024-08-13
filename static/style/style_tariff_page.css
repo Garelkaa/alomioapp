@@ -1,0 +1,165 @@
+.detail-activate-premium-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70vh;
+    width: 90%;
+    max-width: 900px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    position: fixed;
+    overflow-x: hidden; /* Ensure content does not overflow */
+}
+
+.modal-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Positioning context for the cross icon */
+}
+
+.header-text-page-tariff {
+    font-size: 30px;
+    font-family: 'Comfortaa', sans-serif;
+    color: #5C61A9;
+    margin-bottom: 20px;
+    text-align: center; /* Center text */
+}
+
+.cross-icon {
+    font-size: 50px;
+    position: absolute;
+    right: -20px; /* Position it to the right */
+    top: -20px; /* Adjusted position */
+    cursor: pointer;
+    color: #5C61A9; /* Ensure the color matches your theme */
+}
+
+.header-desc-page {
+    font-size: 1.25rem; /* Responsive sizing */
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.detail-page-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.detail-page {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 2px solid #8E76F2;
+    color: #8E76F2;
+    cursor: pointer;
+    border-radius: 32px;
+    background-color: transparent;
+    width: 160px;
+    height: 60px;
+}
+
+.detail-page:hover {
+    background-color: transparent;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.actual-tariff-container {
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.tariff {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.tariff-box {
+    background-color: white;
+    padding: 20px;
+    padding-right: 60px; /* Increase padding to the right to prevent overlap */
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    height: 120px;
+    border: 2px solid #A1BDFF;
+    border-radius: 32px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tariff-box h2 {
+    font-size: 25px;
+}
+
+.tariff-box.selected {
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+}
+
+.tariff-box::after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px; /* Adjust position as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid #A1BDFF;
+    z-index: 2; /* Ensure it’s above the text */
+}
+
+.time-tariff {
+    font-size: 1.5rem;
+    color: #5C61A9;
+}
+
+.price-tariff {
+    font-size: 1.125rem;
+    color: #8E76F2;
+    margin-top: 10px;
+}
+
+.active {
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+}
+
+.next-page-payment-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.page-payment {
+    font-size: 1.25rem;
+    width: 100%;
+    max-width: 370px;
+    height: 65px;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+}

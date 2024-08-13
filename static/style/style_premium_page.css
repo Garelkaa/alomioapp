@@ -1,0 +1,100 @@
+/* Основной контейнер для модального окна */
+.detail-premium-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 900px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1050;
+    overflow-y: auto; /* Добавляем скролл на мобильных устройствах */
+}
+
+/* Контейнер для модального окна */
+.modal-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Контекст позиционирования для иконки закрытия */
+}
+
+/* Заголовок модального окна */
+.header-text-page {
+    font-size: 25px; /* Размер шрифта заголовка */
+    font-family: 'Comfortaa', sans-serif;
+    color: #5C61A9;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Иконка закрытия */
+.cross-icon {
+    font-size: 30px; /* Размер иконки */
+    cursor: pointer;
+}
+
+.modal-container .cross-icon {
+    position: absolute;
+    margin-right: -10px;
+    margin-top: -10px;
+}
+
+/* Элемент премиум-функции */
+.premium-feature {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Текст премиум-функции */
+.premium-feature span {
+    font-size: 1.25rem; /* Размер шрифта текста */
+    flex: 1;
+}
+
+/* Иконка премиум-функции */
+.premium-feature i {
+    color: #8E76F2;
+    font-size: 1.5625rem; /* Размер иконки */
+}
+
+/* Контейнер для активации премиум-функций */
+.activate-premium {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 1.25rem; /* Размер шрифта */
+}
+
+/* Кнопка активации премиум-функций */
+.button-activate-premium {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+}
+
+/* Эффект наведения на кнопку активации */
+.button-activate-premium:hover {
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+}

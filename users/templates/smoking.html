@@ -1,0 +1,26 @@
+<div id='UserSmoking' class="smoking-user-container">
+    <div class="header-smoking-container d-flex justify-content-center align-items-center">
+        <span class="header-text-smoking">Курение</span>
+    </div>
+    <i class="bi bi-x close-smoking" onclick='CloseUserSmoking()'></i>
+    <div class="user-status-smoking">
+        <input type='hidden' id='smoking' name='smoking'>
+        <div class="row">
+            <div class="col-12">
+                <div class="smoking-item">
+                    <div class="circle-smoking"></div>
+                    <span>Не курю</span>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="smoking-item">
+                    <div class="circle-smoking active-smoking"></div>
+                    <span>Курю</span>
+                </div>
+            </div>
+        </div>
+        <div class="save-smoking-container">
+            <button class="save-smoking-user btn btn-primary" id='save-button-smoking'>Сохранить</button>
+        </div>
+    </div>
+</div>

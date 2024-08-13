@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Подключение вашего стиля -->
+    <link rel="stylesheet" href="{% static 'style/style_photo.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+</head>
+<body>
+    <header>
+        alamio
+        <div class="lang-or-theme">
+            
+            <button class="theme-button" id="theme-button">
+                <i class="bi bi-cloud-moon"></i>
+            </button>
+        </div>
+    </header>
+    <main class="content container">
+        <h2 class="registration-title">Добавить фото</h2>
+        <h2 class="code-title">Добавьте фото и свою улыбку в профиль - это поможет создать приятное первое впечатление!</h2>
+        <div class="form-group">
+            <div class="square-photo" id="photo-upload">
+                <i class="bi bi-download dowload-icon"></i>
+                <h2 class="text-square">Добавить фото</h2>
+            </div>
+        </div>
+        <div class='container-button'>
+            <input type="file" id="image-input" style="display: none;">
+            <button class='add-photo' id="add-photo">Добавить</button>
+            <button class='skip-photo'>Позже</button>
+        </div>
+    </main>
+    <!-- Подключение jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Ваш JavaScript -->
+    <script>
+        $(document).ready(function() {
+            var isDarkTheme = false;
+
+            $('#photo-upload').click(function() {
+                $('#image-input').click();
+            });
+
+            $('#image-input').change(function() {
+                var formData = new FormData();
+                formData.append('image', $('#image-input')[0].files[0]);
+
+                $.ajax({
+                    url: '{% url "users:upload_image" %}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Фото успешно загружено');
+                        } else {
+                            alert('Ошибка при загрузке фото');
+                        }
+                    },
+                    error: function() {
+                        alert('Произошла ошибка при отправке запроса');
+                    }
+                });
+            });
+
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            $('#theme-button').click(function() {
+                if (isDarkTheme) {
+                    $('body').css('background-color', '');
+                    $('header').css('background-color', '');
+                    $('main').css('background-color', '');
+                } else {
+                    $('body').css('background-color', '#282E33');
+                    $('main').css('background-color', '#282E33');
+                    $('header').css('background-color', '#18191D');
+                }
+                isDarkTheme = !isDarkTheme;
+            });
+        });
+    </script>
+</body>
+</html>

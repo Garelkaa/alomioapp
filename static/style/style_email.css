@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #E2E4FF; /* Цвет фона всей страницы */
+}
+
+header {
+    font-size: 50px;
+    font-family: 'Comfortaa', sans-serif;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    color: transparent; /* Текст невидим, пока не применен фон */
+    text-align: left;
+    padding: 0 1rem;
+    padding-left: 20px; /* Уменьшен отступ для мобильных устройств */
+    line-height: 100px;
+    box-shadow: 0 2px 4px rgba(5, 0, 8, 0.1);
+    box-sizing: border-box;
+    background-color: white; /* Белый фон заголовка */
+    display: flex; /* Включает Flexbox */
+    align-items: center; /* Вертикальное выравнивание */
+    justify-content: space-between; /* Распределяет элементы по краям */
+}
+
+header::before {
+    content: 'alamio'; /* Или другой текст, который вы хотите отобразить */
+    font-size: 35px; /* Размер шрифта уменьшен для мобильных устройств */
+    font-family: 'Comfortaa', sans-serif;
+    color: transparent;
+    background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: absolute;
+    left: 20px; /* Уменьшен отступ для мобильных устройств */
+    top: 0;
+    height: 100px;
+    line-height: 100px;
+}
+
+main {
+    background-color: #E2E4FF; /* Светло-серый фон для основного содержимого */
+    padding: 20px; /* Отступы внутри основного содержимого */
+    padding-top: 120px; /* Увеличен верхний отступ */
+    text-align: center; /* Центровка текста */
+}
+
+.lang-or-theme {
+    display: flex; /* Размещаем элементы в строку */
+    align-items: center; /* Вертикальное выравнивание */
+    margin-left: auto; /* Перемещает контейнер вправо */
+    padding-right: 20px; /* Уменьшен отступ для мобильных устройств */
+}
+
+.language-button {
+    background: white; /* Заливка внутри кнопки */
+    border: 2px solid var(--Color, #5C61A9);
+    font-size: 12px; /* Размер шрифта уменьшен для мобильных устройств */
+    padding: 8px 10px; /* Размеры кнопки уменьшены */
+    cursor: pointer; /* Курсор указывает на кнопку */
+    border-radius: 28px; /* Закругление углов */
+    outline: none; /* Убирает стандартное обводку при фокусе */
+    transition: background 0.3s, color 0.3s; /* Плавный переход для эффектов */
+    position: relative; /* Для позиционирования псевдоэлемента */
+}
+
+.language-button i {
+    margin-left: 10px; /* Перемещает кнопку вправо */
+}
+
+.language-button:hover {
+    background: black; /* Фон кнопки при наведении */
+    color: white; /* Цвет текста при наведении */
+}
+
+.theme-button {
+    background: none; /* Убираем фон */
+    border: none; /* Убираем границу */
+    font-size: 25px; /* Размер шрифта уменьшен для мобильных устройств */
+    cursor: pointer; /* Курсор указывает на кнопку */
+    transition: color 0.3s; /* Плавный переход для изменения цвета */
+    outline: none; /* Убираем обводку при фокусе */
+    margin-left: 5px;
+}
+
+.registration-title {
+    padding-top: 30px; /* Уменьшен верхний отступ */
+    font-family: 'Comfortaa', sans-serif; /* Подключение шрифта */
+    font-size: 35px; /* Размер шрифта уменьшен для мобильных устройств */
+    color: #5C61A9; /* Цвет текста */
+}
+
+.code-title {
+    padding-top: 30px; /* Уменьшен верхний отступ */
+    font-family: 'Comfortaa', sans-serif; /* Подключение шрифта */
+    font-size: 20px; /* Размер шрифта уменьшен для мобильных устройств */
+    color: #5C61A9; /* Цвет текста */
+}
+
+/* Контейнер для формы */
+.form-container {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column; /* Располагает элементы по вертикали */
+    gap: 15px; /* Отступ между полями ввода уменьшен */
+    width: 100%; /* Ширина контейнера */
+    max-width: 100%; /* Максимальная ширина контейнера убрана */
+    margin: 0 auto; /* Выравнивание по центру страницы */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column; /* Располагает элементы по вертикали */
+    width: 100%; /* Ширина группы полей ввода */
+}
+
+/* Стили для полей ввода */
+.form-input {
+    padding: 10px; /* Уменьшен padding для мобильных устройств */
+    border: 2px solid #8E76F2; /* Цвет границы полей ввода */
+    border-radius: 8px; /* Закругление углов полей ввода */
+    font-size: 14px; /* Размер шрифта уменьшен для мобильных устройств */
+    width: 100%; /* Ширина полей ввода */
+    box-sizing: border-box; /* Учитывает границы и отступы в ширину элемента */
+}
+
+.form-input::placeholder {
+    color: #9B9B9B; /* Цвет текста в placeholder */
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: column; /* Переключение на вертикальное расположение кнопок */
+    gap: 10px; /* Уменьшен отступ между кнопками */
+}
+
+.laod-button, .repeat-button {
+    font-size: 16px; /* Размер шрифта уменьшен для мобильных устройств */
+    padding: 10px 20px; /* Размеры кнопок уменьшены */
+    border-radius: 28px; /* Закругление углов */
+    cursor: pointer; /* Курсор указывает на кнопку */
+    transition: background 0.3s, color 0.3s; /* Плавный переход для эффектов */
+}
+
+.laod-button {
+    background: linear-gradient(100deg, #8E76F2 13.39%, #A1BDFF 78.57%);
+    color: white; /* Цвет текста */
+    border: none; /* Убирает стандартные границы */
+}
+
+.repeat-button {
+    background: #E2E4FF; /* Фон кнопки совпадает с фоном страницы */
+    color: #5C61A9; /* Цвет текста совпадает с основным цветом */
+    border: 2px solid #5C61A9; /* Цвет обводки совпадает с основным цветом */
+}

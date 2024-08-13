@@ -1,0 +1,110 @@
+.work-user-account-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto; /* Adapt to content */
+    width: 90%; /* Responsive width */
+    max-width: 1200px;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    position: fixed; /* Fixed positioning */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center with respect to size */
+    overflow: hidden;
+}
+
+.header-work-user-container span {
+    font-size: 25px; /* Responsive font size */
+    color: #5C61A9;
+}
+
+.cross-icon {
+    font-size: 45px;
+    position: absolute;
+    right: 10px; /* Adjust right spacing */
+    top: 10px; /* Adjust top spacing */
+    cursor: pointer;
+}
+
+.user-work-container {
+    position: relative;
+    width: 100%; /* Ensure full width for responsiveness */
+    display: block;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    margin-right: 0; /* Reset margin for centering */
+}
+
+.user-work-container label {
+    font-size: 15px; /* Responsive font size */
+    color: #5C61A9;
+}
+
+.load-user-work-container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width for centering */
+}
+
+.input-container-work {
+    width: 100%; /* Responsive width */
+    max-width: 1000px;
+    height: 170px;
+    border: 3px solid #8E76F2;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-size: 20px;
+    overflow: hidden;
+    display: block;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    margin: 0 auto; /* Center within parent */
+}
+
+.input-container-work:focus {
+    border: 3px solid #8E76F2;
+    outline: none;
+}
+
+.button-save-container {
+    padding-top: 50px;
+    position: relative;
+    text-align: center;
+}
+
+.save-user-work {
+    font-size: 1.2rem; /* Responsive font size */
+    width: 90%; /* Responsive width */
+    max-width: 400px;
+    height: 60px;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-user-work:hover {
+    outline: none;
+    border: none;
+    transform: scale(1.05); /* Slightly larger scale */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.save-user-work:active {
+    outline: none;
+    border: none;
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.save-user-work:focus {
+    outline: none;
+    border: none;
+}

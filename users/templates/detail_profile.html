@@ -1,0 +1,55 @@
+<div id='UserDetailProfile' class="container-fluid">
+        <div class="row no-gutters h-100">
+            <!-- Левая колонка с фото -->
+            <div class="col-md-6 d-flex justify-content-center align-items-center user-image-container">
+                <img src="../my_avatar.jpg" alt="Фото" class="img-fluid user-image">
+                <i class="bi bi-x close-detail-profile" onclick='CloseUserDetailProfile()'></i>
+            </div>
+            <!-- Правая колонка с заголовком и кнопкой -->
+            <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+                <div class="user-header-container">
+                    <h2 class='user-name-and-age'>
+                        {{ user.name }}, {{ age }}
+                    </h2>
+                </div>
+                <div class='search-love-container p-3'>
+                    <i class="bi bi-heart heart-icon-button"></i>
+                    <h2 class='text-search-button'>Найти любовь</h2>
+                </div>
+                <div class="user-personal-info-container p-3">
+                    <div class="into-item">
+                        <label for="text">Пол</label>
+                        <span>Мужской</span>
+                    </div>
+                    <div class="into-item">
+                        <label for="text">Город</label>
+                        <span>Киев</span>
+                    </div>
+                    <div class="into-item">
+                        <label for="text">Ориентация</label>
+                        <span>Гетеросексуал</span>
+                    </div>
+                    <div class="into-item">
+                        <label for="text">Отношения</label>
+                        <span>Не в Отношениях</span>
+                    </div>
+                    <div class="into-item">
+                        <label for="text">Дети</label>
+                        <span>Нет</span>
+                    </div>
+                    <div class="into-item">
+                        <label for="text">Языки</label>
+                        <span>Русский</span>
+                    </div>
+                    <div class="into-item">
+                        <label for="text">Знак зодиака</label>
+                        <span>Рак</span>
+                    </div>
+                    <div class="into-item">
+                        <label for="text">Образование</label>
+                        <span>Высшее</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

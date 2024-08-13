@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style/style_reg.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+</head>
+<body>
+    <header class="d-flex align-items-center justify-content-between">
+        <div class="ml-4 ml-md-5">alamio</div>
+        
+    </header>
+    <main class="content container">
+        <h2 class="registration-title">Регистрация</h2>
+        <form method='post' class="w-100">
+            {% csrf_token %}
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="email-or-phone" class="form-label">Email</label>
+                    <input type="text" id="email-or-phone" class="form-input" name='email_or_phone'>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" id="password" class="form-input" name='password'>
+                </div>
+                <button type='submit' class="submit-button">Зарегистрироваться</button>
+            </div>
+        </form>
+        {% if form.errors %}
+            <div class="alert alert-danger mt-3">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>

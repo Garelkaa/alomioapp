@@ -1,0 +1,131 @@
+.Interface-user-account-container {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 750px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    position: fixed; /* Остается на месте при прокрутке */
+    top: 50%; /* Центрирование по вертикали */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translate(-50%, -50%); /* Центрирование контейнера по центру экрана */
+    box-sizing: border-box;
+}
+
+/* Заголовок интерфейса */
+.Interface-user-account-header {
+    font-size: 25px;
+    font-family: 'Comfortaa', sans-serif;
+    color: #5C61A9;
+    width: 100%;
+    margin-bottom: 35px;
+    position: relative;
+}
+
+/* Иконка закрытия */
+.close-interface {
+    font-size: 1.5rem;
+    color: #5C61A9;
+    cursor: pointer;
+    position: absolute;
+    left: -5px;
+    top: 50%;  /* Центрируем крестик по вертикали */
+    transform: translateY(-50%);
+}
+
+/* Контейнер настроек интерфейса */
+.Interface-settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    color: #5C61A9;
+}
+
+/* Стили для переключателей */
+.form-check-label, 
+.form-check-label-lang {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #5C61A9;
+    margin-left: -10px;
+}
+
+/* Контейнер для языка */
+.user-lang-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user-lang-container label {
+    display: flex;
+    position: relative;
+    padding: 0 20px;
+}
+
+/* Стили для кнопки выбора языка */
+.language-button {
+    background: white;
+    border: 2px solid #5C61A9;
+    font-size: 1rem;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 28px;
+    outline: none;
+    transition: background 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.language-button i {
+    margin-left: 5px; /* Отступ между текстом и иконкой */
+}
+
+/* Стили для ползунков */
+.form-check {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form-check-input:checked {
+    background-color: #5C61A9;
+    border-color: #5C61A9;
+}
+
+.form-check-input {
+    width: 2.5rem; /* Общая ширина ползунка */
+    height: 1.5rem; /* Общая высота ползунка */
+    border-radius: 1.25rem; /* Радиус границ для создания овальной формы */
+    position: relative;
+    background-color: #e9ecef;
+    border: 1px solid #adb5bd;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+}
+
+.form-check-input:before {
+    content: "";
+    width: 1.2rem; /* Ширина кружка */
+    height: 1.2rem; /* Высота кружка */
+    background: white;
+    border-radius: 50%; /* Радиус границ для создания круговой формы */
+    position: absolute;
+    left: 0.15rem; /* Начальная позиция кружка слева */
+    top: 0.7rem; /* Центрируем кружок по вертикали */
+    transition: transform 0.3s;
+}
+
+.form-check-input:checked:before {
+    transform: translateX(1rem) translateY(-50%); /* Центрирование по вертикали */
+}
+

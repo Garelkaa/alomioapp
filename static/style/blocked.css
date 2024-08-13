@@ -1,0 +1,70 @@
+.blocked-user-account-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 650px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    position: absolute;
+    height: 32vh;
+}
+
+.modal-container {
+    width: 100%;
+}
+
+.blocked-user-account-header {
+    font-size: 20px;
+    font-family: 'Comfortaa', sans-serif;
+    color: #5C61A9;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.close-blocked {
+    font-size: 20px;
+    position: absolute;
+    left: -10px;
+    top: 0;
+    cursor: pointer;
+}
+
+.blocked-users-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.blocked-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1 0 30%; /* Ensure items are responsive and take up roughly 30% of the row width */
+}
+
+.profile-blocked-user {
+    width: 60px; /* Adjust size as needed */
+    height: 60px; /* Adjust size as needed */
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    color: #5C61A9;
+    font-size: 10px;
+    gap: 3px; /* Reduce gap between text elements */
+    margin-top: 5px; /* Reduce space above text */
+    font-weight: bold;
+}

@@ -1,0 +1,110 @@
+.height-user-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; 
+    max-width: 1200px;
+    z-index: 1000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.header-height-user-container {
+    width: 100%;
+    position: relative;
+}
+
+.header-text-about {
+    font-size: 25px;
+    color: #5C61A9;
+}
+
+.close-user-height {
+    font-size: 45px;
+    cursor: pointer;
+    top: -20px;
+    right: 0;
+}
+
+.slider-value-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 200px; /* Match the width of the slider */
+    padding-top: 35px;
+    justify-content: flex-start; /* Aligns the text to the left */
+    text-align: left; /* Ensures the text itself is left-aligned */
+}
+
+.slider-container {
+    width: 100%;
+    max-width: 200px;
+}
+
+.slider-height {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    height: 6px;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .15s ease-in-out;
+}
+
+.slider-height::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #8E76F2; /* Border only */
+    background-color: white;
+    cursor: pointer;
+}
+
+.slider-height::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #5C61A9; /* Border only */
+    cursor: pointer;
+}
+
+.button-save-container-height {
+    padding-top: 35px;
+    text-align: center;
+}
+
+.save-user-height {
+    font-size: 1.2rem;
+    width: 230px;
+    height: 60px;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-user-height:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.save-user-height:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.save-user-height:focus {
+    outline: none;
+}

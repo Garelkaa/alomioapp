@@ -1,0 +1,137 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Подключение вашего стиля -->
+    <link rel="stylesheet" href="{% static 'style/style_goal.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+    <!-- Подключение jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Подключение Popper.js, Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="lang-or-theme">
+            <button id="theme-button" class="theme-button">
+                <i class="bi bi-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="registration-title">Выбери свой город</h1>
+        <form action="{% url 'users:choice_your_city' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="location">Местоположение</label>
+                <div class="input-container">
+                    <input type="text" id="location" name="selected_city" class="form-input" placeholder="Введите местоположение">
+                    <i class="bi bi-geo-alt-fill location-icon"></i>
+                    <div id="suggestions" class="suggestions-container"></div>
+                </div>
+                <button type="button" id="auto-fill-button" class="btn btn-outline-primary">
+                    <i class="bi bi-geo-alt-fill"></i> Заполнить автоматически
+                </button>
+            </div>
+            <button type="submit" class="next-page">Продолжить</button>
+        </form>
+    </main>
+
+    <script>
+        $(document).ready(function(){
+            var isDarkTheme = false;
+
+            $("#location").on("input", function() {
+                var query = $(this).val();
+                if(query.length > 1) {
+                    $.ajax({
+                        url: 'https://secure.geonames.org/searchJSON',
+                        data: {
+                            q: query,
+                            maxRows: 10,
+                            username: 'bbylfg', // Замените на ваше имя пользователя Geonames
+                            featureClass: 'P',
+                            style: 'full',
+                            lang: 'ru',
+                            country: 'RU,UA,BY,KZ,AM,AZ,GE,MD,TJ,TM,UZ' // Страны СНГ и Украина
+                        },
+                        success: function(data) {
+                            var suggestions = $("#suggestions");
+                            suggestions.empty();
+                            if (data.geonames) {
+                                $.each(data.geonames, function(index, city) {
+                                    suggestions.append('<a href="#" class="list-group-item list-group-item-action">' + city.name + '</a>');
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error fetching data from Geonames API:", status, error);
+                        }
+                    });
+                } else {
+                    $("#suggestions").empty();
+                }
+            });
+
+            $("#suggestions").on("click", "a", function() {
+                $("#location").val($(this).text());
+                $("#suggestions").empty();
+                return false;
+            });
+
+            $('#theme-button').click(function() {
+                if (isDarkTheme) {
+                    $('body').css('background-color', '');
+                    $('main').css('background-color', '');
+                    $('header').css('background-color', '');
+                } else {
+                    $('main').css('background-color', '#282E33');
+                    $('body').css('background-color', '#282E33');
+                    $('header').css('background-color', '#18191D');
+                }
+                isDarkTheme = !isDarkTheme;
+            });
+
+            $('#auto-fill-button').click(function() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        getCityFromCoordinates(latitude, longitude);
+                    }, function(error) {
+                        console.error("Ошибка получения местоположения:", error);
+                    });
+                } else {
+                    console.log("Геолокация не поддерживается этим браузером.");
+                }
+            });
+
+            function getCityFromCoordinates(latitude, longitude) {
+                const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&addressdetails=1`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.address && data.address.city) {
+                            $("#location").val(data.address.city);
+                            $('form').submit(); // Автоматическая отправка формы
+                        } else {
+                            console.log("Город не найден.");
+                        }
+                    })
+                    .catch(error => console.error("Ошибка получения данных о местоположении:", error));
+            }
+        });
+    </script>
+</body>
+</html>

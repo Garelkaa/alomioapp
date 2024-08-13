@@ -1,0 +1,32 @@
+<div id='UserPersonality' class="personality-user-container">
+    <div class="header-personality-container d-flex justify-content-center align-items-center">
+        <span class="header-text-personality">Тип личности</span>
+    </div>
+    <i class="bi bi-x close-personality" onclick='CloseUserPersonality()'></i>
+    <div class="user-status-personality">
+        <input type='hidden' id='personality' name='personality'>
+        <div class="row">
+            <div class="col-12">
+                <div class="personality-item">
+                    <div class="circle-personality"></div>
+                    <span>Экстраверт</span>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="personality-item">
+                    <div class="circle-personality active-personality"></div>
+                    <span>Что-то между</span>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="personality-item">
+                    <div class="circle-personality"></div>
+                    <span>Интроверт</span>
+                </div>
+            </div>
+        </div>
+        <div class="save-personality-container">
+            <button class="save-personality-user btn btn-primary" id='save-button-personality'>Сохранить</button>
+        </div>
+    </div>
+</div>

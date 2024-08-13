@@ -1,0 +1,272 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E2E4FF;
+    max-width: 100%; /* Убираем фиксированную ширину */
+}
+
+header {
+    padding-top: 20px;
+    font-size: 2.5rem; /* Используем rem для лучшей адаптивности */
+    font-family: 'Comfortaa', sans-serif;
+    text-align: center;
+    color: #5C61A9;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.settings-icon {
+    font-size: 40px;
+    top: 10px;
+    position: absolute;
+    transform: translateX(250%);
+}
+
+.header-content i {
+    font-size: 2.5rem;
+}
+
+.user-profile {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column; /* Вертикальная выравнивание */
+    align-items: center;
+    margin: 0 auto;
+}
+
+.profile-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name-and-user, .age-user {
+    color: #5C61A9;
+    font-size: 30px;
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 500;
+}
+
+.search-love  {
+    color: #5C61A9;
+    height: 75px;
+    background-color: #E2E4FF;
+    border: 2px solid #5C61A9;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 70%; /* Сделаем ширину блоков более адаптивной */
+    margin: 30px auto;
+    /* margin-left: 300px; Центрирование блока */
+}
+
+.heart-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.text-search {
+    color: #5C61A9;
+    font-size: 1.5rem;
+}
+
+.banner-container {
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    border: 0;
+    border-radius: 32px;
+    text-align: center;
+    width: 100%; /* Сделаем ширину блока более адаптивной */
+    margin: 0 auto; /* Центрирование блока */
+}
+
+.banner-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.button-activate, .button-detail {
+    width: 100%; /* Сделаем кнопки адаптивными */
+    max-width: 250px;
+    background-color: none;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 32px; /* Установим максимальную ширину */
+}
+
+.banner-desc {
+    font-size: 15px;
+}
+
+.button-activate {
+    color: #5C61A9;
+    background-color: #fff;
+}
+
+.header-gallery {
+    color: #5C61A9;
+    font-size: 25px;
+    text-align: center;
+    margin: 20px auto; /* Центрирование и отступ */
+}
+
+.view-gallery {
+    width: 100%; /* Сделаем кнопку адаптивной */
+    height: 45px;
+    max-width: 150px;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    color: white;
+    border-radius: 30px;
+    font-size: 1.25rem;
+    border: none;
+}
+
+.user-photos-container {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет элементам обтекать */
+    justify-content: center;
+    gap: 30px;
+}
+
+.user-photo-profile {
+    width: 100%;
+    max-width: 300px;
+    height: 350px;
+    border: 2px solid white;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px;
+}
+
+.header-detail-container {
+    color: #5C61A9;
+    font-size: 30px;
+    margin-top: -50px;
+}
+
+.user-information-container, .user-detail-information-container {
+    padding-top: 20px;
+}
+
+.container-information {
+    width: 100%;
+    max-width: 650px;
+    border: 2px solid #8E76F2;
+    border-radius: 32px;
+    margin: 0 auto;
+}
+
+.user-content-container, .user-content-container-interested {
+    width: 100%;
+    max-width: 650px;
+    border: 2px solid #8E76F2;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.user-content-container-settings {
+    margin: 0 auto; /* Центрирование контейнера по горизонтали */
+    width: 100%;
+    max-width: 650px;
+    height: auto; /* Автоматическая высота, чтобы контейнер подстраивался под содержимое */
+    border: 2px solid #8E76F2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Выровнять элементы по ширине контейнера */
+    border-radius: 20px;
+    padding: 20px; /* Отступы внутри контейнера */
+    box-sizing: border-box;
+    gap: 15px; /* Отступы между элементами */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем тень для лучшего визуального восприятия */
+}
+
+.user-information-page {
+    display: flex;
+    flex-direction: column; /* Располагаем текст и выбор по вертикали */
+    justify-content: center;
+    align-items: flex-start; /* Выровнять элементы по началу контейнера */
+    width: 100%;
+    padding: 15px; /* Отступы внутри элемента */
+    border-bottom: 1px solid #e0e0e0; /* Добавляем разделительную линию */
+}
+
+.user-information-page:last-child {
+    border-bottom: none; /* Убираем нижнюю границу у последнего элемента */
+}
+
+.user-information-page, .user-information h2 {
+    font-weight: 600;
+    color: #5C61A9;
+    font-size: 18px; /* Уменьшаем размер шрифта для лучшего соответствия */
+    margin: 0 0 10px 0; /* Отступ только снизу */
+}
+
+.user-choice {
+    color: #5C61A9;
+    font-size: 16px; /* Уменьшаем размер шрифта для лучшего соответствия */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Отступ между текстом и иконкой */
+}
+
+.user-name, .user-content-container, .user-content-container-interested {
+    color: #5C61A9;
+    font-size: 16px; /* Уменьшаем размер шрифта для лучшего соответствия */
+}
+
+.user-content-container h2, .user-content-container-interested h2, .user-information-page h2 {
+    font-size: 25px; /* Уменьшаем размер шрифта для лучшего соответствия */
+    font-weight: 500;
+    color: #5C61A9;
+}
+
+.user-information-container {
+    margin-top: 10px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center; /* Центрирует квадраты по горизонтали */
+    text-align: center;
+}
+
+.container-information {
+    margin: 0 auto; /* Центрирование контейнера по горизонтали */
+    width: 100%;
+    max-width: 650px;
+    height: auto; /* Автоматическая высота, чтобы контейнер подстраивался под содержимое */
+    border: 2px solid #8E76F2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Выровнять элементы по ширине контейнера */
+    border-radius: 20px;
+    padding: 20px; /* Отступы внутри контейнера */
+    box-sizing: border-box;
+    gap: 15px; /* Отступы между элементами */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем тень для лучшего визуального восприятия */
+}
+
+
+.footer-strip {
+    position: fixed; /* Фиксированное позиционирование */
+    bottom: 0; /* Привязка к нижней части экрана */
+    width: 100%; /* Ширина на всю ширину экрана */
+    height: 60px;
+    background-color: white;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    z-index: 1000; /* Убедитесь, что футер находится поверх других элементов */
+}

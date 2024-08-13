@@ -1,0 +1,521 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Подключение вашего стиля -->
+    <link rel="stylesheet" href="{% static "style/style-profile.css" %}">
+    <link rel="stylesheet" href="{% static "style/style_premium_page.css" %}">
+    <link rel="stylesheet" href="{% static "style/style_tariff_page.css" %}">
+    <link rel="stylesheet" href="{% static "style/payment.css" %}">
+    <link rel="stylesheet" href="{% static "style/settings.css" %}">
+    <link rel="stylesheet" href="{% static "style/user_account.css" %}">
+    <link rel="stylesheet" href="{% static "style/notifical.css" %}">
+    <link rel="stylesheet" href="{% static "style/conf.css" %}">
+    <link rel="stylesheet" href="{% static "style/interface.css" %}">
+    <link rel="stylesheet" href="{% static "style/blocked.css" %}">
+    <link rel="stylesheet" href="{% static "style/info_user.css" %}">
+    <link rel="stylesheet" href="{% static "style/genders.css" %}">
+    <link rel="stylesheet" href="{% static "style/about.css" %}">
+    <link rel="stylesheet" href="{% static "style/interested.css" %}">
+    <link rel="stylesheet" href="{% static "style/user_gender.css" %}">
+    <link rel="stylesheet" href="{% static "style/family.css" %}">
+    <link rel="stylesheet" href="{% static "style/children.css" %}">
+    <link rel="stylesheet" href="{% static "style/personality.css" %}">
+    <link rel="stylesheet" href="{% static "style/language.css" %}">
+    <link rel="stylesheet" href="{% static "style/education.css" %}">
+    <link rel="stylesheet" href="{% static "style/work.css" %}">
+    <link rel="stylesheet" href="{% static "style/smoking.css" %}">
+    <link rel="stylesheet" href="{% static "style/zodiac.css" %}">
+    <link rel="stylesheet" href="{% static "style/alco.css" %}">
+    <link rel="stylesheet" href="{% static "style/height_user.css" %}">
+    <link rel="stylesheet" href="{% static "style/detail_profile.cs" %}s">
+</head>
+<body>
+    <header class="py-3">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <span class="header-text">Профиль</span>
+                <i class="bi bi-gear settings-icon" onclick='OpenUserSettings()'></i>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 col-md-6 d-flex d-flex justify-content-center align-items-center">
+                
+                {% if gallery.images.exists %}
+                    {% with gallery.images.first as image %}
+                        <img src="{{ image.image.url }}" alt="User Photo" class="profile-photo rounded-circle">
+                    {% endwith %}
+                {% else %}
+                    <p>No images available</p>
+                {% endif %}
+
+                
+                <div class="ml-3">
+                    <h2 class='name-and-user'>{{ user.name }}, {{ age }}</h2>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 text-center">
+                <div class='search-love p-3'>
+                    <i class="bi bi-heart heart-icon"></i>
+                    <h2 class='text-search'>Найти любовь</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="banner mt-5">
+            <div class="banner-container p-4 text-center text-white">
+                <h2 class='banner-header'>Alamio Premium</h2>
+                <h2 class="banner-desc">Активируй Alamio Premium и получай приемущества</h2>
+                <div class="banner-button-container mt-4">
+                    <button class='btn btn-primary button-activate' onclick='OpenTariffPrem()'>Активировать</button>
+                    <button class="btn btn-outline-light button-detail" onclick="openModal()">Подробнее</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-card mt-5 d-flex justify-content-between align-items-center">
+            <span class='header-gallery'>Основное</span>
+            <button class='view-gallery' onclick='OpenUserDetailProfile()'>Посмотреть</button>
+        </div>
+
+        <div class="user-photos-container mt-4 d-flex justify-content-center flex-wrap">
+            {% for image in user.gallery.images.all %}
+                <div class="user-photo-profile d-flex align-items-center justify-content-center">
+                    <img src="{{ image.image.url }}" alt="User Photo" class="img-thumbnail" style='border-radius: 32px; width: 300px; height:350px;'>
+                </div>
+            {% endfor %}
+            <div class="user-photo-profile d-flex align-items-center justify-content-center upload-container">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <i class="bi bi-plus-lg" id="uploadButton"></i>
+            </div>
+        </div>
+        
+        
+
+        <div class="user-information-container mt-5">
+            <div class="container-information mt-4" onclick='OpenUserDetailSettings(this)'>
+                <div class="user-information p-3 mb-3">
+                    <h2>Имя</h2>
+                    <div class="user-name">
+                        {{ user.name }}
+                        <i class="bi bi-caret-right-fill"></i>
+                    </div>
+                </div>
+                <div class="user-information p-3 mb-3">
+                    <h2>Дата рождения</h2>
+                    <div class="user-name">
+                        {{ bidth|date:"j.m.Y" }}
+                        <i class="bi bi-caret-right-fill"></i>
+                    </div>
+                    
+                </div>
+                
+                <div class="user-information p-3 mb-3">
+                    <h2>Цель</h2>
+                    <div class="user-name">
+                        Найти любовь
+                        <i class="bi bi-caret-right-fill"></i>
+                    </div>
+                </div>
+                <div class="user-information p-3 mb-3">
+                    <h2>Пол</h2>
+                    <div class="user-name">
+                        Мужской
+                        <i class="bi bi-caret-right-fill"></i>
+                    </div>
+                </div>
+                <div class="user-information p-3 mb-3">
+                    <h2>Город</h2>
+                    <div class="user-name">
+                        {{ user.city }}
+                        <i class="bi bi-caret-right-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-detail-information-container mt-5">
+            <div class="header-detail-container text-center">
+                Подробная информация
+            </div>
+            <div class="detail-information-container mt-4">
+                <div class="user-content-container  p-3 mb-3" onclick='OpenUserAbout()'>
+                    <h2>Обо мне</h2>
+                    <span>{{ user.about }}</span>
+                    <i class="bi bi-caret-right-fill"></i>
+                </div>
+                <div class="user-content-container-interested  p-3 mb-3" onclick='OpenUserInterested()'>
+                    <h2>Интересы</h2>
+                    <span>Покажи, что тебе нравиться</span>
+                    <i class="bi bi-caret-right-fill"></i>
+                </div>
+                <div class="user-content-container-settings mt-4">
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserSelecdGenders()'>
+                        <h2>Ориентация</h2>
+                        <div class="user-choice">
+                            Гетеросексуал
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserFamily()'>
+                        <h2>Отношения</h2>
+                        <div class="user-choice">
+                            Не в отношениях
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserChildren()'>
+                        <h2>Дети</h2>
+                        <div class="user-choice">
+                            Нет
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserLanguage()'>
+                        <h2>Языки</h2>
+                        <div class="user-choice">
+                            Русский
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserPersonality()'>
+                        <h2>Тип личности</h2>
+                        <div class="user-choice">
+                            Экстраверт
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserZodiac()'>
+                        <h2>Знак зодиака</h2>
+                        <div class="user-choice">
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserEducation()'>
+                        <h2>Образование</h2>
+                        <div class="user-choice">
+                            Высшее
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserWork()'>
+                        <h2>Работа</h2>
+                        <div class="user-choice">
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserHeight()'>
+                        <h2>Рост</h2>
+                        <div class="user-choice">
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserSmoking()'>
+                        <h2>Курение</h2>
+                        <div class="user-choice">
+                            Курю
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                    <div class="user-information-page p-3 mb-3" onclick='OpenUserAlco()'>
+                        <h2>Алкоголь</h2>
+                        <div class="user-choice">
+                            Не пью
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Добавьте остальные блоки здесь -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-strip mt-5 d-flex justify-content-center align-items-center">
+        <!-- Первый SVG -->
+    </div>
+
+    
+    <div id="popup-container"></div>
+    <div id="popup-container__tariff"></div>
+    <div id='payment-popup'></div>
+    <div id='settings__popup'></div>
+    <div id='user-account-popup'></div>
+    <div id='user-notifical-poput'></div>
+    <div id='conf-user-popup'></div>
+    <div id='interface-user-popup'></div>
+    <div id='blocked-users-popup'></div>
+    <div id='detail__info'></div>
+    <div id='genders-popup'></div>
+    <div id='about-user-popup'></div>
+    <div id='interested-user-popup'></div>
+    <div id='user-genders-popup'></div>
+    <div id='user-family-popup'></div>
+    <div id='personality-popup'></div>
+    <div id='children-popup'></div>
+    <div id='education-popup'></div>
+    <div id='language-popup'></div>
+    <div id='work-popup'></div>
+    <div id='smoking-popup'></div>
+    <div id='zodiac-popup'></div>
+    <div id='alco-popup'></div>
+    <div id='user-height-popup'></div>
+    <div id='detail-profile-popup'></div>
+
+    <script src='{% static "js/main.js" %}'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Загрузка HTML файла с попапом
+        // Функция для инициализации обработчиков после загрузки попапа
+
+    // Загрузка HTML файла с попапом
+    fetch('{% url "users:info_user" %}')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('detail__info').innerHTML = data;
+            initializePopupScripts(); 
+            CheckCity();
+            setupAutoSaveUserInfo('{% url "users:update_info_user" %}');
+        })
+        .catch(error => console.error('Ошибка загрузки попапа:', error));
+
+    fetch('{% url "users:about" %}')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('about-user-popup').innerHTML = data;
+            $('#save-button').click(function() {
+                saveUserAbout('{% url "users:update_about_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+            });
+        });
+
+        fetch('{% url "users:prem_popup" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('popup-container').innerHTML = data;
+            });
+    
+        fetch('{% url "users:payment" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('payment-popup').innerHTML = data;
+            });
+        
+        fetch('{% url "users:settings" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('settings__popup').innerHTML = data;
+            });
+        
+        fetch('{% url "users:user_account" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('user-account-popup').innerHTML = data;
+            });
+        
+        fetch('{% url "users:notifications" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('user-notifical-poput').innerHTML = data;
+            });
+        
+        fetch('{% url "users:confirmation" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('conf-user-popup').innerHTML = data;
+            });
+    
+        fetch('{% url "users:interface" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('interface-user-popup').innerHTML = data;
+            });
+        
+        fetch('{% url "users:blocked" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('blocked-users-popup').innerHTML = data;
+            });
+        
+        
+        
+        fetch('{% url "users:genders" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('genders-popup').innerHTML = data;
+            });
+
+        
+        fetch('{% url "users:interested" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('interested-user-popup').innerHTML = data;
+            });
+        
+        fetch('{% url "users:user_gender" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('user-genders-popup').innerHTML = data;
+                updateGenderSelection();
+                $('#save-button-orientation').click(function() {
+                    saveUserOrientation('{% url "users:update_gender_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
+            });
+        
+        fetch('{% url "users:family" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('user-family-popup').innerHTML = data;
+                updateFamilySelection();
+                $('#save-button-family').click(function() {
+                    saveUserFamily('{% url "users:update_family_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
+            });
+    
+        fetch('{% url "users:personality" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('personality-popup').innerHTML = data;
+                updatePersonalitySelection();
+                $('#save-button-personality').click(function() {
+                    saveUserPersonality('{% url "users:update_personality_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
+            });
+        
+        fetch('{% url "users:children" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('children-popup').innerHTML = data;
+                updateChildrenSelection();
+                $('#save-button-child').click(function() {
+                    saveUserChildren('{% url "users:update_children_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
+            });
+    
+        fetch('{% url "users:education" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('education-popup').innerHTML = data;
+                updateEducationSelection();
+                $('#save-button-education').click(function() {
+                    saveUserEducation('{% url "users:update_education_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
+            });
+        
+        fetch('{% url "users:language" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('language-popup').innerHTML = data;
+            });
+    
+        fetch('{% url "users:work" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('work-popup').innerHTML = data;
+            });
+    
+        fetch('{% url "users:smoking" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('smoking-popup').innerHTML = data;
+                updateSmokingSelection();
+                $('#save-button-smoking').click(function() {
+                    saveUserSmoking('{% url "users:update_smoking_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
+                    
+            });
+    
+        fetch('{% url "users:zodiac" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('zodiac-popup').innerHTML = data;
+            });
+    
+        fetch('{% url "users:alcohol" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('alco-popup').innerHTML = data;
+                updateAlcoholSelection();
+                $('#save-button-alcohol').click(function() {
+                    saveUserAlcohol('{% url "users:
+                    " %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
+            });
+        
+        fetch('{% url "users:user_height" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('user-height-popup').innerHTML = data;
+            });
+        
+        fetch('{% url "users:detail_profile" %}')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('detail-profile-popup').innerHTML = data;
+            });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const uploadButton = document.getElementById('uploadButton');
+            
+            uploadButton.addEventListener('click', function() {
+                fileInput.click(); // Открываем диалог выбора файла
+            });
+        
+            fileInput.addEventListener('change', function() {
+                const file = fileInput.files[0];
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('image', file);
+        
+                    fetch('{% url "users:upload_image" %}', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRFToken': getCookie('csrftoken')
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            location.reload(); // Обновите страницу после успешной загрузки
+                        } else {
+                            alert('Ошибка загрузки изображения.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Ошибка:', error);
+                    });
+                }
+            });
+        
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        });
+        
+    </script>

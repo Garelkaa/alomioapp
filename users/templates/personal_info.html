@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Подключение вашего стиля -->
+    <link rel="stylesheet" href="{% static 'style/style_personal.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center fixed-top p-3 shadow-sm">
+        <div class="d-flex align-items-center" style="padding-left: 200px;">
+            <h1 class="h3 mb-0 font-weight-bold text-gradient">alamio</h1>
+        </div>
+        <div class="lang-or-theme d-flex align-items-center">
+            
+            <button class="theme-button" id="theme-button">
+                <i class="bi bi-cloud-moon"></i>
+            </button>
+        </div>
+    </header>
+    <main class="container mt-5 pt-5">
+        <form method="POST" action="{% url 'users:personal_info' %}">
+            {% csrf_token %}
+            <h2 class="registration-title text-center my-4">Поделись информацией о себе</h2>
+            <h2 class="code-title text-center mb-4">Заполни следующие поля, чтобы другие могли узнать больше о тебе.</h2>    
+            <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" id="name" class="form-control mb-3" name="name">
+                
+                <label for="date-brith">Дата рождения</label>
+                <div class="input-container position-relative">
+                    <input type="text" id="date-brith" class="form-control mb-3" placeholder="дд.мм.гггг" name="date">
+                    <i class="bi bi-calendar2 calendar-icon position-absolute"></i>
+                </div>
+                
+                <label>Пол</label>
+                <div class="input-container-gender">
+                    <div class="gender-option mb-3" onclick="selectGender('M')">
+                        <input type="text" id="men" class="form-control" placeholder="Мужской" readonly>
+                        <i class="bi bi-circle change-icon" id="icon-men"></i>
+                    </div>
+                    <div class="gender-option mb-3" onclick="selectGender('F')">
+                        <input type="text" id="women" class="form-control" placeholder="Женский" readonly>
+                        <i class="bi bi-circle change-icon" id="icon-women"></i>
+                    </div>
+                    <div class="gender-option mb-3" onclick="selectGender('A')">
+                        <input type="text" id="other" class="form-control" placeholder="Другое" readonly>
+                        <i class="bi bi-circle change-icon" id="icon-other"></i>
+                    </div>
+                </div>
+                
+                <input type="hidden" id="selected-gender" name="selected_gender">
+                
+                <label for="interested">Тебя интересуют</label>
+                <div class="input-container-interested">
+                    <div class="interest-option mb-3" onclick="selectInterest('M')">
+                        <input type="text" id="mens" class="form-control" placeholder="Мужчины" readonly>
+                        <i class="bi bi-circle change-icon" id="icon-mens"></i>
+                    </div>
+                    <div class="interest-option mb-3" onclick="selectInterest('F')">
+                        <input type="text" id="womens" class="form-control" placeholder="Женщины" readonly>
+                        <i class="bi bi-circle change-icon" id="icon-womens"></i>
+                    </div>
+                    <div class="interest-option mb-3" onclick="selectInterest('A')">
+                        <input type="text" id="others" class="form-control" placeholder="Все" readonly>
+                        <i class="bi bi-circle change-icon" id="icon-others"></i>
+                    </div>
+                </div>
+                
+                <input type="hidden" id="selected-interest" name="selected_interest">
+            </div>
+            <button class="next-page btn btn-primary btn-lg btn-block" type="submit">Продолжить</button>
+        </form>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function selectGender(gender) {
+            const genderIcons = {
+                M: document.getElementById('icon-men'),
+                F: document.getElementById('icon-women'),
+                A: document.getElementById('icon-other')
+            };
+            const selectedGender = document.getElementById('selected-gender');
+            
+            if (selectedGender) {
+                Object.values(genderIcons).forEach(icon => {
+                    if (icon) {
+                        icon.classList.remove('bi-circle-fill', 'selected-icon');
+                        icon.classList.add('bi-circle');
+                    }
+                });
+                
+                if (genderIcons[gender]) {
+                    genderIcons[gender].classList.remove('bi-circle');
+                    genderIcons[gender].classList.add('bi-circle-fill', 'selected-icon');
+                }
+                
+                selectedGender.value = gender;
+            }
+        }
+
+        function selectInterest(interest) {
+            const interestIcons = {
+                M: document.getElementById('icon-mens'),
+                F: document.getElementById('icon-womens'),
+                A: document.getElementById('icon-others')
+            };
+            const selectedInterest = document.getElementById('selected-interest');
+            
+            if (selectedInterest) {
+                Object.values(interestIcons).forEach(icon => {
+                    if (icon) {
+                        icon.classList.remove('bi-circle-fill', 'selected-icon');
+                        icon.classList.add('bi-circle');
+                    }
+                });
+                
+                if (interestIcons[interest]) {
+                    interestIcons[interest].classList.remove('bi-circle');
+                    interestIcons[interest].classList.add('bi-circle-fill', 'selected-icon');
+                }
+                
+                selectedInterest.value = interest;
+            }
+        }
+
+        $(document).ready(function() {
+            var isDarkTheme = false;
+
+            $('#theme-button').click(function() {
+                if (isDarkTheme) {
+                    $('body').css('background-color', '');
+                    $('main').css('background-color', '');
+                    $('header').css('background-color', '');
+                } else {
+                    $('main').css('background-color', '#282E33');
+                    $('body').css('background-color', '#282E33');
+                    $('header').css('background-color', '#18191D');
+                }
+                isDarkTheme = !isDarkTheme;
+            });
+        });
+    </script>
+</body>
+</html>

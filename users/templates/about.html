@@ -1,0 +1,17 @@
+<div id='UserAbout' class="modal about-user-account-container">
+        <div class="header-about-user-container">
+            <span class="header-text-about">Обо мне</span>
+            <i class="bi bi-x cross-icon" onclick="CloseUserAbout()"></i>
+        </div>
+        <div class="user-about-container">
+            <label for="text">
+                Напиши немного о себе, чтобы другие могли узнать тебя поближе
+            </label>
+            <div class="input-user-about-container">
+                <textarea id='about' class="input-container-about">{{ user.about }}</textarea>
+            </div>
+            <div class="button-save-container">
+                <button id="save-button" class="save-user-about">Сохранить</button>
+            </div>
+        </div>
+    </div>

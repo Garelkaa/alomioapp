@@ -1,0 +1,44 @@
+<div id="PayPremium" class="pay-premium-container">
+    <div class="modal-container">
+        <div class="header-text-page-pay d-flex justify-content-center align-items-center">
+            <span>Детали оплаты</span>
+            <i class="bi bi-x close-payment" onclick="ClosePayPremium()"></i>
+        </div>
+        <span class="header-desc-page">
+            Введите данные
+        </span>
+    </div>
+    <div class="input-info-card-container">
+        <div class="form-page-input">
+            <input type="text" placeholder='Номер карты' class="card-number-input form-control">
+            <div class="expiry-cvc-container d-flex justify-content-between">
+                <input type="text" placeholder='ММ/ГГ' class="expiry-input form-control">
+                <input type="text" placeholder='CVC' class="cvc-input form-control">
+            </div>
+        </div>
+    </div>
+    <div class="save-card-container d-flex align-items-center">
+        <span class="circle-icon" onclick="toggleSaveCard()"></span>
+        <span class="save-card">Сохранить карту для будущих покупок</span>
+    </div>
+    <div class="payment-container">
+        <div class="payment-header-container">
+            <div class="name-and-price d-flex justify-content-between">
+                <span class="label">Alamio Premium</span>
+                <span class="price">800 руб х 1 мес</span>
+            </div>
+            <div class="tax-and-price d-flex justify-content-between">
+                <span class="label">Налог</span>
+                <span class="price">0.00 руб</span>
+            </div>
+            <div class="tax-separator"></div>
+            <div class="total-price d-flex justify-content-between">
+                <span class="label">Итого</span>
+                <span class="price">800.00 руб</span>
+            </div>
+        </div>
+        <div class="button-pay-container">
+            <button class="payment-button btn">Оплатить</button>
+        </div>
+    </div>
+</div>

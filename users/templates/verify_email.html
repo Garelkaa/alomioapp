@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Подключение вашего стиля -->
+    <link rel="stylesheet" href="{% static 'style/style_email.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center">
+        alamio
+        <div class="lang-or-theme d-flex">
+            
+            <button class="theme-button" id="theme-button">
+                <i class="bi bi-cloud-moon"></i>
+            </button>
+        </div>
+    </header>
+    <main class="container">
+        <h2 class="registration-title">Проверь свою почту</h2>
+        <h2 class="code-title">Введите пятизначный код подтверждения из письма, который мы отправили на вашу почту</h2>
+        <form method='post'>
+            {% csrf_token %}
+            <div class="form-container">        
+                <div class="form-group">
+                    <input type="text" id="email-or-phone" class="form-input" name='code'>
+                </div>
+                <div class="form-buttons">
+                    <button class="laod-button btn" type='submit'>Ввести</button>
+                    <button class="repeat-button btn">Отправить повторно</button>
+                </div>
+            </div>
+        </form>    
+    </main>
+    <!-- Подключение jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var isDarkTheme = false;
+
+            $('#theme-button').click(function() {
+                if (isDarkTheme) {
+                    $('body').css('background-color', '');
+                    $('main').css('background-color', '');
+                    $('header').css('background-color', '');
+                } else {
+                    $('main').css('background-color', '#282E33');
+                    $('body').css('background-color', '#282E33');
+                    $('header').css('background-color', '#18191D');
+                }
+                isDarkTheme = !isDarkTheme;
+            });
+        });
+    </script>
+</body>
+</html>

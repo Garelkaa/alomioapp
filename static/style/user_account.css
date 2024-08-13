@@ -1,0 +1,63 @@
+.settings-user-account-container {
+    display: none; /* Изначально скрыто */
+    color: #5C61A9;
+    background: #FFFFFF;
+    border-radius: 32px;
+    position: fixed; /* Используем fixed для обеспечения видимости при прокрутке */
+    margin-top: 120px; /* Отступ сверху */
+    left: 50%;
+    transform: translate(-50%, 0); /* Центрирование по горизонтали */
+    width: 90%; /* Ширина окна */
+    max-width: 1000px;
+    height: 35vh; /* Высота окна */
+    z-index: 1050; /* Устанавливаем высокий z-index для отображения поверх других элементов */
+    padding: 20px; /* Добавляем отступы по краям */
+    box-sizing: border-box; /* Включаем отступы и границы в общую ширину и высоту */
+}
+
+.settings-user-account-header {
+    font-size: 2rem;
+    font-family: 'Comfortaa', sans-serif;
+    color: #5C61A9;
+    position: relative;
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.back-icon {
+    font-size: 1.75rem;
+    cursor: pointer;
+    position: absolute;
+    left: -70px; /* Перемещаем иконку в левый угол */
+    top: -10px;
+}
+
+.input-button-container {
+    width: 100%;
+}
+
+.save-email-user {
+    height: 50px;
+    width: 110px;
+    font-size: 1rem;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    border: none;
+    border-radius: 32px;
+    color: white;
+}
+
+.header-label {
+    font-size: 1.25rem;
+    color: #5C61A9;
+}
+
+.input-email-and-phone {
+    font-size: 1.25rem;
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.other-settings-container {
+    font-size: 1.25rem;
+    color: #5C61A9;
+    margin-top: 20px; /* Отступ сверху */
+}

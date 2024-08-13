@@ -1,0 +1,101 @@
+/* Основной контейнер для уведомлений */
+.notifical-user-account-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 32vh;
+    width: 90%;
+    max-width: 600px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    position: fixed;
+    padding-top: 0; /* Убран верхний отступ */
+}
+
+/* Заголовок уведомлений */
+.notifical-user-account-header {
+    font-size: 1.25rem; /* Уменьшен размер шрифта заголовка */
+    font-family: 'Comfortaa', sans-serif;
+    color: #5C61A9;
+    margin-bottom: 0; /* Убран отступ снизу, чтобы убрать полоску */
+    text-align: center;
+    position: relative;
+}
+
+/* Иконка для закрытия */
+.close-notifical {
+    font-size: 30px; /* Уменьшен размер иконки */
+    cursor: pointer;
+    position: absolute;
+    right: -50px; /* Увеличен отступ справа */
+    top: 5px;   /* Увеличен отступ сверху */
+}
+
+/* Контейнер для настроек уведомлений */
+.notifical-settings-container {
+    padding-top: 5px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    color: #5C61A9;
+    font-weight: bold;
+    gap: 10px;
+}
+
+/* Стили для переключателей */
+.form-check {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Уменьшен отступ между переключателями */
+    font-size: 0.875rem; /* Уменьшен размер шрифта для улучшения читаемости */
+}
+
+.form-check-input {
+    border-radius: 0.75rem; /* Уменьшен радиус границы переключателя */
+    width: 2rem; /* Уменьшена ширина переключателя */
+    height: 1.25rem; /* Уменьшена высота переключателя */
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+    background-color: #e9ecef;
+    border: 1px solid #adb5bd;
+    position: relative;
+}
+
+.form-check-input:checked {
+    background-color: #5C61A9;
+    border-color: #5C61A9;
+}
+
+.form-check-input:checked:focus {
+    box-shadow: 0 0 0 0.2rem rgba(92, 97, 169, 0.25);
+}
+
+.form-check-input:before {
+    content: "";
+    width: 1rem; /* Уменьшен размер "показателя" переключателя */
+    height: 1rem;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    left: 0.1rem; /* Уменьшен отступ от левого края */
+    top: 0.1rem; /* Уменьшен отступ от верхнего края */
+    transition: 0.3s;
+}
+
+.form-check-input:checked:before {
+    transform: translateX(0.75rem); /* Уменьшена дистанция для переключателя */
+}
+
+.form-check-label {
+    margin-right: 1.5rem; /* Увеличено расстояние между текстом и переключателем */
+}

@@ -1,0 +1,29 @@
+<div id="SettingsUserAccount" class="settings-user-account-container">
+    <div class="modal-container">
+        <div class="settings-user-account-header text-center mb-4">
+            Аккаунт
+            <i class="bi bi-backspace back-icon" onclick='CloseUserAccountSettings()'></i>
+        </div>
+        <div class="settings-account-container">
+            <div class="set-user-email-and-phone">
+                <div class="set-user-email">
+                    <label class="header-label">Email</label>
+                    <div class="input-button-container d-flex align-items-center">
+                        <input type="text" class='input-email-and-phone form-control' placeholder='{{ user.email }}'>
+                        <button class="save-email-user btn btn-primary ml-2">Привязан</button>
+                    </div>
+                </div>
+            </div>
+            <div class="other-settings-container mt-4">
+                <span class="d-flex justify-content-between align-items-center">
+                    Выйти
+                    <i class="bi bi-caret-right-fill open-icon"></i>
+                </span>
+                <span class="d-flex justify-content-between align-items-center mt-2">
+                    Удалить аккаунт
+                    <i class="bi bi-caret-right-fill open-icon"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

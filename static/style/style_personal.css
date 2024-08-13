@@ -1,0 +1,328 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #E2E4FF;
+}
+
+header {
+    font-size: 50px;
+    font-family: 'Comfortaa', sans-serif;
+    position: fixed;
+    width: 100%;
+    max-width: 1920px;
+    height: 100px;
+    color: transparent;
+    text-align: left;
+    padding: 0 1rem;
+    padding-left: 200px;
+    line-height: 100px;
+    box-shadow: 0 2px 4px rgba(5, 0, 8, 0.1);
+    box-sizing: border-box;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+header::before {
+    content: 'alamio';
+    font-size: 50px;
+    font-family: 'Comfortaa', sans-serif;
+    color: transparent;
+    background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: absolute;
+    left: 200px;
+    top: 0;
+    height: 100px;
+    line-height: 100px;
+}
+
+main {
+    background-color: #E2E4FF;
+    padding: 20px;
+}
+
+.lang-or-theme {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding-right: 200px;
+}
+
+.language-button {
+    background: white;
+    border: 2px solid #5C61A9;
+    font-size: 15px;
+    padding: 15px 10px;
+    cursor: pointer;
+    border-radius: 28px;
+    outline: none;
+    transition: background 0.3s, color 0.3s;
+    padding-left: 15px;
+    line-height: 1;
+    position: relative;
+}
+
+.language-button i {
+    margin-left: 30px;
+}
+
+.language-button:hover {
+    background: black;
+    color: white;
+}
+
+.theme-button {
+    background: none; /* Убираем фон */
+    border: none; /* Убираем границу */
+    font-size: 25px; /* Размер шрифта уменьшен для мобильных устройств */
+    cursor: pointer; /* Курсор указывает на кнопку */
+    transition: color 0.3s; /* Плавный переход для изменения цвета */
+    outline: none; /* Убираем обводку при фокусе */
+    margin-left: 5px;
+}
+
+.theme-button:focus {
+    outline: none;
+}
+
+.registration-title {
+    padding-top: 120px;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 40px;
+    line-height: 52.41px;
+    text-align: center;
+    color: #5C61A9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.code-title {
+    color: #5C61A9;
+    font-size: 13px;
+    text-align: center;
+}   
+
+.form-group {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.form-group label {
+    color: #5C61A9;
+    font-size: 15px;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.form-input {
+    padding: 8px;
+    border: 2px solid #8E76F2;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+}
+
+.form-input::placeholder {
+    color: #9B9B9B;
+}
+
+.form-input:focus {
+    border-color: #8E76F2;
+    outline: none;
+}
+
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-80%);
+    font-size: 17px;
+    color: #8E76F2;
+}
+
+.form-input_gender, .form-input_genders, .form-input_interested {
+    padding: 8px;
+    border: 2px solid #8E76F2;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-input_gender {
+    margin-bottom: 15px;
+}
+
+.form-input_genders {
+    margin-bottom: 30px;
+}
+
+.form-input_interested {
+    margin-bottom: 15px;
+}
+
+.input-container-gender, .input-container-interested {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.gender-option, .interest-option {
+    position: relative;
+}
+
+.change-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    color: #8E76F2;
+    
+}
+
+.selected-icon {
+    color: #8E76F2;
+    background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.next-page {
+    background: #5C61A9;
+    color: white;
+    font-size: 18px;
+    padding: 15px 100px;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    transition: background 0.3s;
+    background: linear-gradient(100deg, #8E76F2 13.39%, #A1BDFF 78.57%);
+    display: block;
+    margin: 20px auto;
+}
+
+.next-page:focus {
+    border-color: #8E76F2;
+    outline: none;
+}
+
+/* Медиазапросы для мобильных устройств */
+@media (max-width: 768px) {
+    header {
+        font-size: 30px;
+        height: 80px;
+        line-height: 80px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    header::before {
+        font-size: 30px;
+        left: 20px;
+        height: 80px;
+        line-height: 80px;
+    }
+
+    .lang-or-theme {
+        padding-right: 20px;
+    }
+
+    .language-button {
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+
+    .theme-button {
+        font-size: 25px;
+    }
+
+    .registration-title {
+        font-size: 30px;
+        padding-top: 90px;
+    }
+
+    .code-title {
+        font-size: 11px;
+    }
+
+    .form-group {
+        padding-top: 20px;
+        max-width: 90%;
+    }
+
+    .form-input {
+        font-size: 14px;
+    }
+
+    .next-page {
+        font-size: 16px;
+        padding: 10px 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 25px;
+        height: 60px;
+        line-height: 60px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    header::before {
+        font-size: 25px;
+        left: 10px;
+        height: 60px;
+        line-height: 60px;
+    }
+
+    .lang-or-theme {
+        padding-right: 10px;
+    }
+
+    .language-button {
+        font-size: 10px;
+        padding: 8px 5px;
+    }
+
+    .theme-button {
+        font-size: 20px;
+    }
+
+    .registration-title {
+        font-size: 25px;
+        padding-top: 70px;
+    }
+
+    .code-title {
+        font-size: 10px;
+    }
+
+    .form-group {
+        padding-top: 15px;
+        max-width: 90%;
+    }
+
+    .form-input {
+        font-size: 12px;
+    }
+
+    .next-page {
+        font-size: 14px;
+        padding: 8px 40px;
+    }
+}

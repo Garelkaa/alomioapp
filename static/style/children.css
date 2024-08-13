@@ -1,0 +1,106 @@
+.user-change-children-container {
+    color: #5C61A9;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Responsive width */
+    max-width: 530px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden; /* Hide scrollbar */
+}
+
+.user-header-children {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Space between text and icon */
+    align-items: center;
+    padding: 10px 20px; /* Padding for better spacing */
+}
+
+.header-text-children {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 30px; /* Responsive font size */
+    color: #5C61A9;
+    text-align: center; /* Center text */
+    margin: 0 auto; /* Center text horizontally */
+}
+
+.close-children {
+    font-size: 40px; /* Responsive font size */
+    cursor: pointer;
+    position: relative;
+    top: -80px;
+    right: -120px;
+}
+
+.user-status-children {
+    margin-top: -50px;
+    width: 100%;
+}
+
+.answer-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between circle and text */
+    margin-bottom: 10px; /* Space between items */
+}
+
+.circle-children {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; /* Make it a circle */
+    border: 2px solid #8E76F2;
+    background-color: white; /* Default background color */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
+}
+
+.circle-children.active-circle-children {
+    background-color: #8E76F2; /* Background color when active */
+}
+
+.answer-item span {
+    color: #5C61A9;
+    font-size: 1rem; /* Responsive font size */
+}
+
+.save-status-container {
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.save-answer-user {
+    font-size: 1rem; /* Responsive font size */
+    width: 100%; /* Full width for responsiveness */
+    max-width: 400px;
+    height: 60px;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    background: linear-gradient(to right, #8E76F2, #A1BDFF);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-answer-user:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.save-answer-user:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.save-answer-user:focus {
+    outline: none;
+    border: none;
+}
