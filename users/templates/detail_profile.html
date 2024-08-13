@@ -2,7 +2,14 @@
         <div class="row no-gutters h-100">
             <!-- Левая колонка с фото -->
             <div class="col-md-6 d-flex justify-content-center align-items-center user-image-container">
-                <img src="../my_avatar.jpg" alt="Фото" class="img-fluid user-image">
+                
+                {% if gallery.images.exists %}
+                    {% with gallery.images.first as image %}
+                        <img src="{{ image.image.url }}"alt="Фото" class="img-fluid user-image">
+                    {% endwith %}
+                {% else %}
+                    <p>No images available</p>
+                {% endif %}
                 <i class="bi bi-x close-detail-profile" onclick='CloseUserDetailProfile()'></i>
             </div>
             <!-- Правая колонка с заголовком и кнопкой -->

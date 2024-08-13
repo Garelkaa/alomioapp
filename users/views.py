@@ -34,7 +34,7 @@ def regestration(request):
             if '@' in email_or_phone:
                 email = email_or_phone
                 phone_number = None
-                send_verification_email.delay(email, code)
+                # send_verification_email.delay(email, code)
     
 
             user = User.objects.create(
@@ -266,6 +266,9 @@ def profile(request):
 def prem_popup(request):
     return render(request, 'premium-popup.html')
 
+def prem_detail(request):
+    return render(request, 'prem_tariff_popup.html')
+
 def payment(request):
     return render(request, 'payment.html')
 
@@ -283,9 +286,6 @@ def confirmation(request):
 
 def interface(request):
     return render(request, 'interface.html')
-
-def blocked(request):
-    return render(request, 'blocked.html')
 
 def info_user(request):
     user = get_object_or_404(User, id=7)
@@ -339,4 +339,4 @@ def detail_profile(request):
     gallery = Gallery.objects.get(pk=user.gallery_id)
     age = calculate_age(user.bidth) if user.bidth else None
     bidth = user.bidth
-    return render(request, 'detail_profile.html', {'user': user, 'gallery_images': gallery, 'age': age, 'bidth': bidth})
+    return render(request, 'detail_profile.html', {'user': user, 'gallery': gallery, 'age': age, 'bidth': bidth})

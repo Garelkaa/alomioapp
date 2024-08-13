@@ -41,7 +41,7 @@ function selectTariff(element) {
     }
 
     // Функция для открытия модального окна
-function openpagepreium() {
+function openpagepremium() {
     document.getElementById("myModal").style.display = "none";
     document.getElementById("ActivatePremium").style.display = "flex";
 }
@@ -63,7 +63,7 @@ function PayPremiumForm() {
     }
 
     totalPriceElement.textContent = selectedTariffPrice;
-
+    document.getElementById("ActivatePremium").style.display = "none";
     document.getElementById("PayPremium").style.display = "flex";
 }
 
