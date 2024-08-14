@@ -5,27 +5,27 @@
                 <i class="bi bi-x close-language" onclick='CloseUserLanguage()'></i>
                 <div class="modal-body-page">
                     <ul class="language-list">
+                        <input type="hidden" name="language" value="" id='language'>
                         <!-- List of languages with circles -->
-                        <li class="language-item"><div class="circle-language" data-language="English"></div><label>English</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Spanish"></div><label>Spanish</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Chinese"></div><label>Chinese</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="French"></div><label>French</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="German"></div><label>German</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Russian"></div><label>Russian</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Japanese"></div><label>Japanese</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Italian"></div><label>Italian</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Portuguese"></div><label>Portuguese</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Arabic"></div><label>Arabic</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Korean"></div><label>Korean</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Hindi"></div><label>Hindi</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Dutch"></div><label>Dutch</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Swedish"></div><label>Swedish</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Greek"></div><label>Greek</label></li>
-                        <li class="language-item"><div class="circle-language" data-language="Turkish"></div><label>Turkish</label></li>
-                        <!-- Add more languages here -->
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'E' %}active{% endif %}" data-language="English"></div><label>English</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'S' %}active{% endif %}" data-language="Spanish"></div><label>Spanish</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'C' %}active{% endif %}" data-language="Chinese"></div><label>Chinese</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'F' %}active{% endif %}" data-language="French"></div><label>French</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'G' %}active{% endif %}" data-language="German"></div><label>German</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'R' %}active{% endif %}" data-language="Russian"></div><label>Russian</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'J' %}active{% endif %}" data-language="Japanese"></div><label>Japanese</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'I' %}active{% endif %}" data-language="Italian"></div><label>Italian</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'P' %}active{% endif %}" data-language="Portuguese"></div><label>Portuguese</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'A' %}active{% endif %}" data-language="Arabic"></div><label>Arabic</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'K' %}active{% endif %}" data-language="Korean"></div><label>Korean</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'H' %}active{% endif %}" data-language="Hindi"></div><label>Hindi</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'D' %}active{% endif %}" data-language="Dutch"></div><label>Dutch</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'W' %}active{% endif %}" data-language="Swedish"></div><label>Swedish</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'Gr' %}active{% endif %}" data-language="Greek"></div><label>Greek</label></li>
+                        <li class="language-item"><div class="circle-language {% if user.languages == 'T' %}active{% endif %}" data-language="Turkish"></div><label>Turkish</label></li>і
                     </ul>
                 </div>
                 <div class="modal-footer-page">
-                    <button type="button" class="btn save-answer-user">Сохранить</button>
+                    <button type="button" class="btn save-answer-user" id='save-button-language'>Сохранить</button>
                 </div>
             </div>

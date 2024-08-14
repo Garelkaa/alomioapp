@@ -247,8 +247,34 @@ function saveUserAbout(url) {
     });
 }
 
+
+function saveUserWork(url) {
+    // Получаем текст из текстовой области
+    var userWorkText = $('#work').val();
+
+    // Отправляем данные на сервер
+    $.ajax({
+        url: url, // Замените на URL вашего эндпоинта
+        type: 'POST',
+        data: {
+            'work': userWorkText,
+            'csrfmiddlewaretoken': '{{ csrf_token }}' // Если вы используете Django
+        },
+        success: function(response) {
+            // Обработка успешного ответа от сервера
+            alert('Данные успешно сохранены');
+            console.log(userWorkText);
+            CloseUserWork(); // Закрыть модальное окно после успешного сохранения
+        },
+        error: function(xhr, status, error) {
+            // Обработка ошибок
+            alert('Произошла ошибка при сохранении данных');
+        }
+    });
+}
+
 function updateGenderSelection() {
-    const genderInput = document.querySelector('input[name="gender"]');
+    const genderInput = document.querySelector('input[name="orientation"]');
     const orientationMap = {
         'Гетеросексуал': 'H',
         'Гей / Лесбиянка': 'G',
@@ -629,6 +655,124 @@ function saveUserAlcohol(url) {
 }
 
 
+function saveUserHeight(url) {
+    // Получаем текст из текстовой области
+    var userHeightText = $('#userHeightRange').val();
+
+    // Отправляем данные на сервер
+    $.ajax({
+        url: url, // Замените на URL вашего эндпоинта
+        type: 'POST',
+        data: {
+            'height': userHeightText,
+            'csrfmiddlewaretoken': '{{ csrf_token }}' // Если вы используете Django
+        },
+        success: function(response) {
+            // Обработка успешного ответа от сервера
+            alert('Данные успешно сохранены');
+            console.log(userHeightText);
+            CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
+        },
+        error: function(xhr, status, error) {
+            // Обработка ошибок
+            alert('Произошла ошибка при сохранении данных');
+        }
+    });
+}
+
+
+function updateLanguageSelection() {
+    const languageInput = document.querySelector('input[name="language"]');
+    
+    $('.language-item').on('click', function() {
+        // Удаляем класс активного состояния со всех кружков
+        $('.circle-language').removeClass('active');
+        
+        // Добавляем класс активного состояния к выбранному кружку
+        $(this).find('.circle-language').addClass('active');
+        
+        // Получаем значение языка из атрибута data-language
+        const selectedLanguage = $(this).find('.circle-language').attr('data-language');
+        
+        // Устанавливаем значение первой буквы выбранного языка в input
+        if (selectedLanguage) {
+            languageInput.value = selectedLanguage.charAt(0);  // Сохраняем первую букву в input
+        }
+    });
+}
+
+function saveUserLanguage(url) {
+    // Получаем текст из текстовой области
+    var userLanguageText = $('#language').val();
+
+    // Отправляем данные на сервер
+    $.ajax({
+        url: url, // Замените на URL вашего эндпоинта
+        type: 'POST',
+        data: {
+            'language': userLanguageText,
+            'csrfmiddlewaretoken': '{{ csrf_token }}' // Если вы используете Django
+        },
+        success: function(response) {
+            // Обработка успешного ответа от сервера
+            alert('Данные успешно сохранены');
+            console.log(userLanguageText);
+            CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
+        },
+        error: function(xhr, status, error) {
+            // Обработка ошибок
+            alert('Произошла ошибка при сохранении данных');
+        }
+    });
+}
+
+
+function updateZodiacSelection() {
+    const zodiacInput = document.querySelector('input[name="zodiac"]');
+    
+    $('.zodiac-item').on('click', function() {
+        $('.circle-zodiac').removeClass('active');
+        
+        $(this).find('.circle-zodiac').addClass('active');
+        
+        // Получаем значение знака Зодиака из data-атрибута
+        var zodiac = $(this).find('.circle-zodiac').data('zodiac');
+        
+        // Получаем первую букву знака Зодиака
+        var firstLetter = zodiac.charAt(0)+zodiac.charAt(1)+zodiac.charAt(2);
+        
+        // Устанавливаем первую букву знака Зодиака в input
+        zodiacInput.value = firstLetter;
+    });
+}
+
+
+function saveUserZodiac(url) {
+    // Получаем текст из текстовой области
+    var userZodiacText = $('#zodiac').val();
+
+    // Отправляем данные на сервер
+    $.ajax({
+        url: url, // Замените на URL вашего эндпоинта
+        type: 'POST',
+        data: {
+            'zodiac': userZodiacText,
+            'csrfmiddlewaretoken': '{{ csrf_token }}' // Если вы используете Django
+        },
+        success: function(response) {
+            // Обработка успешного ответа от сервера
+            alert('Данные успешно сохранены');
+            console.log(userZodiacText);
+            CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
+        },
+        error: function(xhr, status, error) {
+            // Обработка ошибок
+            alert('Произошла ошибка при сохранении данных');
+        }
+    });
+}
+
+
 function CheckCity() {
     function fetchCitySuggestions(query) {
         $.ajax({
@@ -848,7 +992,6 @@ function CloseSelectGenders() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("yes")
     // Обработка кликов по элементам gender-option
     document.querySelectorAll('.gender-option').forEach(function (element) {
         element.addEventListener('click', function () {
@@ -1005,4 +1148,52 @@ function OpenUserDetailProfile() {
 function CloseUserDetailProfile() {
     document.getElementById("UserDetailProfile").style.display = "none";
 }
+
+function handleThemeSwitchChange(url) {
+    $('#darkThemeSwitch').on('change', function() {
+        const isChecked = $(this).is(':checked');
+        console.log(isChecked);
+        
+        if (isChecked) {
+            console.log('ya true');
+            const data = JSON.stringify({
+                dark_mode: true
+            });
+            console.log(data);
+
+            $.ajax({
+                url: url,
+                method: 'POST',
+                contentType: 'application/json',
+                data: data,
+                success: function(response) {
+                    console.log('Success:', response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        } else {
+            const data = JSON.stringify({
+                dark_mode: false
+            });
+            console.log(data);
+
+            $.ajax({
+                url: url,
+                method: 'POST',
+                contentType: 'application/json',
+                data: data,
+                success: function(response) {
+                    console.log('Success:', response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    });
+}
+
+
 

@@ -198,6 +198,18 @@ def update_about_user(request):
 
 
 @csrf_exempt
+def update_work_user(request):
+    if request.method == 'POST':
+        work = request.POST.get('work')
+        print(work)
+        user = User.objects.get(pk=7)
+        user.work = work
+        user.save()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
+
+
+@csrf_exempt
 def update_gender_user(request):
     if request.method == 'POST':
         about = request.POST.get('about')
@@ -272,6 +284,54 @@ def update_alco_user(request):
         user.save()
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'}, status=400)
+
+
+@csrf_exempt
+def update_height_user(request):
+    if request.method == 'POST':
+        height = request.POST.get('height')
+        print(height)
+        user = User.objects.get(pk=7)
+        user.height = height
+        user.save()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
+
+
+@csrf_exempt
+def update_language_user(request):
+    if request.method == 'POST':
+        language = request.POST.get('language')
+        user = User.objects.get(pk=7)
+        user.languages = language
+        user.save()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
+
+
+@csrf_exempt
+def update_zodiac_user(request):
+    if request.method == 'POST':
+        zodiac = request.POST.get('zodiac')
+        user = User.objects.get(pk=7)
+        user.zodiac = zodiac
+        user.save()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
+
+@csrf_exempt
+def update_theme(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        dark_mode = data.get('dark_mode', None)
+        user = User.objects.get(pk=7)
+        user.theme = dark_mode
+        user.save()
+        print(f"Received dark_mode: {dark_mode}")  # Для отладки
+        # Ваш код для обработки значения dark_mode
+        return JsonResponse({'status': 'success', 'dark_mode': dark_mode})
+    return JsonResponse({'status': 'fail'}, status=400)
+
     
 def profile(request):
     user = User.objects.get(pk=7)
@@ -302,9 +362,6 @@ def user_account_delete(request):
     user = User.objects.get(pk=8).delete()
     return render(request, 'user_account.html', {'user': user})
 
-def notifications(request):
-    return render(request, 'notifical.html')
-
 def interface(request):
     return render(request, 'interface.html')
 
@@ -323,37 +380,48 @@ def interested(request):
     return render(request, 'interested.html')
 
 def user_gender(request):
-    return render(request, 'user_gender.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'user_gender.html', context={'user': user})
 
 def family(request):
-    return render(request, 'family.html')
+    user = User.objects.get(pk=7)
+    return render(request, 'family.html',context={'user': user})
 
 def personality(request):
-    return render(request, 'personality.html')
+    user = User.objects.get(pk=7)
+    return render(request, 'personality.html',context={'user': user})
 
 def children(request):
-    return render(request, 'children.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'children.html', {'user':user})
 
 def education(request):
-    return render(request, 'education.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'education.html', {'user':user})
 
 def language(request):
-    return render(request, 'language.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'language.html', {'user':user})
 
 def work(request):
-    return render(request, 'work.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'work.html', {'user':user})
 
 def smoking(request):
-    return render(request, 'smoking.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'smoking.html', {'user':user})
 
 def zodiac(request):
-    return render(request, 'zodiac.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'zodiac.html', {'user':user})
 
 def alcohol(request):
-    return render(request, 'alcohol.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'alcohol.html', {'user':user})
 
 def user_height(request):
-    return render(request, 'height_user.html')
+    user = get_object_or_404(User, id=7)
+    return render(request, 'height_user.html', {'user':user})
 
 def detail_profile(request):
     user = get_object_or_404(User, id=7)

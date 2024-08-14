@@ -8,13 +8,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="alco-item">
-                    <div class="circle-alco"></div>
+                    <div class="circle-alco {% if user.alcohol == 'N' %}active-alco{% endif %}"></div>
                     <span>Не пью</span>
                 </div>
             </div>
             <div class="col-12">
                 <div class="alco-item">
-                    <div class="circle-alco active-alco"></div>
+                    <div class="circle-alco {% if user.alcohol == 'Y' %}active-alco{% endif %}"></div>
                     <span>Пью</span>
                 </div>
             </div>

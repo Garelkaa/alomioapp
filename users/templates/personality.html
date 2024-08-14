@@ -8,19 +8,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="personality-item">
-                    <div class="circle-personality"></div>
+                    <div class="circle-personality {% if user.personality == 'E' %}active-personality{% endif %}"></div>
                     <span>Экстраверт</span>
                 </div>
             </div>
             <div class="col-12">
                 <div class="personality-item">
-                    <div class="circle-personality active-personality"></div>
+                    <div class="circle-personality {% if user.personality == 'S' %}active-personality{% endif %}"></div>
                     <span>Что-то между</span>
                 </div>
             </div>
             <div class="col-12">
                 <div class="personality-item">
-                    <div class="circle-personality"></div>
+                    <div class="circle-personality {% if user.personality == 'I' %}active-personality{% endif %}"></div>
                     <span>Интроверт</span>
                 </div>
             </div>

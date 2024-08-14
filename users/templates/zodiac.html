@@ -5,22 +5,58 @@
     <i class="bi bi-x close-zodiac" onclick='CloseUserZodiac()'></i>
     <div class="modal-body-zodiac">
         <ul class="zodiac-list">
-            <!-- List of zodiac signs with circles -->
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Aries"></div><label>Овен</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Taurus"></div><label>Телец</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Gemini"></div><label>Близнецы</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Cancer"></div><label>Рак</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Leo"></div><label>Лев</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Virgo"></div><label>Дева</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Libra"></div><label>Весы</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Scorpio"></div><label>Скорпион</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Sagittarius"></div><label>Стрелец</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Capricorn"></div><label>Козерог</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Aquarius"></div><label>Водолей</label></li>
-            <li class="zodiac-item"><div class="circle-zodiac" data-zodiac="Pisces"></div><label>Рыбы</label></li>
+            <input type='hidden' name='zodiac' id='zodiac'>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Ari' %}active{% endif %}" data-zodiac="Aries"></div>
+                <label>Овен</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Tau' %}active{% endif %}" data-zodiac="Taurus"></div>
+                <label>Телец</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Gem' %}active{% endif %}" data-zodiac="Gemini"></div>
+                <label>Близнецы</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Can' %}active{% endif %}" data-zodiac="Cancer"></div>
+                <label>Рак</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Leo' %}active{% endif %}" data-zodiac="Leo"></div>
+                <label>Лев</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Vir' %}active{% endif %}" data-zodiac="Virgo"></div>
+                <label>Дева</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Lib' %}active{% endif %}" data-zodiac="Libra"></div>
+                <label>Весы</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Sco' %}active{% endif %}" data-zodiac="Scorpio"></div>
+                <label>Скорпион</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Sag' %}active{% endif %}" data-zodiac="Sagittarius"></div>
+                <label>Стрелец</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Cap' %}active{% endif %}" data-zodiac="Capricorn"></div>
+                <label>Козерог</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Aqu' %}active{% endif %}" data-zodiac="Aquarius"></div>
+                <label>Водолей</label>
+            </li>
+            <li class="zodiac-item">
+                <div class="circle-zodiac {% if user.zodiac == 'Pis' %}active{% endif %}" data-zodiac="Pisces"></div>
+                <label>Рыбы</label>
+            </li>
         </ul>
     </div>
     <div class="modal-footer-zodiac">
-        <button type="button" class="btn save-zodiac">Сохранить</button>
+        <button type="button" class="btn save-zodiac" id='save-button-zodiac'>Сохранить</button>
     </div>
 </div>

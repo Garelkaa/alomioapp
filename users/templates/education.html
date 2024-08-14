@@ -8,19 +8,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="education-item">
-                    <div class="circle-education"></div>
+                    <div class="circle-education {% if user.education == 'S' %}active-education{% endif %}"></div>
                     <span>Среднее</span>
                 </div>
             </div>
             <div class="col-12">
                 <div class="education-item">
-                    <div class="circle-education active-education"></div>
+                    <div class="circle-education {% if user.education == 'V' %}active-education{% endif %}"></div>
                     <span>Высшее</span>
                 </div>
             </div>
             <div class="col-12">
                 <div class="education-item">
-                    <div class="circle-education"></div>
+                    <div class="circle-education {% if user.education == 'M' %}active-education{% endif %}"></div>
                     <span>Магистр и выше</span>
                 </div>
             </div>

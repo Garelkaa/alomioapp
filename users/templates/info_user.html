@@ -19,51 +19,50 @@
         <div class="input-group">
             <label for="age">Дата рождения</label>
             <div class="input-container">
-                <input type="date" id="age" class="form-control" value="{{ user.bidth|date:'Y-m-d' }}" min="1900-01-01" max="2024-01-01" required>
-                
+                <input type="date" id="age" class="form-control" value="{{ user.birthday|date:'Y-m-d' }}" min="1900-01-01" max="2024-01-01" required>
             </div>
         </div>
-        
-        
     </div>
+
     <div class="user-input-gender">
         <label for="gender">Пол</label>
-        <input type='hidden' id='gender' name='gender'>
+        <input type='hidden' id='gender' name='gender' value="{{ user.gender }}">
         <div class="gender-option change-men d-flex justify-content-between align-items-center">
             <span>Мужской</span>
-            <div class="change-icon"></div>
+            <div class="change-icon {% if user.gender == 'M' %}active{% endif %}"></div>
         </div>
         <div class="gender-option change-women d-flex justify-content-between align-items-center">
             <span>Женский</span>
-            <div class="change-icon"></div>
+            <div class="change-icon  {% if user.gender == 'F' %}active{% endif %}"></div>
         </div>
     </div>
+
     <div class="user-city-container">
         <label for="city">Город</label>
         <div class="input-container">
             <input type="text" id="city" class="form-control" value='{{ user.city }}'>
             <i class="bi bi-geo-alt geo-icon"></i>
         </div>
-        <div id="suggestions" class="suggestions-container"></div> <!-- Добавьте этот элемент -->
+        <div id="suggestions" class="suggestions-container"></div>
     </div>
-    
+
     <div class="user-target-container">
         <label for="text">Цель</label>
-        <input type='hidden' id='goal' name='goal'>
+        <input type='hidden' id='goal' name='goal' value="{{ user.goal }}">
         <div class="user-target goal-option change-love">
             <h2>Найти любовь</h2>
             <span>Хочу серьезные отношения</span>
-            <div class="change-icon-target"></div>
+            <div class="change-icon-target {% if user.goal == 'L' %}active{% endif %}"></div>
         </div>
         <div class="user-target goal-option change-romance">
             <h2>Свидание и романтика</h2>
             <span>Мне достаточно только приятных встреч.</span>
-            <div class="change-icon-target"></div>
+            <div class="change-icon-target {% if user.goal == 'R' %}active{% endif %}"></div>
         </div>
         <div class="user-target goal-option change-communication">
             <h2>Общение</h2>
             <span>Хочу найти интересных собеседников</span>
-            <div class="change-icon-target"></div>
+            <div class="change-icon-target {% if user.goal == 'O' %}active{% endif %}"></div>
         </div>
     </div>
 </div>

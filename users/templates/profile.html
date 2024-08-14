@@ -213,6 +213,7 @@
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserWork()'>
                         <h2>Работа</h2>
                         <div class="user-choice">
+                            <span>{{ user.work }}</span>
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
@@ -339,6 +340,7 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('interface-user-popup').innerHTML = data;
+                handleThemeSwitchChange('{% url "users:update_theme" %}');
             });
      
         fetch('{% url "users:genders" %}')
@@ -408,12 +410,19 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('language-popup').innerHTML = data;
+                updateLanguageSelection();
+                $('#save-button-language').click(function() {
+                    saveUserLanguage('{% url "users:update_language_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
             });
     
         fetch('{% url "users:work" %}')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('work-popup').innerHTML = data;
+                $('#save-button-work').click(function() {
+                    saveUserWork('{% url "users:update_work_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
             });
     
         fetch('{% url "users:smoking" %}')
@@ -431,6 +440,10 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('zodiac-popup').innerHTML = data;
+                updateZodiacSelection();
+                $('#save-button-zodiac').click(function() {
+                    saveUserZodiac('{% url "users:update_zodiac_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
             });
     
         fetch('{% url "users:alcohol" %}')
@@ -447,6 +460,9 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('user-height-popup').innerHTML = data;
+                $('#save-button-height').click(function() {
+                    saveUserHeight('{% url "users:update_height_user" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
             });
         
         fetch('{% url "users:detail_profile" %}')
@@ -490,6 +506,8 @@
                     });
                 }
             });
+
+
     
             document.querySelectorAll('.delete-icon').forEach(function (deleteIcon) {
                 deleteIcon.addEventListener('click', function () {

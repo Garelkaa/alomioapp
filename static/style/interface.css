@@ -96,11 +96,6 @@
     width: 100%;
 }
 
-.form-check-input:checked {
-    background-color: #5C61A9;
-    border-color: #5C61A9;
-}
-
 .form-check-input {
     width: 2.5rem; /* Общая ширина ползунка */
     height: 1.5rem; /* Общая высота ползунка */
@@ -111,6 +106,8 @@
     cursor: pointer;
     outline: none;
     appearance: none;
+    display: flex;
+    align-items: center;
 }
 
 .form-check-input:before {
@@ -121,11 +118,21 @@
     border-radius: 50%; /* Радиус границ для создания круговой формы */
     position: absolute;
     left: 0.15rem; /* Начальная позиция кружка слева */
-    top: 0.7rem; /* Центрируем кружок по вертикали */
+    top: 50%; /* Центрируем кружок по вертикали */
+    transform: translateY(-50%);
     transition: transform 0.3s;
 }
 
-.form-check-input:checked:before {
-    transform: translateX(1rem) translateY(-50%); /* Центрирование по вертикали */
+.form-check-input:checked {
+    background-color: #5C61A9;
+    border-color: #5C61A9;
 }
 
+.form-check-input:checked:before {
+    transform: translateX(1rem) translateY(-50%); /* Центрируем кружок по вертикали */
+}
+
+.form-check-input:checked {
+    background-color: #5C61A9;
+    border-color: #5C61A9;
+}

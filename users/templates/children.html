@@ -6,11 +6,11 @@
         <div class="user-status-children">
             <input type='hidden' id='children' name='children'>
             <div class="answer-item d-flex align-items-center">
-                <div class="circle-children"></div>
+                <div class="circle-children {% if user.childrens == 'Y' %}active-circle-children{% endif %}"></div>
                 <span>Есть</span>
             </div>
             <div class="answer-item d-flex align-items-center">
-                <div class="circle-children active-circle-children"></div>
+                <div class="circle-children {% if user.childrens == 'N' %}active-circle-children{% endif %}"></div>
                 <span>Нет</span>
             </div>
         </div>

@@ -8,19 +8,19 @@
             <div class="row">
                 <div class="col-12">
                     <div class="gender-item">
-                        <div class="circle-family"></div>
+                        <div class="circle-family {% if user.relationship == 'N' %}active{% endif %}"></div>
                         <span>Не в отношениях</span>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="gender-item">
-                        <div class="circle-family"></div>
+                        <div class="circle-family {% if user.relationship == 'Y' %}active{% endif %}"></div>
                         <span>В отношениях</span>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="gender-item">
-                        <div class="circle-family"></div>
+                        <div class="circle-family {% if user.relationship == 'S' %}active{% endif %}"></div>
                         <span>В свободных отношениях</span>
                     </div>
                 </div>

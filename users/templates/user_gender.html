@@ -6,28 +6,28 @@
 <div class="all-genders-search mt-4">
     <input type='hidden' id='orientation' name='orientation'>
     <div class="gender-item d-flex align-items-center">
-        <div class="circle-gender"></div>
+        <div class="circle-gender {% if user.orientation == 'H' %}active{% endif %}"></div>
         <span>Гетеросексуал</span>
     </div>
     <div class="gender-item d-flex align-items-center">
         
-        <div class="circle-gender"></div>
+        <div class="circle-gender {% if user.orientation == 'G' %}active{% endif %}"></div>
             <span>Гей / Лесбиянка</span>
         </div>
         <div class="gender-item d-flex align-items-center">
-            <div class="circle-gender"></div>
+            <div class="circle-gender {% if user.orientation == 'B' %}active{% endif %}"></div>
             <span>Бисексуал</span>
         </div>
         <div class="gender-item d-flex align-items-center">
-            <div class="circle-gender"></div>
+            <div class="circle-gender {% if user.orientation == 'A' %}active{% endif %}"></div>
                 <span>Асексуал</span>
         </div>
         <div class="gender-item d-flex align-items-center">
-            <div class="circle-gender"></div>
+            <div class="circle-gender {% if user.orientation == 'D' %}active{% endif %}"></div>
                 <span>Демисексуал</span>
             </div>
         <div class="gender-item d-flex align-items-center">
-            <div class="circle-gender"></div>
+            <div class="circle-gender {% if user.orientation == 'P' %}active{% endif %}"></div>
                 <span>Пансексуал</span>
             </div>
         </div>

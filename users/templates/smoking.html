@@ -8,13 +8,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="smoking-item">
-                    <div class="circle-smoking"></div>
+                    <div class="circle-smoking {% if user.smoking == 'N' %}active-smoking{% endif %}"></div>
                     <span>Не курю</span>
                 </div>
             </div>
             <div class="col-12">
                 <div class="smoking-item">
-                    <div class="circle-smoking active-smoking"></div>
+                    <div class="circle-smoking {% if user.smoking == 'Y' %}active-smoking{% endif %}"></div>
                     <span>Курю</span>
                 </div>
             </div>
