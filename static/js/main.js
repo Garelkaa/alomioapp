@@ -197,10 +197,11 @@ function setupAutoSaveUserInfo(url) {
                 user_data: JSON.stringify(userData)
             },
             success: function(response) {
-                console.log('Данные успешно сохранены');
+                location.reload(); // Перезагрузка страницы после успешного запроса
             },
             error: function(xhr, status, error) {
                 console.error('Ошибка при сохранении данных:', error);
+                location.reload(); // Перезагрузка страницы даже при ошибке
             }
         });
     }
@@ -221,57 +222,48 @@ function setupAutoSaveUserInfo(url) {
     });
 }
 
-
 function saveUserAbout(url) {
-    // Получаем текст из текстовой области
     var userAboutText = $('#about').val();
 
-    // Отправляем данные на сервер
     $.ajax({
-        url: url, // Замените на URL вашего эндпоинта
+        url: url,
         type: 'POST',
         data: {
             'about': userAboutText,
-            'csrfmiddlewaretoken': '{{ csrf_token }}' // Если вы используете Django
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
         },
         success: function(response) {
-            // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
-            console.log(userAboutText);
-            CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
+            location.reload(); // Перезагрузка страницы после успешного запроса
         },
         error: function(xhr, status, error) {
-            // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            console.error('Ошибка при сохранении данных:', error);
+            location.reload(); // Перезагрузка страницы даже при ошибке
         }
     });
 }
 
-
 function saveUserWork(url) {
-    // Получаем текст из текстовой области
     var userWorkText = $('#work').val();
 
-    // Отправляем данные на сервер
     $.ajax({
-        url: url, // Замените на URL вашего эндпоинта
+        url: url,
         type: 'POST',
         data: {
             'work': userWorkText,
-            'csrfmiddlewaretoken': '{{ csrf_token }}' // Если вы используете Django
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
         },
         success: function(response) {
-            // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
-            console.log(userWorkText);
-            CloseUserWork(); // Закрыть модальное окно после успешного сохранения
+            location.reload(); // Перезагрузка страницы после успешного запроса
         },
         error: function(xhr, status, error) {
-            // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            console.error('Ошибка при сохранении данных:', error);
+            location.reload(); // Перезагрузка страницы даже при ошибке
         }
     });
 }
+
+// Остальные функции также были изменены, чтобы удалить алерты и добавить перезагрузку страницы.
+
 
 function updateGenderSelection() {
     const genderInput = document.querySelector('input[name="orientation"]');
@@ -316,13 +308,13 @@ function saveUserOrientation(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userOrientationText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -369,13 +361,13 @@ function saveUserFamily(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
             console.log(userFamilyText);
+            location.reload();
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -420,13 +412,13 @@ function saveUserChildren(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userChildrenText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -470,13 +462,13 @@ function saveUserPersonality(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userPersonalitText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -520,13 +512,13 @@ function saveUserEducation(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userEducationText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -545,13 +537,14 @@ function saveUserUser(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
             console.log("Аккаунт успешно удален.");
+            location.reload();
             
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при удалении аккаунта.ы');
+            
+            location.reload();
         }
     });
 }
@@ -594,13 +587,13 @@ function saveUserSmoking(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userSmokingText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -643,13 +636,13 @@ function saveUserAlcohol(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userAlcoholText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -669,13 +662,13 @@ function saveUserHeight(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userHeightText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -715,13 +708,13 @@ function saveUserLanguage(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userLanguageText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
         }
     });
 }
@@ -761,13 +754,63 @@ function saveUserZodiac(url) {
         },
         success: function(response) {
             // Обработка успешного ответа от сервера
-            alert('Данные успешно сохранены');
+            location.reload();
             console.log(userZodiacText);
             CloseUserAbout(); // Закрыть модальное окно после успешного сохранения
         },
         error: function(xhr, status, error) {
             // Обработка ошибок
-            alert('Произошла ошибка при сохранении данных');
+            location.reload();
+        }
+    });
+}
+
+function handleThemeSwitchChange(url) {
+    $('#darkThemeSwitch').on('change', function() {
+        const isChecked = $(this).is(':checked');
+        console.log(isChecked);
+        
+        if (isChecked) {
+            console.log('ya true');
+            const data = JSON.stringify({
+                dark_mode: true
+            });
+            console.log(data);
+
+            $.ajax({
+                url: url,
+                method: 'POST',
+                contentType: 'application/json',
+                data: data,
+                success: function(response) {
+                    console.log('Success:', response);
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    location.reload();
+                }
+            });
+        } else {
+            const data = JSON.stringify({
+                dark_mode: false
+            });
+            console.log(data);
+
+            $.ajax({
+                url: url,
+                method: 'POST',
+                contentType: 'application/json',
+                data: data,
+                success: function(response) {
+                    console.log('Success:', response);
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    location.reload();
+                }
+            });
         }
     });
 }
@@ -833,21 +876,24 @@ function CheckCity() {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-            // Проверка наличия сохраненных данных при загрузке страницы
-            const savedCardNumber = localStorage.getItem('cardNumber');
-            const savedExpiry = localStorage.getItem('expiryDate');
-            const savedCVC = localStorage.getItem('cvc');
+    // Проверка наличия сохраненных данных при загрузке страницы
+    const savedCardNumber = localStorage.getItem('cardNumber');
+    const savedExpiry = localStorage.getItem('expiryDate');
+    const savedCVC = localStorage.getItem('cvc');
 
-            if (savedCardNumber) document.querySelector('.card-number-input').value = savedCardNumber;
-            if (savedExpiry) document.querySelector('.expiry-input').value = savedExpiry;
-            if (savedCVC) document.querySelector('.cvc-input').value = savedCVC;
+    if (savedCardNumber) document.querySelector('.card-number-input').value = savedCardNumber;
+    if (savedExpiry) document.querySelector('.expiry-input').value = savedExpiry;
+    if (savedCVC) document.querySelector('.cvc-input').value = savedCVC;
 
-            // Проверка состояния сохранения карты
-            const saveCardCheckbox = document.querySelector('.circle-icon');
-            if (localStorage.getItem('saveCard') === 'true') {
-                saveCardCheckbox.classList.add('checked');
-            }
-        });
+    // Проверка состояния сохранения карты
+    const saveCardCheckbox = document.querySelector('.circle-icon');
+    if (saveCardCheckbox) {  // Добавлена проверка на наличие элемента
+        if (localStorage.getItem('saveCard') === 'true') {
+            saveCardCheckbox.classList.add('checked');
+        }
+    }
+});
+
 
         // Функция для сохранения или удаления данных карты
         function toggleSaveCard() {
@@ -1148,52 +1194,3 @@ function OpenUserDetailProfile() {
 function CloseUserDetailProfile() {
     document.getElementById("UserDetailProfile").style.display = "none";
 }
-
-function handleThemeSwitchChange(url) {
-    $('#darkThemeSwitch').on('change', function() {
-        const isChecked = $(this).is(':checked');
-        console.log(isChecked);
-        
-        if (isChecked) {
-            console.log('ya true');
-            const data = JSON.stringify({
-                dark_mode: true
-            });
-            console.log(data);
-
-            $.ajax({
-                url: url,
-                method: 'POST',
-                contentType: 'application/json',
-                data: data,
-                success: function(response) {
-                    console.log('Success:', response);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                }
-            });
-        } else {
-            const data = JSON.stringify({
-                dark_mode: false
-            });
-            console.log(data);
-
-            $.ajax({
-                url: url,
-                method: 'POST',
-                contentType: 'application/json',
-                data: data,
-                success: function(response) {
-                    console.log('Success:', response);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                }
-            });
-        }
-    });
-}
-
-
-

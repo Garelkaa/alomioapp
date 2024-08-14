@@ -125,14 +125,14 @@
                 <div class="user-information p-3 mb-3">
                     <h2>Цель</h2>
                     <div class="user-name">
-                        Найти любовь
+                        {{ user.get_goal_display }}
                         <i class="bi bi-caret-right-fill"></i>
                     </div>
                 </div>
                 <div class="user-information p-3 mb-3">
                     <h2>Пол</h2>
                     <div class="user-name">
-                        Мужской
+                        {{ user.get_gender_display }}
                         <i class="bi bi-caret-right-fill"></i>
                     </div>
                 </div>
@@ -165,48 +165,49 @@
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserSelecdGenders()'>
                         <h2>Ориентация</h2>
                         <div class="user-choice">
-                            Гетеросексуал
+                            {{ user.get_orientation_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserFamily()'>
                         <h2>Отношения</h2>
                         <div class="user-choice">
-                            Не в отношениях
+                            {{ user.get_relationship_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserChildren()'>
                         <h2>Дети</h2>
                         <div class="user-choice">
-                            Нет
+                            {{ user.get_childrens_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserLanguage()'>
                         <h2>Языки</h2>
                         <div class="user-choice">
-                            Русский
+                            {{ user.get_languages_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserPersonality()'>
                         <h2>Тип личности</h2>
                         <div class="user-choice">
-                            Экстраверт
+                            {{ user.get_personality_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserZodiac()'>
                         <h2>Знак зодиака</h2>
                         <div class="user-choice">
+                            {{ user.get_zodiac_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserEducation()'>
                         <h2>Образование</h2>
                         <div class="user-choice">
-                            Высшее
+                            {{ user.get_education_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
@@ -220,20 +221,21 @@
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserHeight()'>
                         <h2>Рост</h2>
                         <div class="user-choice">
+                            {{ user.get_height_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserSmoking()'>
                         <h2>Курение</h2>
                         <div class="user-choice">
-                            Курю
+                            {{ user.get_smoking_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
                     <div class="user-information-page p-3 mb-3" onclick='OpenUserAlco()'>
                         <h2>Алкоголь</h2>
                         <div class="user-choice">
-                            Не пью
+                            {{ user.get_alcohol_display }}
                             <i class="bi bi-caret-right-fill"></i>
                         </div>
                     </div>
@@ -518,15 +520,9 @@
                     if (galleryIdElement) {
                         let galleryId = galleryIdElement.value;
         
-                        if (confirm("Вы уверены, что хотите удалить эту фотографию?")) {
-                            deletePhoto(galleryId, function(success) {
-                                if (success) {
-                                    photoDiv.remove();
-                                } else {
-                                    alert("Произошла ошибка при удалении фотографии.");
-                                }
-                            });
-                        }
+                        deletePhoto(galleryId, function(success) {
+                            photoDiv.remove(); 
+                        });
                     } 
                 });
             });

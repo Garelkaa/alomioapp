@@ -5,20 +5,20 @@ from gallery.models import Gallery
 
 class User(AbstractUser):
     CHOICES = [
-        ('F', 'Female'),
-        ('M', 'Male'),
+        ('F', 'Женский'),
+        ('M', 'Мужской'),
         ('A', 'All'),
     ]
     
     GOAL_CHOICES = [
-        ('L', 'Love'),
-        ('R', 'Romantice'),
-        ('O', 'Obzhenie'),
+        ('L', 'Любовь'),
+        ('R', 'Романтика'),
+        ('O', 'Общение'),
     ]
     
     CHILDRENS_CHOICES = [
-        ('Y', 'Yes'),
-        ('N', 'No')
+        ('Y', 'Есть'),
+        ('N', 'Нету')
     ]
     
     ORIENTATION_CHOICES = [
@@ -31,9 +31,9 @@ class User(AbstractUser):
     ]
     
     RELATIONSHIP_CHOICES = [
-        ('Y', 'Yes'),
-        ('N', 'No'),
-        ('S', 'Soso')
+        ('Y', 'В отношениях'),
+        ('N', 'Не в отношениях'),
+        ('S', 'В свободных отношениях')
     ]
     
     PERSONALITY_CHOICES = [
@@ -48,9 +48,14 @@ class User(AbstractUser):
         ('V', "Высшее"),
     ]
     
+    SMOKING_ALCO = [
+        ('Y', 'Пью'),
+        ('N', 'Не пью'),
+    ]
+    
     SMOKING_CHOICES = [
-        ('Y', 'Yes'),
-        ('N', 'No'),
+        ('Y', 'Курю'),
+        ('N', 'Не курю'),
     ]
     
     LANGUAGE_CHOICES = [
@@ -69,7 +74,7 @@ class User(AbstractUser):
         ('D', 'Dutch'),
         ('W', 'Swedish'),
         ('T', 'Turkish'),
-        ('Gr', 'Greek'),  # 'G' уже занято для German, поэтому используем 'Gr' для Greek
+        ('Gr', 'Greek'),  
     ]
     
     ZODIAC_CHOICES = [
@@ -110,7 +115,7 @@ class User(AbstractUser):
     personality = models.CharField(max_length=32, choices=PERSONALITY_CHOICES, null=True, blank=True)
     zodiac = models.CharField(max_length=32, choices=ZODIAC_CHOICES, null=True, blank=True)
     education = models.CharField(max_length=32, choices=EDUCATION_CHOICES, null=True, blank=True)
-    alcohol = models.CharField(max_length=32, choices=SMOKING_CHOICES, null=True, blank=True)
+    alcohol = models.CharField(max_length=32, choices=SMOKING_ALCO, null=True, blank=True)
     smoking = models.CharField(max_length=32, choices=SMOKING_CHOICES, null=True, blank=True)
     code = models.IntegerField(null=True, blank=True)
     theme = models.BooleanField(null=True, blank=True, default=False)

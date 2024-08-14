@@ -367,7 +367,8 @@ def user_account_delete(request):
     return render(request, 'user_account.html', {'user': user})
 
 def interface(request):
-    return render(request, 'interface.html')
+    user = User.objects.get(pk=7)
+    return render(request, 'interface.html', {'user': user})
 
 def info_user(request):
     user = get_object_or_404(User, id=7)
