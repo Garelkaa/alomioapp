@@ -1,7 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #E2E4FF;
-    max-width: 100%; /* Убираем фиксированную ширину */
+    max-width: 100%;
+    height: 4100px; /* Убираем фиксированную ширину */
 }
 
 header {
@@ -147,6 +148,29 @@ header {
     align-items: center;
     justify-content: center;
     border-radius: 32px;
+    position: relative; /* Устанавливаем позиционирование для относительного позиционирования иконки */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+}
+
+.user-photo {
+    border-radius: 32px;
+    width: 100%; /* Устанавливаем фото на всю ширину контейнера */
+    height: 100%;
+    object-fit: cover;
+}
+
+.delete-icon {
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 10px; /* Располагаем иконку внизу */
+    left: 50%; /* Центрируем иконку по горизонтали */
+    transform: translateX(-50%); /* Корректируем положение для центрирования */
+    font-size: 24px;
+    
+    cursor: pointer;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: black;
 }
 
 .header-detail-container {
@@ -269,4 +293,13 @@ header {
     align-items: center;
     gap: 25px;
     z-index: 1000; /* Убедитесь, что футер находится поверх других элементов */
+}
+
+
+
+
+@media(max-width: 360px) {
+    body {
+        height: 4150px;
+    }
 }

@@ -505,6 +505,31 @@ function saveUserEducation(url) {
     });
 }
 
+function saveUserUser(url) {
+    // Получаем текст из текстовой области
+    
+
+    // Отправляем данные на сервер
+    $.ajax({
+        url: url, // Замените на URL вашего эндпоинта
+        type: 'POST',
+        data: {
+            
+            'csrfmiddlewaretoken': '{{ csrf_token }}' // Если вы используете Django
+        },
+        success: function(response) {
+            // Обработка успешного ответа от сервера
+            alert('Данные успешно сохранены');
+            console.log("Аккаунт успешно удален.");
+            
+        },
+        error: function(xhr, status, error) {
+            // Обработка ошибок
+            alert('Произошла ошибка при удалении аккаунта.ы');
+        }
+    });
+}
+
 
 function updateSmokingSelection() {
     const smokingInput = document.querySelector('input[name="smoking"]');

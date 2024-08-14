@@ -127,6 +127,7 @@ def add_photo(request):
     return render(request, 'add_photo.html')
 
 
+@csrf_exempt
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
         user = User.objects.get(pk=7)
@@ -141,6 +142,23 @@ def upload_image(request):
         return JsonResponse({'success': True})
 
     return JsonResponse({'success': False})
+
+
+@csrf_exempt
+def delete_photo(request):
+    try:
+        data = json.loads(request.body)
+        image_id = data.get('id')
+        print(image_id)
+        user = User.objects.get(pk=7)
+        # Найдите и удалите изображение
+        image = user.gallery.images.get(id=image_id)
+        print(image)
+        image.delete()
+        
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
 
 
 @csrf_exempt 
@@ -276,13 +294,16 @@ def settings(request):
     return render(request, 'settings.html')
 
 def user_account(request):
-    return render(request, 'user_account.html')
+    user = User.objects.get(pk=7)
+    return render(request, 'user_account.html', {'user': user})
+
+@csrf_exempt
+def user_account_delete(request):
+    user = User.objects.get(pk=8).delete()
+    return render(request, 'user_account.html', {'user': user})
 
 def notifications(request):
     return render(request, 'notifical.html')
-
-def confirmation(request):
-    return render(request, 'conf.html')
 
 def interface(request):
     return render(request, 'interface.html')

@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="{% static "style/settings.css" %}">
     <link rel="stylesheet" href="{% static "style/user_account.css" %}">
     <link rel="stylesheet" href="{% static "style/notifical.css" %}">
-    <link rel="stylesheet" href="{% static "style/conf.css" %}">
     <link rel="stylesheet" href="{% static "style/interface.css" %}">
     <link rel="stylesheet" href="{% static "style/info_user.css" %}">
     <link rel="stylesheet" href="{% static "style/genders.css" %}">
@@ -90,8 +89,10 @@
 
         <div class="user-photos-container mt-4 d-flex justify-content-center flex-wrap">
             {% for image in user.gallery.images.all %}
-                <div class="user-photo-profile d-flex align-items-center justify-content-center">
-                    <img src="{{ image.image.url }}" alt="User Photo" class="img-thumbnail" style='border-radius: 32px; width: 300px; height:350px;'>
+                <div class="user-photo-profile d-flex align-items-center justify-content-center position-relative">
+                    <img src="{{ image.image.url }}" alt="User Photo" class="img-thumbnail user-photo">
+                    <input type='hidden' class='gallery-id' value='{{ image.id }}'>
+                    <i class="bi bi-trash delete-icon"></i>
                 </div>
             {% endfor %}
             <div class="user-photo-profile d-flex align-items-center justify-content-center upload-container">
@@ -99,6 +100,7 @@
                 <i class="bi bi-plus-lg" id="uploadButton"></i>
             </div>
         </div>
+        
         
         
 
@@ -328,18 +330,9 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('user-account-popup').innerHTML = data;
-            });
-        
-        fetch('{% url "users:notifications" %}')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('user-notifical-poput').innerHTML = data;
-            });
-        
-        fetch('{% url "users:confirmation" %}')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('conf-user-popup').innerHTML = data;
+                $('#delete-acc').click(function() {
+                    saveUserUser('{% url "users:user_account_delete" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                });
             });
     
         fetch('{% url "users:interface" %}')
@@ -497,6 +490,50 @@
                     });
                 }
             });
+    
+            document.querySelectorAll('.delete-icon').forEach(function (deleteIcon) {
+                deleteIcon.addEventListener('click', function () {
+                    let photoDiv = this.closest('.user-photo-profile');
+                    let galleryIdElement = photoDiv.querySelector('.gallery-id');
+                    
+                    // Проверяем, что элемент существует
+                    if (galleryIdElement) {
+                        let galleryId = galleryIdElement.value;
+        
+                        if (confirm("Вы уверены, что хотите удалить эту фотографию?")) {
+                            deletePhoto(galleryId, function(success) {
+                                if (success) {
+                                    photoDiv.remove();
+                                } else {
+                                    alert("Произошла ошибка при удалении фотографии.");
+                                }
+                            });
+                        }
+                    } 
+                });
+            });
+
+            
+            
+            // AJAX-функция для удаления фотографии
+            function deletePhoto(imageId, callback) {
+                fetch('{% url "users:delete_photo" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken') // получение CSRF токена
+                    },
+                    body: JSON.stringify({ id: imageId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (callback) callback(data.success);
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    if (callback) callback(false);
+                });
+            }
         
             function getCookie(name) {
                 let cookieValue = null;
