@@ -10,8 +10,10 @@ Python 3.8 или выше
 
 bash
 Копировать код
+```
 git clone https://github.comalomioapp/alomio.git
 cd alomio
+```
 Создайте и активируйте виртуальное окружение:
 
 bash
