@@ -342,16 +342,20 @@ def profile(request):
     return render(request, 'profile.html', context={'user': user, 'age':age, 'gallery': gallery, 'bidth': bidth})
 
 def prem_popup(request):
-    return render(request, 'premium-popup.html')
+    user = User.objects.get(pk=7)
+    return render(request, 'premium-popup.html', {'user': user})
 
 def prem_detail(request):
-    return render(request, 'prem_tariff_popup.html')
+    user = User.objects.get(pk=7)
+    return render(request, 'prem_tariff_popup.html', {'user': user})
 
 def payment(request):
-    return render(request, 'payment.html')
+    user = User.objects.get(pk=7)
+    return render(request, 'payment.html', {'user': user})
 
 def settings(request):
-    return render(request, 'settings.html')
+    user = User.objects.get(pk=7)
+    return render(request, 'settings.html', {'user': user})
 
 def user_account(request):
     user = User.objects.get(pk=7)
@@ -374,7 +378,8 @@ def genders(request):
 
 def about(request):
     user = get_object_or_404(User, id=7)
-    return render(request, 'about.html', {'user': user})
+    is_dark_mode = user.theme
+    return render(request, 'about.html', {'user': user, 'is_dark_mode': is_dark_mode,})
 
 def interested(request):
     return render(request, 'interested.html')

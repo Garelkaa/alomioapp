@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="{% static "style/height_user.css" %}">
     <link rel="stylesheet" href="{% static "style/detail_profile.cs" %}s">
 </head>
-<body>
+<body style='{% if user.theme %}background:#282e33;{% endif %}'>
     <header class="py-3">
         <div class="container">
             <div class="d-flex justify-content-center align-items-center">
