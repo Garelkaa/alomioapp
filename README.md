@@ -18,23 +18,33 @@ cd alomio
 
 bash
 Копировать код
+```
 python -m venv venv
+```
+```
 source venv/bin/activate  # Для Windows используйте venv\Scripts\activate
+```
 Установите зависимости:
 
 bash
 Копировать код
-pip install -r requirements.txt
+```
+pip install -r requirements.txt\
+```
 Выполните миграции:
 
 bash
 Копировать код
+```
 python manage.py migrate
+```
 Запустите сервер разработки:
 
 bash
 Копировать код
+```
 python manage.py runserver
+```
 Теперь вы можете открыть http://127.0.0.1:8000 в вашем веб-браузере и начать использовать приложение.
 
 Используемые технологии
