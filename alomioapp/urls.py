@@ -20,7 +20,8 @@ from alomioapp import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('user/', include('users.urls'))
+    path('user/', include('users.urls')),
+    path('card/', include('card.urls')),
     
 ]
 

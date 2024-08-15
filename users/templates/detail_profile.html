@@ -26,35 +26,35 @@
                 <div class="user-personal-info-container p-3">
                     <div class="into-item">
                         <label for="text">Пол</label>
-                        <span>Мужской</span>
+                        <span>{{ user.get_gender_display }}</span>
                     </div>
                     <div class="into-item">
                         <label for="text">Город</label>
-                        <span>Киев</span>
+                        <span>{{ user.city }}</span>
                     </div>
                     <div class="into-item">
                         <label for="text">Ориентация</label>
-                        <span>Гетеросексуал</span>
+                        <span>{{ user.get_orientation_display }}</span>
                     </div>
                     <div class="into-item">
                         <label for="text">Отношения</label>
-                        <span>Не в Отношениях</span>
+                        <span>{{ user.get_relationship_display }}</span>
                     </div>
                     <div class="into-item">
                         <label for="text">Дети</label>
-                        <span>Нет</span>
+                        <span>{{ user.get_childrens_display }}</span>
                     </div>
                     <div class="into-item">
                         <label for="text">Языки</label>
-                        <span>Русский</span>
+                        <span>{{ user.get_languages_display }}</span>
                     </div>
                     <div class="into-item">
                         <label for="text">Знак зодиака</label>
-                        <span>Рак</span>
+                        <span>{{ user.get_zodiac_display }}</span>
                     </div>
                     <div class="into-item">
                         <label for="text">Образование</label>
-                        <span>Высшее</span>
+                        <span>{{ user.get_education_display }}</span>
                     </div>
                 </div>
             </div>
