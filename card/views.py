@@ -23,7 +23,9 @@ def get_profiles(request):
         'id', 'name', 'bidth', 'about', 'gender', 'city', 'orientation', 'relationship', 'childrens', 'languages', 'personality', 'zodiac', 'education', 'work', 'gallery'
     )
     
-    # Получаем изображения из модели GalleryImage и рассчитываем возраст
+    # Список профилей для отправки на фронтенд
+    profiles_list = []
+
     for profile in profiles:
         birth_date = profile.get('bidth')
         if birth_date:
@@ -33,9 +35,11 @@ def get_profiles(request):
         if gallery:
             images = GalleryImage.objects.filter(gallery=gallery)
             image_urls = [img.image.url for img in images]
-            profile['image'] = image_urls[0] if image_urls else 'https://via.placeholder.com/800x600'
+            profile['images'] = image_urls if image_urls else ['https://via.placeholder.com/800x600']
         else:
-            profile['image'] = 'https://via.placeholder.com/800x600'
-    
-    profiles_list = list(profiles)  # Преобразуем QuerySet в список словарей
+            profile['images'] = ['https://via.placeholder.com/800x600']
+
+        profiles_list.append(profile)
+
     return JsonResponse(profiles_list, safe=False)
+

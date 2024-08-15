@@ -53,8 +53,8 @@
         <div class="modal-body">
           <label for="genderOptions" style="color: #5C61A9;">Кого я ищу:</label>
           <div id="genderOptions" class="gender-options">
-            <div class="gender-option" onclick="setGender('all', this)">
-              <div class="circle-g"></div>
+            <div class="gender-option active" onclick="setGender('all', this)">
+              <div class="circle-g active"></div>
               <span class="gender-btn">Все</span>
             </div>
             <div class="gender-option" onclick="setGender('male', this)">
@@ -81,7 +81,7 @@
             </div>
           </div>
           <br>
-          <button class="btn btn-primary btn-block apply-btn" onclick="applySettings()">Применить</button>
+          <button class="btn btn-primary btn-block apply-btn" id="applySettings" onclick="applySettings()">Применить</button>
         </div>
       </div>
     </div>
