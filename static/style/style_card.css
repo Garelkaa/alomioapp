@@ -181,7 +181,8 @@ body, html {
       border: 2px #8E76F2 solid;
       border-radius: 32px;
       padding: 0 10px; /* Добавьте отступы, если нужно */
-      box-sizing: border-box; /* Убедитесь, что padding и border включены в ширину и высоту */
+      box-sizing: border-box;
+      margin-left: 14px; /* Убедитесь, что padding и border включены в ширину и высоту */
     }
 
     .smile-icon, .user-goal span {

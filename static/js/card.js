@@ -7,73 +7,57 @@ let currentIndex = 0;
 
 // Функция для загрузки профилей
 function loadProfiles() {
-    profiles = [
-        {
-            id: 1,
-            name: "Диана",
-            age: 20,
-            image: "https://via.placeholder.com/800x600",
-            about: "Люблю путешествовать и читать книги.",
-            interests: ["Велоспорт", "Саморазвитие", "Музыка"],
-            gender: "Женский",
-            city: "Киев",
-            orientation: "Гетеросексуал",
-            relationshipStatus: "Не в отношениях",
-            children: "Нет",
-            languages: "Русский",
-            personalityType: "Экстраверт",
-            zodiacSign: "Рак",
-            education: "Высшее",
-            job: "Маркетолог"
-        },
-        {
-            id: 2,
-            name: "Иван",
-            age: 25,
-            image: "https://via.placeholder.com/800x600?text=Ivan",
-            about: "Обожаю спорт и активный отдых.",
-            interests: ["Футбол", "Путешествия", "Фотография"],
-            gender: "Мужской",
-            city: "Москва",
-            orientation: "Гетеросексуал",
-            relationshipStatus: "В отношениях",
-            children: "Нет",
-            languages: "Русский, Английский",
-            personalityType: "Интроверт",
-            zodiacSign: "Лев",
-            education: "Высшее",
-            job: "Программист"
-        },
-        {
-            id: 3,
-            name: "Анастасия",
-            age: 30,
-            image: "https://via.placeholder.com/800x600?text=Anastasia",
-            about: "Работаю в дизайне, увлекаюсь искусством.",
-            interests: ["Искусство", "Кулинария", "Чтение"],
-            gender: "Женский",
-            city: "Санкт-Петербург",
-            orientation: "Гомосексуал",
-            relationshipStatus: "Не в отношениях",
-            children: "Есть",
-            languages: "Русский, Французский",
-            personalityType: "Экстраверт",
-            zodiacSign: "Близнецы",
-            education: "Высшее",
-            job: "Дизайнер"
-        }
-        // Добавьте другие профили по необходимости
-    ];
+    fetch('/card/get_profiles/')
+        .then(response => response.json())
+        .then(data => {
+            profiles = data;
+            currentIndex = 0; // Сбрасываем индекс
+            updateProfileInfo();
+            updateCarousel();
+        })
+        .catch(error => console.error('Ошибка при загрузке профилей:', error));
 }
+
+// Функция для обновления карусели
+function updateCarousel() {
+    const carouselInner = document.getElementById('carouselInner');
+    const indicatorsContainer = document.querySelector('.carousel-indicators');
+
+    carouselInner.innerHTML = ''; // Очищаем старые элементы карусели
+    indicatorsContainer.innerHTML = ''; // Очищаем старые индикаторы
+
+    if (profiles.length > 0) {
+        const profile = profiles[currentIndex];
+
+        // Создаем новый элемент карусели
+        const carouselItem = document.createElement('div');
+        carouselItem.classList.add('carousel-item', 'active'); // Активный элемент
+        const img = document.createElement('img');
+        img.src = profile.image;
+        img.classList.add('d-block', 'w-100');
+        img.alt = `Image of ${profile.name}`;
+        carouselItem.appendChild(img);
+        carouselInner.appendChild(carouselItem);
+
+        // Создаем один индикатор
+        const indicator = document.createElement('li');
+        indicator.setAttribute('data-target', '#carouselExampleControls');
+        indicator.setAttribute('data-slide-to', '0'); // Индикатор только для текущего профиля
+        indicator.classList.add('active'); // Активный индикатор
+        indicatorsContainer.appendChild(indicator);
+    }
+}
+
 
 // Функция для обновления информации о профиле
 function updateProfileInfo() {
     const profile = profiles[currentIndex];
     if (profile) {
-        document.querySelector('.carousel-item.active img').src = profile.image;
-        document.querySelector('.user-name').textContent = profile.name + ", ";
-        document.querySelector('.user-age').textContent = profile.age;
-        updateAdditionalInfo(); // Обновление дополнительной информации
+        document.querySelector('.user-name').textContent = profile.name || "Не указано";
+        document.querySelector('.user-age').textContent = profile.age || "Не указано";
+
+        // Обновляем дополнительную информацию
+        updateAdditionalInfo();
     }
 }
 
@@ -82,22 +66,34 @@ function updateAdditionalInfo() {
     const profile = profiles[currentIndex];
     if (profile) {
         document.querySelector('.text-container').textContent = profile.about || "Нет информации";
-        const userItems = document.querySelectorAll('.user-item');
-        userItems[0].textContent = profile.interests ? profile.interests[0] : "Нет интересов";
-        userItems[1].textContent = profile.interests ? profile.interests[1] : "Нет интересов";
-        userItems[2].textContent = profile.interests ? profile.interests[2] : "Нет интересов";
+        const userItems = document.querySelector('.user-items-container');
+        userItems.innerHTML = ''; // Очищаем старые интересы
+        // Предполагается, что интересы хранятся в виде строки, разделенной запятыми
+        if (profile.interests) {
+            profile.interests.split(',').forEach(interest => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('user-item');
+                itemDiv.textContent = interest.trim();
+                userItems.appendChild(itemDiv);
+            });
+        }
+
         const infoItems = document.querySelectorAll('.into-item');
         infoItems[0].querySelector('span').textContent = profile.gender || "Не указано";
         infoItems[1].querySelector('span').textContent = profile.city || "Не указано";
         infoItems[2].querySelector('span').textContent = profile.orientation || "Не указано";
-        infoItems[3].querySelector('span').textContent = profile.relationshipStatus || "Не указано";
-        infoItems[4].querySelector('span').textContent = profile.children || "Не указано";
+        infoItems[3].querySelector('span').textContent = profile.relationship || "Не указано";
+        infoItems[4].querySelector('span').textContent = profile.childrens || "Не указано";
         infoItems[5].querySelector('span').textContent = profile.languages || "Не указано";
-        infoItems[6].querySelector('span').textContent = profile.personalityType || "Не указано";
-        infoItems[7].querySelector('span').textContent = profile.zodiacSign || "Не указано";
+        infoItems[6].querySelector('span').textContent = profile.personality || "Не указано";
+        infoItems[7].querySelector('span').textContent = profile.zodiac || "Не указано";
         infoItems[8].querySelector('span').textContent = profile.education || "Не указано";
-        infoItems[9].querySelector('span').textContent = profile.job || "Не указано";
+        infoItems[9].querySelector('span').textContent = profile.work || "Не указано";
     }
+}
+
+function updateCarouselIndicators() {
+    updateCarousel(); // Обновляем карусель при изменении индексов
 }
 
 // Функции для обработки свайпов
@@ -157,40 +153,55 @@ function handleTouchEnd(event) {
             } else {
                 cardStack.style.transform = 'none';
             }
-
-            cardStack.style.transition = 'transform 0.3s ease';
+        } else {
             cardStack.style.transform = 'none';
         }
 
-        setTimeout(() => {
-            cardStack.style.transition = 'none';
-        }, 300);
+        cardStack.style.transition = 'transform 0.3s ease';
+        cardStack.style.transform = 'none';
     }
 
+    // Скрываем оверлеи
     if (overlayApprove) overlayApprove.style.opacity = 0;
     if (overlayReject) overlayReject.style.opacity = 0;
     isSwiping = false;
 }
 
+
+
 function approveProfile() {
     console.log('Profile approved');
     document.getElementById('cardStack').classList.add('swipe-right');
+    const overlayApprove = document.querySelector('.overlay.approve');
+    if (overlayApprove) {
+        overlayApprove.style.opacity = 1;
+    }
     setTimeout(() => {
+        // Переходим к следующей анкете
         currentIndex++;
         if (currentIndex >= profiles.length) currentIndex = 0;
         updateProfileInfo();
+        updateCarousel();
     }, 300);
 }
+
 
 function rejectProfile() {
     console.log('Profile rejected');
     document.getElementById('cardStack').classList.add('swipe-left');
+    const overlayReject = document.querySelector('.overlay.reject');
+    if (overlayReject) {
+        overlayReject.style.opacity = 1;
+    }
     setTimeout(() => {
+        // Переходим к следующей анкете
         currentIndex++;
         if (currentIndex >= profiles.length) currentIndex = 0;
         updateProfileInfo();
+        updateCarousel();
     }, 300);
 }
+
 
 function openSettings() {
     swipeEnabled = false;
@@ -214,6 +225,7 @@ function closeSettings() {
 document.addEventListener('DOMContentLoaded', () => {
     loadProfiles();
     updateProfileInfo();
+    updateCarousel();
 
     const cardStack = document.getElementById('cardStack');
     cardStack.addEventListener('touchstart', handleTouchStart);

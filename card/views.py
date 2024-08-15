@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.db.models import Subquery, OuterRef
 from django.http import JsonResponse
 
+from gallery.models import GalleryImage
 from users.models import User
 
 from datetime import date
@@ -18,40 +19,23 @@ def calculate_age(birth_date):
 
 
 def get_profiles(request):
-    gender_filter = request.GET.get('gender')
-    min_age_filter = request.GET.get('min_age')
-    max_age_filter = request.GET.get('max_age')
+    profiles = User.objects.all().values(
+        'id', 'name', 'bidth', 'about', 'gender', 'city', 'orientation', 'relationship', 'childrens', 'languages', 'personality', 'zodiac', 'education', 'work', 'gallery'
+    )
     
-    profiles = User.objects.all()
-
-    # Exclude profiles that the user has liked
-    # liked_profiles = Likes.objects.filter(user=request.user).values_list('likeuser_id', flat=True)
-
-    # Exclude profiles where there is a coincidence
-    
-
-    
-    
-    profile_list = []
-    
+    # Получаем изображения из модели GalleryImage и рассчитываем возраст
     for profile in profiles:
-        age = calculate_age(profile.bidth) if profile.bidth else None
+        birth_date = profile.get('bidth')
+        if birth_date:
+            profile['age'] = calculate_age(birth_date)
         
-        image_urls = []
-        if profile.gallery and profile.gallery.galleryimage_set.exists():
-            image_urls = [image.image.url for image in profile.gallery.galleryimage_set.all()]
-        
-        profile_data = {
-            'id': profile.id,
-            'firstName': profile.name,
-            'age': age,
-            'gender': profile.gender,
-            'about': profile.about_user,
-            'interests': [interest.name for interest in profile.interests.all()],
-            'images': image_urls,
-            'distance': profile.city,
-            'user_id': request.user.id
-        }
-        profile_list.append(profile_data)
+        gallery = profile.get('gallery')
+        if gallery:
+            images = GalleryImage.objects.filter(gallery=gallery)
+            image_urls = [img.image.url for img in images]
+            profile['image'] = image_urls[0] if image_urls else 'https://via.placeholder.com/800x600'
+        else:
+            profile['image'] = 'https://via.placeholder.com/800x600'
     
-    return JsonResponse({'profiles': profile_list})
+    profiles_list = list(profiles)  # Преобразуем QuerySet в список словарей
+    return JsonResponse(profiles_list, safe=False)
