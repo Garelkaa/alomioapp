@@ -229,8 +229,33 @@ function handleTouchEnd(event) {
 }
 
 // Handle profile approval
+// Handle profile approval
+// Handle profile approval
 function approveProfile() {
     console.log('Profile approved');
+    const profile = profiles[currentIndex];
+    
+    // Send AJAX request to add to likes
+    fetch('/card/add_like/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken() // CSRF токен для защиты
+        },
+        body: JSON.stringify({
+            'liked_user_id': profile.id  // Здесь передаем ID пользователя
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('User liked successfully');
+        } else {
+            console.error('Error liking user:', data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+
     document.getElementById('cardStack').classList.add('swipe-right');
     const overlayApprove = document.querySelector('.overlay.approve');
     if (overlayApprove) {
@@ -242,6 +267,19 @@ function approveProfile() {
         updateProfileInfo();
         updateCarousel();
     }, 300);
+}
+
+
+function getCSRFToken() {
+    const name = 'csrftoken';
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        let [key, value] = cookie.trim().split('=');
+        if (key === name) {
+            return value;
+        }
+    }
+    return null;
 }
 
 // Handle profile rejection

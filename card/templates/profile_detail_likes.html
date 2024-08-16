@@ -1,0 +1,51 @@
+<div id='UserDetailProfile' class="container-fluid">
+    <div class="row no-gutters h-100">
+        <div class="col-md-6 d-flex justify-content-center align-items-center user-image-container">
+            <img src="{% if user.gallery and user.gallery.images.exists %}{{ user.gallery.images.first.image.url }}{% else %}/path/to/default-image.jpg{% endif %}" alt="Фото" class="img-fluid user-image">
+            <i class="bi bi-x close-detail-profile" onclick='CloseUserDetailProfile()'></i>
+        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+            <div class="user-header-container">
+                <h2 class='user-name-and-age'>{{ user.name }}, {{ user.age }}</h2>
+            </div>
+            <div class='search-love-container p-3'>
+                <i class="bi bi-heart heart-icon-button"></i>
+                <h2 class='text-search-button'>Найти любовь</h2>
+            </div>
+            <div class="user-personal-info-container p-3">
+                <div class="into-item">
+                    <label for="text">Пол</label>
+                    <span>{{ user.get_gender_display }}</span>
+                </div>
+                <div class="into-item">
+                    <label for="text">Город</label>
+                    <span>{{ user.city }}</span>
+                </div>
+                <div class="into-item">
+                    <label for="text">Ориентация</label>
+                    <span>{{ user.get_orientation_display }}</span>
+                </div>
+                <div class="into-item">
+                    <label for="text">Отношения</label>
+                    <span>{{ user.get_relationship_display }}</span>
+                </div>
+                <div class="into-item">
+                    <label for="text">Дети</label>
+                    <span>{{ user.get_childrens_display }}</span>
+                </div>
+                <div class="into-item">
+                    <label for="text">Языки</label>
+                    <span>{{ user.get_languages_display }}</span>
+                </div>
+                <div class="into-item">
+                    <label for="text">Знак зодиака</label>
+                    <span>{{ user.get_zodiac_display }}</span>
+                </div>
+                <div class="into-item">
+                    <label for="text">Образование</label>
+                    <span>{{ user.get_education_display }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

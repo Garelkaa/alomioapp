@@ -1,0 +1,108 @@
+.container-fluid {
+    color: #5C61A9;
+    background: #FFFFFF;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1500px;
+    height: 89vh;
+    display: flex;
+    z-index: 1000;
+    overflow-y: auto;
+    display: none;
+}
+
+.close-detail-profile {
+    font-size: 35px; /* Уменьшен размер иконки */
+    cursor: pointer;
+    position: absolute;
+    right: -10px; /* Увеличен отступ справа */
+    top: -5px;   /* Увеличен отступ сверху */
+}
+
+.user-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.user-image {
+    max-width: 820px;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 32px;
+}
+
+.user-header-container {
+    margin-top: -10px;
+    margin-bottom: 20px; /* Добавляем отступ снизу, чтобы отделить заголовок от кнопки */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Убираем фиксированную высоту */
+    width: 100%;
+}
+
+.user-name-and-age {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 23px; /* Responsive font size */
+    color: #5C61A9;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+}
+
+.search-love-container {
+    color: #5C61A9;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid #5C61A9;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%; /* Сделаем ширину блока более адаптивной */
+    margin: 0 auto; /* Центрирование блока */
+}
+
+.heart-icon-button {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.text-search-button {
+    color: #5C61A9;
+    font-size: 20px;
+}
+
+.user-personal-info-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ширина контейнера */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.into-item {
+    display: flex;
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение элементов по ширине */
+    gap: 5px;
+    margin-bottom: 15px; /* Отступ снизу между элементами */
+}
+
+.into-item label {
+    font-size: 16px; /* Увеличение размера шрифта для label */
+    color: #5C61A9; /* Цвет текста для label */
+    font-weight: 700;
+}
+
+.into-item span {
+    font-size: 15px; /* Увеличение размера шрифта для span */
+    color: #5C61A9; /* Цвет текста для label */
+}
+

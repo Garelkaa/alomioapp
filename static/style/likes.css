@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E2E4FF;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.change-option-container {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 90%;
+}
+
+.pages-options {
+    width: 55%;
+    height: 50px;
+    border: 3px solid #5C61A9;
+    background-color: transparent;
+    border-radius: 55px;
+    font-size: 13px;
+    color: #5C61A9;
+    padding: 20px;
+}
+
+.pages-options:focus {
+    outline: none;
+    border: 5px solid #5C61A9;
+}
+
+/* Общие стили */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Начинаем содержимое с верхней части */
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    padding: 0px;
+    margin-top: 30px;
+    position: relative;
+    overflow-y: auto;
+    padding-bottom: 60px; /* Добавляем нижний отступ */
+}
+
+/* Стили для списка */
+.likes-users-pages {
+    list-style: none; /* Убирает точки перед <li> */
+    display: flex;
+    flex-wrap: wrap; /* Позволяет фотографиям идти по 2 в ряд */
+    padding: 0;
+    gap: 10px; /* Увеличенный отступ между фотографиями */
+    justify-content: center; /* Центрирует фотографии по горизонтали */
+    margin: 0;
+}
+
+/* Стили для карточек пользователей */
+.user-card {
+    flex: 0 0 calc(50% - 10px); /* Скорректированная ширина, чтобы учесть отступы */
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-wrap: wrap; /* Позволяет фотографиям идти по 2 в ряд */
+}
+
+/* Стили для обёртки фото пользователя */
+.user-photo-wrapper {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 45px;
+}
+
+/* Стили для изображения */
+.user-photo-wrapper img {
+    border-radius: 45px;
+    width: 150px;
+    height: auto;
+}
+
+/* Стили для информации пользователя */
+.user-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    color: white;
+    padding: 10px 0;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
+    white-space: nowrap; /* Запрещаем перенос текста */
+    overflow: hidden; /* Обрезаем текст, если он не помещается */
+    text-overflow: ellipsis; /* Добавляем многоточие в конце обрезанного текста */
+}
+
+.user-name, .user-age {
+    font-size: 13px;
+}
+
+.footer {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container-svg-page {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.container-svg-page svg {
+    width: 35px;
+    height: 35px;
+}

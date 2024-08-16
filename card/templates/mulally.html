@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Подключение вашего стиля -->
+    <link rel="stylesheet" href="{% static "style/style-mulally.css" %}">
+    <link rel="stylesheet" href="{% static "style/deteil_profile-mulally.css" %}">
+
+    <title>Лайки</title>
+</head>
+<body>
+    <div id='ChangeOption' class="container position-relative">
+        <div class="mt-5">
+            <button class="pages-options d-flex justify-content-between align-items-center">
+                Взаимно
+                <i class="bi bi-caret-down-fill more-icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="main-container d-flex flex-column justify-content-center align-items-center text-center flex-grow-1">
+        <ul class="likes-users-pages d-flex flex-wrap p-0">
+            {% for like in liked_users %}
+                <li class="user-card" onclick="OpenUserDetailProfile({{ like.user.id }})">
+                    <div class="user-photo-wrapper">
+                        {% if like.user.gallery and like.user.gallery.images.exists %}
+                            <img src="{{ like.user.gallery.images.first.image.url }}" alt="user-photo">
+                        {% else %}
+                            <img src="/path/to/default-image.jpg" alt="default-photo">
+                        {% endif %}
+                        <div class="user-info">
+                            <span class="user-name">{{ like.user.name }}, </span>
+                            <span class="user-age">{{ like.user.age }}</span>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+    <div class="footer bg-white d-flex justify-content-center align-items-center fixed-bottom shadow">
+        <div class="container d-flex justify-content-around">
+            <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Path for the first SVG -->
+                <path d="M23.3126 4.6875C22.7709 4.6875 22.2292 4.8125 21.7084 5L6.37506 11.3542C5.35582 11.7716 4.54405 12.5766 4.11821 13.5924C3.69238 14.6081 3.68735 15.7514 4.10423 16.7708L14.4376 41.6667C14.7428 42.4218 15.2626 43.0709 15.9328 43.5337C16.603 43.9965 17.3941 44.2528 18.2084 44.2708C18.7501 44.2708 19.3126 44.2083 19.8542 43.9583L35.2084 37.6042C35.9495 37.2897 36.5848 36.7692 37.039 36.1045C37.4932 35.4399 37.7472 34.6589 37.7709 33.8542C37.7917 33.3333 37.6876 32.7292 37.5001 32.1875L27.0834 7.29167C26.7899 6.52855 26.273 5.87175 25.6002 5.40713C24.9275 4.94252 24.1302 4.69171 23.3126 4.6875ZM30.5626 4.6875L37.7501 22.0833V8.85417C37.7501 7.7491 37.3111 6.68929 36.5297 5.90789C35.7483 5.12649 34.6885 4.6875 33.5834 4.6875M41.9376 7.89583V26.7083L47.0001 14.5C47.2076 13.9953 47.3135 13.4547 47.3116 12.909C47.3098 12.3634 47.2002 11.8234 46.9893 11.3202C46.7783 10.817 46.4701 10.3603 46.0822 9.97647C45.6944 9.59262 45.2346 9.2891 44.7292 9.08333M23.3126 8.79167L33.6876 33.8333L18.2917 40.2083L7.91673 15.1875" fill="#C5C8FF"/>
+            </svg>
+
+            <svg width="35" height="35" viewBox="0 0 45 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Path for the second SVG -->
+                <path d="M39.075 9.14327C38.1173 8.18515 36.9803 7.4251 35.7288 6.90655C34.4773 6.38799 33.1359 6.12109 31.7812 6.12109C30.4266 6.12109 29.0852 6.38799 27.8337 6.90655C26.5822 7.4251 25.4451 8.18515 24.4875 9.14327L22.5 11.1308L20.5125 9.14327C18.5781 7.20884 15.9544 6.1221 13.2187 6.1221C10.483 6.1221 7.8594 7.20884 5.92498 9.14327C3.99056 11.0777 2.90381 13.7013 2.90381 16.437C2.90381 19.1727 3.99056 21.7963 5.92498 23.7308L7.91248 25.7183L22.5 40.3058L37.0875 25.7183L39.075 23.7308C40.0331 22.7731 40.7931 21.636 41.3117 20.3846C41.8302 19.1331 42.0972 17.7917 42.0972 16.437C42.0972 15.0824 41.8302 13.741 41.3117 12.4895C40.7931 11.238 40.0331 10.1009 39.075 9.14327Z" stroke="url(#paint0_linear_232_1782)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                <linearGradient id="paint0_linear_232_1782" x1="9.20967" y1="-11.8259" x2="59.5923" y2="1.47514" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#8E76F2"/>
+                <stop offset="1" stop-color="#A1BDFF"/>
+                </linearGradient>
+                </defs>
+            </svg>
+
+            <svg width="35" height="35" viewBox="0 0 45 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Path for the third SVG -->
+                <path d="M37.5 39.875V36.125C37.5 34.1359 36.7098 32.2282 35.3033 30.8217C33.8968 29.4152 31.9891 28.625 30 28.625H15C13.0109 28.625 11.1032 29.4152 9.6967 30.8217C8.29018 32.2282 7.5 34.1359 7.5 36.125V39.875" stroke="#C5C8FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22.5 21.125C26.6421 21.125 30 17.7671 30 13.625C30 9.48286 26.6421 6.125 22.5 6.125C18.3579 6.125 15 9.48286 15 13.625C15 17.7671 18.3579 21.125 22.5 21.125Z" stroke="#C5C8FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+    <script src='{% static "js/mulally.js" %}'></script>
+
+    <div id='detail-profile-popup'></div>
+
+    <script>
+        function OpenUserDetailProfile(userId) {
+            const url = `{% url 'cards:detail_mulally' 0 %}`.replace('0', userId);
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('detail-profile-popup').innerHTML = data;
+                    document.getElementById('UserDetailProfile').style.display = 'block';
+                });
+        }
+        
+        
+        function CloseUserDetailProfile() {
+            document.getElementById('UserDetailProfile').style.display = 'none';
+        }
+        </script> 
+
+    <!-- Подключение Bootstrap JS и зависимостей -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
