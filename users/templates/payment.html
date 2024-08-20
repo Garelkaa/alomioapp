@@ -1,4 +1,4 @@
-<div id="PayPremium" class="pay-premium-container" style='{% if user.theme %}background:#282e33; color: #fff;{% endif %}'>
+<div id="PayPremium" class="pay-premium-container">
     <div class="modal-container">
         <div class="header-text-page-pay d-flex justify-content-center align-items-center">
             <span>Детали оплаты</span>
@@ -10,10 +10,10 @@
     </div>
     <div class="input-info-card-container">
         <div class="form-page-input">
-            <input type="text" placeholder='Номер карты' class="card-number-input form-control">
+            <input type="text" placeholder='Номер карты' class="card-number-input form-control" maxlength="19" oninput="formatCardNumber(this)">
             <div class="expiry-cvc-container d-flex justify-content-between">
-                <input type="text" placeholder='ММ/ГГ' class="expiry-input form-control">
-                <input type="text" placeholder='CVC' class="cvc-input form-control">
+                <input type="text" placeholder='ММ/ГГ' class="expiry-input form-control" maxlength="5" oninput="formatExpiryDate(this)">
+                <input type="text" placeholder='CVC' class="cvc-input form-control" maxlength="3" oninput="formatCVC(this)">
             </div>
         </div>
     </div>

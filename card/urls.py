@@ -14,5 +14,6 @@ urlpatterns = [
     path('mulally/', views.mulally, name='mulally'),
     path('detail/<int:user_id>/', views.detail_mulally, name='detail_mulally'),
     path('detail-likes/<int:user_id>//', views.detail_likes, name='detail_likes'),
+    path('update-settings/', views.update_settings, name='update-settings'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

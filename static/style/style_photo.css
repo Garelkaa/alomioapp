@@ -5,15 +5,15 @@ body {
 }
 
 header {
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'Comfortaa', sans-serif;
     position: fixed;
     width: 100%;
+    max-width: 1920px;
     height: 100px;
-    color: transparent;
     text-align: left;
     padding: 0 1rem;
-    padding-left: 200px;
+    padding-left: 20px; /* Adjusted padding for alamio */
     line-height: 100px;
     box-shadow: 0 2px 4px rgba(5, 0, 8, 0.1);
     box-sizing: border-box;
@@ -21,67 +21,48 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
+    top: 0; /* Ensures header is at the top */
+    left: 0;
+    z-index: 1000; /* Ensures header is on top of other content */
 }
 
 header::before {
     content: 'alamio';
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'Comfortaa', sans-serif;
     color: transparent;
     background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
     -webkit-background-clip: text;
     background-clip: text;
     position: absolute;
-    left: 200px;
+    left: 20px; /* Adjusted position for alamio */
     top: 0;
     height: 100px;
     line-height: 100px;
-}
-
-main {
-    background-color: #E2E4FF;
-    padding: 20px;
 }
 
 .lang-or-theme {
     display: flex;
     align-items: center;
     margin-left: auto;
-    padding-right: 200px;
-}
-
-.language-button {
-    background: white;
-    border: 2px solid #5C61A9;
-    font-size: 15px;
-    padding: 15px 10px;
-    cursor: pointer;
-    border-radius: 28px;
-    outline: none;
-    transition: background 0.3s, color 0.3s;
-    padding-left: 15px;
-    line-height: 1;
-    position: relative;
-}
-
-.language-button i {
-    margin-left: 30px;
-}
-
-.language-button:hover {
-    background: black;
-    color: white;
+    padding-right: 20px; /* Adjusted padding for the theme icon */
 }
 
 .theme-button {
     background: none;
     border: none;
-    font-size: 35px;
+    font-size: 40px;
     cursor: pointer;
     transition: color 0.3s;
     outline: none;
-    margin-left: 5px;
+}
+
+.theme-button.light-theme i {
+    color: #000; /* Цвет иконки для светлой темы */
+}
+
+.theme-button.dark-theme i {
+    color: #fff; /* Цвет иконки для темной темы */
 }
 
 .theme-button:focus {
@@ -89,9 +70,9 @@ main {
 }
 
 .registration-title {
-    padding-top: 80px;
+    padding-top: 120px;
     font-family: 'Comfortaa', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 52.41px;
     text-align: center;
     color: #5C61A9;
@@ -120,7 +101,7 @@ main {
     background-color: white;
     border: 2px solid #8E76F2;
     border-radius: 20px;
-    width: 40%;
+    width: 80%;
     margin: 0 auto 35px auto;
     display: flex;
     flex-direction: column;
@@ -140,31 +121,17 @@ main {
 
 .container-button {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
 }
 
-.add-photo {
-    background: #5C61A9;
+.skip-photo {
+    background: linear-gradient(100deg, #8E76F2 13.39%, #A1BDFF 78.57%);
     color: white;
     font-size: 18px;
-    padding: 13px 125px;
     border: none;
-    border-radius: 28px;
-    cursor: pointer;
-    transition: background 0.3s;
-    background: linear-gradient(100deg, #8E76F2 13.39%, #A1BDFF 78.57%);
-    display: block;
-    margin: 3px auto;
-}
-
-.skip-photo {
-    background-color: #E2E4FF;
-    color: #8E76F2;
-    font-size: 18px;
     padding: 13px 125px;
-    border: 2px solid #8E76F2;
     border-radius: 28px;
     cursor: pointer;
     display: block;
@@ -181,101 +148,11 @@ main {
     outline: none;
 }
 
-/* Bootstrap media queries */
-@media (max-width: 768px) {
-    header {
-        font-size: 30px;
-        height: 80px;
-        line-height: 80px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    header::before {
-        font-size: 30px;
-        left: 20px;
-        height: 80px;
-        line-height: 80px;
-    }
-
-    .lang-or-theme {
-        padding-right: 20px;
-    }
-
-    .language-button {
-        font-size: 12px;
-        padding: 10px 8px;
-    }
-
-    .theme-button {
-        font-size: 25px;
-    }
-
-    .registration-title {
-        font-size: 30px;
-        padding-top: 90px;
-    }
-
-    .code-title {
-        font-size: 11px;
-    }
-
-    .form-group {
-        padding-top: 20px;
-        max-width: 90%;
-    }
-
-    .next-page {
-        font-size: 16px;
-        padding: 10px 50px;
-    }
+.light-theme .theme-button i {
+    color: #000; /* Черный цвет для светлой темы */
 }
 
-@media (max-width: 480px) {
-    header {
-        font-size: 25px;
-        height: 60px;
-        line-height: 60px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    header::before {
-        font-size: 25px;
-        left: 10px;
-        height: 60px;
-        line-height: 60px;
-    }
-
-    .lang-or-theme {
-        padding-right: 10px;
-    }
-
-    .language-button {
-        font-size: 10px;
-        padding: 8px 5px;
-    }
-
-    .theme-button {
-        font-size: 20px;
-    }
-
-    .registration-title {
-        font-size: 25px;
-        padding-top: 70px;
-    }
-
-    .code-title {
-        font-size: 9px;
-    }
-
-    .form-group {
-        padding-top: 15px;
-        max-width: 95%;
-    }
-
-    .next-page {
-        font-size: 14px;
-        padding: 8px 30px;
-    }
+/* Стили для темной темы */
+.dark-theme .theme-button i {
+    color: #fff; /* Белый цвет для темной темы */
 }

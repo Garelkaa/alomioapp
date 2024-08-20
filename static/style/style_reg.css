@@ -1,47 +1,57 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #E2E4FF; /* Цвет фона всей страницы */
+    background-color: #E2E4FF;
 }
 
 header {
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'Comfortaa', sans-serif;
     position: fixed;
     width: 100%;
     max-width: 1920px;
     height: 100px;
-    color: transparent; /* Текст невидим, пока не применен фон */
+    color: transparent;
     padding: 0 1rem;
     line-height: 100px;
     box-shadow: 0 2px 4px rgba(5, 0, 8, 0.1);
-    background-color: white; /* Белый фон заголовка */
+    background-color: white;
     z-index: 1000;
 }
 
-header::before {
-    content: 'alamio'; /* Или другой текст, который вы хотите отобразить */
-    font-size: 50px;
+.logo {
+    font-size: 40px;
     font-family: 'Comfortaa', sans-serif;
-    color: transparent;
     background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
     -webkit-background-clip: text;
     background-clip: text;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    height: 100px;
-    line-height: 100px;
+    color: transparent;
+}
+
+.lang-or-theme-reg {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding-right: 20px;
+}
+
+.theme-button-reg {
+    background: none;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    transition: color 0.3s;
+    outline: none;
+    margin-right: -20px;
 }
 
 main {
-    padding-top: 150px; /* Отступ для корректного отображения под фиксированным заголовком */
+    padding-top: 150px;
 }
 
 .registration-title {
     font-family: 'Comfortaa', sans-serif;
-    font-size: 47px;
+    font-size: 35px;
     line-height: 52.41px;
     text-align: center;
     color: #5C61A9;
@@ -78,6 +88,7 @@ main {
     font-size: 16px;
     width: 100%;
     box-sizing: border-box;
+    height: 45px;
 }
 
 .form-input::placeholder {
@@ -92,34 +103,17 @@ main {
     border: none;
     border-radius: 28px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.3s;
     background: linear-gradient(100deg, #8E76F2 13.39%, #A1BDFF 78.57%);
 }
 
 .submit-button:hover {
-    background: #4a4d7c;
-}
-
-.language-button {
-    background: white;
-    border: 2px solid #5C61A9;
-    color: black;
-    font-size: 15px;
-    padding: 10px 30px;
-    cursor: pointer;
-    border-radius: 28px;
+    background: linear-gradient(100deg, #8E76F2 13.39%, #A1BDFF 78.57%);
     outline: none;
-    transition: background 0.3s, color 0.3s;
+    transform: scale(1.05);
 }
 
-.language-button:hover {
-    background: black;
-    color: white;
-}
-
-
-@media (max-width: 320px) {
-    .registration-title {
-        font-size: 40px;
-    }
+.form-input:focus {
+    outline: none;
+    border: 3px solid #8E76F2;
 }

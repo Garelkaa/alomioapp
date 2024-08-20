@@ -5,10 +5,10 @@
     padding: 20px;
     border-radius: 32px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    top: 70%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 93vh; /* Увеличена высота окна */
+    height: 105vh; /* Увеличена высота окна */
     width: 90%; /* Ширина 90% от ширины окна браузера */
     max-width: 1000px; /* Максимальная ширина 1000px */
     display: none;

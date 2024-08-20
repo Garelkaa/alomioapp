@@ -53,17 +53,18 @@
         <div class="modal-body">
           <label for="genderOptions" style="color: #5C61A9;">Кого я ищу:</label>
           <div id="genderOptions" class="gender-options">
-            <div class="gender-option active" onclick="setGender('all', this)">
-              <div class="circle-g active"></div>
+            <input type='hidden' id='gender-input'>
+            <div class="gender-option {% if user_settings.gender == 'A' %}active{% endif %}" onclick="setGender('all', this)">
+              <div class="circle-g {% if user_settings.gender == 'A' %}active{% endif %}"></div>
               <span class="gender-btn">Все</span>
             </div>
             <div class="gender-option" onclick="setGender('male', this)">
-              <div class="circle-g"></div>
-              <span class="gender-btn">Мужчины</span>
+              <div class="circle-g {% if user_settings.gender == 'M' %}active{% endif %}"></div>
+              <span class="gender-btn {% if user_settings.gender == 'M' %}active{% endif %}">Мужчины</span>
             </div>
             <div class="gender-option" onclick="setGender('female', this)">
-              <div class="circle-g"></div>
-              <span class="gender-btn">Женщины</span>
+              <div class="circle-g {% if user_settings.gender == 'F' %}active{% endif %}"></div>
+              <span class="gender-btn {% if user_settings.gender == 'F' %}active{% endif %}">Женщины</span>
             </div>
           </div>
           <br>

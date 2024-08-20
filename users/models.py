@@ -119,3 +119,25 @@ class User(AbstractUser):
     smoking = models.CharField(max_length=32, choices=SMOKING_CHOICES, null=True, blank=True)
     code = models.IntegerField(null=True, blank=True)
     theme = models.BooleanField(null=True, blank=True, default=False)
+    
+
+class Interest(models.Model):
+    title = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.title
+
+class UserInterest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.interest.title}'
+
+
+class UserFilters(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    gender = models.CharField(max_length=32,default='A')
+    min_age = models.IntegerField(default=18)
+    max_age = models.IntegerField(default=60)
+    city = models.CharField(max_length=32)

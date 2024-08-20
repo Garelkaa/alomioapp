@@ -1,3 +1,9 @@
+body.no-scroll {
+    overflow: hidden; /* Отключаем прокрутку */
+    position: fixed; /* Устанавливаем фиксированное положение */
+    width: 100%; /* Устанавливаем ширину в 100% */
+}
+
 .detail-activate-premium-container {
     color: #5C61A9;
     background: #FFFFFF;

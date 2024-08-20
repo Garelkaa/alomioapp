@@ -25,7 +25,7 @@ header {
 
 header::before {
     content: 'alamio'; /* Или другой текст, который вы хотите отобразить */
-    font-size: 35px; /* Размер шрифта уменьшен для мобильных устройств */
+    font-size: 40px; /* Размер шрифта уменьшен для мобильных устройств */
     font-family: 'Comfortaa', sans-serif;
     color: transparent;
     background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
@@ -52,31 +52,10 @@ main {
     padding-right: 20px; /* Уменьшен отступ для мобильных устройств */
 }
 
-.language-button {
-    background: white; /* Заливка внутри кнопки */
-    border: 2px solid var(--Color, #5C61A9);
-    font-size: 12px; /* Размер шрифта уменьшен для мобильных устройств */
-    padding: 8px 10px; /* Размеры кнопки уменьшены */
-    cursor: pointer; /* Курсор указывает на кнопку */
-    border-radius: 28px; /* Закругление углов */
-    outline: none; /* Убирает стандартное обводку при фокусе */
-    transition: background 0.3s, color 0.3s; /* Плавный переход для эффектов */
-    position: relative; /* Для позиционирования псевдоэлемента */
-}
-
-.language-button i {
-    margin-left: 10px; /* Перемещает кнопку вправо */
-}
-
-.language-button:hover {
-    background: black; /* Фон кнопки при наведении */
-    color: white; /* Цвет текста при наведении */
-}
-
 .theme-button {
     background: none; /* Убираем фон */
     border: none; /* Убираем границу */
-    font-size: 25px; /* Размер шрифта уменьшен для мобильных устройств */
+    font-size: 40px; /* Размер шрифта уменьшен для мобильных устройств */
     cursor: pointer; /* Курсор указывает на кнопку */
     transition: color 0.3s; /* Плавный переход для изменения цвета */
     outline: none; /* Убираем обводку при фокусе */
@@ -86,14 +65,14 @@ main {
 .registration-title {
     padding-top: 30px; /* Уменьшен верхний отступ */
     font-family: 'Comfortaa', sans-serif; /* Подключение шрифта */
-    font-size: 35px; /* Размер шрифта уменьшен для мобильных устройств */
+    font-size: 30px; /* Размер шрифта уменьшен для мобильных устройств */
     color: #5C61A9; /* Цвет текста */
 }
 
 .code-title {
     padding-top: 30px; /* Уменьшен верхний отступ */
     font-family: 'Comfortaa', sans-serif; /* Подключение шрифта */
-    font-size: 20px; /* Размер шрифта уменьшен для мобильных устройств */
+    font-size: 13px; /* Размер шрифта уменьшен для мобильных устройств */
     color: #5C61A9; /* Цвет текста */
 }
 
@@ -152,4 +131,9 @@ main {
     background: #E2E4FF; /* Фон кнопки совпадает с фоном страницы */
     color: #5C61A9; /* Цвет текста совпадает с основным цветом */
     border: 2px solid #5C61A9; /* Цвет обводки совпадает с основным цветом */
+}
+
+.laod-button:focus {
+    color: white; /* Цвет текста */
+    transition: background 0.3s, color 0.3s; /* Плавный переход для эффектов */
 }

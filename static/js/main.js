@@ -1,15 +1,18 @@
 function openModal() {
     document.getElementById('SettingsUser').style.display = 'none';
     document.getElementById("myModal").style.display = "flex";
-    }
+}
 
 function openModalTariff() {
     document.getElementById('myModal').style.display = 'none';
+    document.getElementById('ProfilePage').style.overflow = 'hidden';
     document.getElementById("ActivatePremium").style.display = "flex";
-    }
+    document.body.classList.add('no-scroll'); // Отключаем прокрутку на странице
+}
 
 function closeModalTariff() {
         document.getElementById("ActivatePremium").style.display = "none";
+        document.body.classList.remove('no-scroll'); // Отключаем прокрутку на странице
     }
 
 function closeModal() {
@@ -44,11 +47,13 @@ function selectTariff(element) {
 function openpagepremium() {
     document.getElementById("myModal").style.display = "none";
     document.getElementById("ActivatePremium").style.display = "flex";
+    document.body.classList.add('no-scroll'); // Отключаем прокрутку на странице
 }
 
 // Функция для закрытия модального окна
 function closepagepremium() {
     document.getElementById("ActivatePremium").style.display = "none";
+    document.body.classList.remove('no-scroll'); // Отключаем прокрутку на странице
 }
 
 function PayPremiumForm() {
@@ -64,6 +69,7 @@ function PayPremiumForm() {
 
     totalPriceElement.textContent = selectedTariffPrice;
     document.getElementById("ActivatePremium").style.display = "none";
+    document.body.classList.remove('no-scroll'); // Включаем прокрутку на странице
     document.getElementById("PayPremium").style.display = "flex";
 }
 
@@ -153,7 +159,7 @@ function setupAutoSaveUserInfo(url) {
         inputContainer.classList.remove('error');
     }
 
-    function autoSave() {
+    function setupAutoSaveUserInfo() {
         const name = $('#name').val();
         const age = $('#age').val();
         const gender = $('#gender').val();
@@ -206,19 +212,19 @@ function setupAutoSaveUserInfo(url) {
         });
     }
 
-    $('#name, #age, #city').on('change', autoSave);
+    $('#name, #age, #city').on('change', setupAutoSaveUserInfo);
 
     $('.gender-option').on('click', function() {
         const selectedGender = $(this).text().trim();
         $('#gender').val(selectedGender);
-        autoSave();
+        setupAutoSaveUserInfo();
     });
 
     $('.goal-option').on('click', function() {
         const selectedGoal = $('#goal').val();
         
         $('#goal').val(selectedGoal);
-        autoSave();
+        setupAutoSaveUserInfo();
     });
 }
 
@@ -945,34 +951,6 @@ function CloseUserAccountSettings() {
 }
 
 // Функция для открытия окна настроек пользователя
-function OpenUserAccountNotifical() {
-    document.getElementById("SettingsUser").style.display = "none";
-    const settingsContainer = document.getElementById('NotificalUser');
-    settingsContainer.style.display = 'flex'
-}
-
-// Функция для закрытия окна настроек пользователя
-function CloseUserAccountNotifical() {
-    const settingsContainer = document.getElementById('NotificalUser');
-    settingsContainer.style.display = 'none';
-    document.getElementById("SettingsUser").style.display = "flex";
-}
-
-// Функция для открытия окна настроек пользователя
-function OpenUserConfidentiality() {
-    document.getElementById("SettingsUser").style.display = "none";
-    const settingsContainer = document.getElementById('ConfidentialityUser');
-    settingsContainer.style.display = 'flex'
-}
-
-// Функция для закрытия окна настроек пользователя
-function CloseUserConfidentiality() {
-    const settingsContainer = document.getElementById('ConfidentialityUser');
-    settingsContainer.style.display = 'none';
-    document.getElementById("SettingsUser").style.display = "flex";
-}
-
-// Функция для открытия окна настроек пользователя
 function OpenUserInterface() {
     document.getElementById("SettingsUser").style.display = "none";
     const settingsContainer = document.getElementById('UserInterface');
@@ -987,45 +965,34 @@ function CloseUserInterface() {
 }
 
 // Функция для открытия окна настроек пользователя
-function OpenUserBlocked() {
-    document.getElementById("SettingsUser").style.display = "none";
-    const settingsContainer = document.getElementById('UserBlocked');
-    settingsContainer.style.display = 'flex'
-}
-
-// Функция для закрытия окна настроек пользователя
-function CloseUserBlocked() {
-    const settingsContainer = document.getElementById('UserBlocked');
-    settingsContainer.style.display = 'none';
-    document.getElementById("SettingsUser").style.display = "flex";
-}
-
-// Функция для открытия окна настроек пользователя
 function OpenDetailPrem() {
     document.getElementById("ActivatePremium").style.display = "none";
+    document.body.classList.remove('no-scroll'); // Включаем прокрутку на странице
     const settingsContainer = document.getElementById('myModal');
     settingsContainer.style.display = 'flex'
 }
 
 function OpenTariffPrem() {
     document.getElementById("ActivatePremium").style.display = "flex";
+    document.body.classList.add('no-scroll'); // Отключаем прокрутку на странице
 }
 
 function OpenUserDetailSettings(triggerElement) {
     const modal = document.getElementById("ChangeUser");
-    const rect = triggerElement.getBoundingClientRect();
-
-    // Set the position of the modal to be above the trigger element
-    modal.style.position = 'absolute';
-    modal.style.left = `${rect.left + window.scrollX}px`;
-    modal.style.top = `${rect.top + window.scrollY - modal.offsetHeight}px`; // Position it above the trigger
-    modal.style.display = 'block'; // Make the modal visible
+    document.body.classList.add('no-scroll'); // Отключаем прокрутку на странице
+    
+    // Показ модального окна
+    modal.classList.add('show');
 }
 
 function CloseUserDetailSettings() {
     const modal = document.getElementById("ChangeUser");
-    modal.style.display = 'none'; // Hide the modal
+    document.body.classList.remove('no-scroll'); // Включаем прокрутку на странице
+    
+    // Скрытие модального окна
+    modal.classList.remove('show');
 }
+
 
 function OpenSelectGenders() {
     document.getElementById("GenderModal").style.display = "block";
@@ -1083,16 +1050,34 @@ function OpenUserInterested() {
     // Check if the element exists before trying to access its style property
     if (element) {
         element.style.display = 'block'; // Example action
+        document.body.classList.add('no-scroll'); // Отключаем прокрутку на странице
     } else {
         console.error('Element with ID "UserGenderChoice" not found.');
     }
 
 }
 
-
 function CloseUserInterested() {
     document.getElementById("UserInterested").style.display = "none";
+    document.body.classList.remove('no-scroll'); // Включаем прокрутку на странице
 }
+
+// Инициализация событий после загрузки страницы
+document.addEventListener('DOMContentLoaded', function() {
+    // Пример открытия модального окна по клику на кнопку
+    document.getElementById('open-modal-button').addEventListener('click', openModal);
+
+    // Пример закрытия модального окна по клику на кнопку закрытия
+    document.querySelector('.close-interested').addEventListener('click', closeModal);
+
+    // Если модальное окно должно открываться по клику вне его
+    document.addEventListener('click', function(event) {
+        const modal = document.getElementById('interested-user-popup');
+        if (!modal.contains(event.target)) {
+            closeModal();
+        }
+    });
+});
 
 function OpenUserSelecdGenders() {
     document.getElementById("UserGenderChoice").style.display = "flex";
@@ -1175,10 +1160,12 @@ function CloseUserAlco() {
 
 function OpenUserHeight() {
     document.getElementById("UserHeight").style.display = "block";
+    document.body.classList.add('no-scroll'); // Отключаем прокрутку на странице
 }
 
 function CloseUserHeight() {
     document.getElementById("UserHeight").style.display = "none";
+    document.body.classList.remove('no-scroll'); // Отключаем прокрутку на странице
 }
 
 function updateSliderValue() {
@@ -1194,3 +1181,190 @@ function OpenUserDetailProfile() {
 function CloseUserDetailProfile() {
     document.getElementById("UserDetailProfile").style.display = "none";
 }
+
+
+// Форматирование номера карты в формате '0000 0000 0000 0000'
+function formatCardNumber(input) {
+    let value = input.value.replace(/\D/g, ''); // Удаляем все нецифровые символы
+    if (value.length > 16) {
+        value = value.slice(0, 16); // Ограничиваем до 16 цифр
+    }
+    value = value.replace(/(\d{4})/g, '$1 ').trim(); // Разделяем каждые 4 цифры пробелом
+    input.value = value;
+}
+
+// Форматирование срока действия в формате 'ММ/ГГ'
+function formatExpiryDate(input) {
+    let value = input.value.replace(/\D/g, ''); // Удаляем все нецифровые символы
+    if (value.length > 4) {
+        value = value.slice(0, 4); // Ограничиваем до 4 цифр
+    }
+    if (value.length >= 3) {
+        value = value.replace(/(\d{2})(\d{2})/, '$1/$2'); // Добавляем слеш после первых 2 цифр
+    }
+    input.value = value;
+}
+
+// Валидация CVC кода
+function formatCVC(input) {
+    let value = input.value.replace(/\D/g, ''); // Удаляем все нецифровые символы
+    if (value.length > 3) {
+        value = value.slice(0, 3); // Ограничиваем до 3 цифр
+    }
+    input.value = value;
+}
+
+function formatDateInput(event) {
+    const input = event.target;
+    let value = input.value.replace(/[^0-9]/g, ''); // Удалить все нецифровые символы
+
+    if (value.length > 2) {
+        value = value.slice(0, 2) + '.' + value.slice(2);
+    }
+    if (value.length > 5) {
+        value = value.slice(0, 5) + '.' + value.slice(5);
+    }
+    input.value = value.slice(0, 10); // Ограничить длину до 10 символов
+
+    // Вызвать валидацию только если введена полная дата
+    if (value.length === 10) {
+        validateDate();
+    } else {
+        // Если дата не полная, скрыть сообщение об ошибке
+        hideDateError();
+    }
+}
+
+function validateDate() {
+    const dateInput = document.getElementById("age");
+    const dateError = document.getElementById("date-error");
+    const datePattern = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(\d{4})$/;
+
+    const value = dateInput.value;
+
+    if (!datePattern.test(value)) {
+        showDateError("Введите дату в формате дд.мм.гггг");
+        return;
+    }
+
+    const [day, month, year] = value.split('.').map(Number);
+
+    if (!isValidDate(day, month, year)) {
+        showDateError("Введите существующую дату");
+    } else if (!isDateInRange(year)) {
+        showDateError("Дата должна быть в пределах с 1950 года по текущий год");
+    } else {
+        hideDateError();
+    }
+}
+
+function showDateError(message) {
+    const dateInput = document.getElementById("age");
+    const dateError = document.getElementById("date-error");
+    if (dateError) {
+        dateError.textContent = message;
+        dateError.style.display = "block"; // Показать сообщение об ошибке
+        dateInput.classList.add("error-border"); // Подсветить границу красным
+    }
+}
+
+function hideDateError() {
+    const dateInput = document.getElementById("age");
+    const dateError = document.getElementById("date-error");
+    if (dateError) {
+        dateError.style.display = "none"; // Скрыть сообщение об ошибке
+        dateInput.classList.remove("error-border"); // Убрать подсветку границы
+    }
+}
+
+function isValidDate(day, month, year) {
+    const date = new Date(year, month - 1, day);
+    return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+}
+
+function isDateInRange(year) {
+    const currentYear = new Date().getFullYear();
+    return year >= 1950 && year <= currentYear;
+}
+
+// Инициализация функций после загрузки данных
+function initializePopupScripts() {
+    // Ваш код для инициализации попапов
+}
+
+function CheckCity() {
+    // Ваш код для проверки города
+}
+
+const interestsSuggestions = ["Спорт", "Музыка", "Программирование", "Путешествия", "Фотография"];
+
+function displaySuggestions() {
+    const input = document.getElementById('interests-input');
+    const suggestionsContainer = document.getElementById('suggestions-container');
+    const query = input.value.toLowerCase().trim(); // Удаляем пробелы по краям
+
+    // Очищаем предыдущие рекомендации
+    suggestionsContainer.innerHTML = '';
+
+    // Фильтруем рекомендации на основе введённого текста
+    const filteredSuggestions = interestsSuggestions.filter(suggestion =>
+        suggestion.toLowerCase().includes(query)
+    );
+
+    // Если есть совпадения, отображаем их
+    if (filteredSuggestions.length > 0) {
+        filteredSuggestions.forEach(suggestion => {
+            const suggestionElement = document.createElement('div');
+            suggestionElement.className = 'suggestion-item';
+            suggestionElement.textContent = suggestion;
+            suggestionElement.onclick = function() {
+                input.value = suggestion;  // Устанавливаем значение в поле ввода
+                suggestionsContainer.innerHTML = '';  // Очищаем рекомендации после выбора
+                hideSuggestions(); // Скрываем контейнер
+            };
+            suggestionsContainer.appendChild(suggestionElement);
+        });
+
+        // Показываем контейнер с рекомендациями
+        suggestionsContainer.style.display = 'block';
+    } else {
+        hideSuggestions(); // Если нет совпадений, скрываем контейнер
+    }
+}
+
+function hideSuggestions() {
+    document.getElementById('suggestions-container').style.display = 'none';
+}
+
+
+function initializeEvents() {
+    const input = document.getElementById('interests-input');
+    const suggestionsContainer = document.getElementById('suggestions-container');
+
+    // Скрываем контейнер с рекомендациями при загрузке страницы
+    hideSuggestions();
+
+    // Показываем рекомендации при клике на поле ввода
+    input.addEventListener('click', function(event) {
+        event.stopPropagation(); // Предотвращаем всплытие события, чтобы не скрыть контейнер сразу
+        displaySuggestions();
+    });
+
+    // Обновляем рекомендации при вводе текста
+    input.addEventListener('input', function() {
+        displaySuggestions();
+    });
+
+    // Скрываем рекомендации при клике вне поля ввода
+    document.addEventListener('click', function(event) {
+        if (!input.contains(event.target) && !suggestionsContainer.contains(event.target)) {
+            hideSuggestions();
+        }
+    });
+}
+
+
+
+
+
+

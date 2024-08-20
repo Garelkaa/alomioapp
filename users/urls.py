@@ -52,5 +52,8 @@ urlpatterns = [
     path('alcohol/', views.alcohol, name='alcohol'),
     path('user-height/', views.user_height, name='user_height'),
     path('detail-profile/', views.detail_profile, name='detail_profile'),
+    path('search-interests/', views.search_interests, name='search_interests'),
+    path('save-user-interest/', views.save_user_interest, name='save_user_interest'),
+    path('get-user-interests/', views.get_user_interests, name='get_user_interests'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

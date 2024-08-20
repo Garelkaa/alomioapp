@@ -18,7 +18,6 @@
     <header class="d-flex justify-content-between align-items-center">
         alamio
         <div class="lang-or-theme d-flex">
-            
             <button class="theme-button" id="theme-button">
                 <i class="bi bi-cloud-moon"></i>
             </button>
@@ -27,15 +26,16 @@
     <main class="container">
         <h2 class="registration-title">Проверь свою почту</h2>
         <h2 class="code-title">Введите пятизначный код подтверждения из письма, который мы отправили на вашу почту</h2>
-        <form method='post'>
+        <form id="verification-form" method='post'>
             {% csrf_token %}
             <div class="form-container">        
                 <div class="form-group">
-                    <input type="text" id="email-or-phone" class="form-input" name='code'>
+                    <input type="text" id="verification-code" class="form-input" name='code' placeholder="Введите код">
+                    <small id="code-error" class="text-danger d-none">Пожалуйста, введите код.</small>
                 </div>
                 <div class="form-buttons">
                     <button class="laod-button btn" type='submit'>Ввести</button>
-                    <button class="repeat-button btn">Отправить повторно</button>
+                    <button class="repeat-button btn" type="button">Отправить повторно</button>
                 </div>
             </div>
         </form>    
@@ -59,6 +59,24 @@
                     $('header').css('background-color', '#18191D');
                 }
                 isDarkTheme = !isDarkTheme;
+            });
+
+            // Form validation
+            $('#verification-form').submit(function(event) {
+                var codeInput = $('#verification-code');
+                var codeError = $('#code-error');
+                var isValid = true;
+
+                if (codeInput.val().trim() === '') {
+                    codeError.removeClass('d-none');
+                    isValid = false;
+                } else {
+                    codeError.addClass('d-none');
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
             });
         });
     </script>

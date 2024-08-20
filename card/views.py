@@ -1,17 +1,22 @@
+import datetime
 import json
 from django.shortcuts import get_object_or_404, render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 
 from card.models import Likes
 from gallery.models import GalleryImage
-from users.models import User
+from users.models import User, UserFilters
 
-from datetime import date
+from datetime import date, datetime, timedelta
+
+from dateutil.relativedelta import relativedelta
 
 
 def main(request):
-    return render(request, 'index.html')
+    user_settings, created = UserFilters.objects.get_or_create(user=7)
+    return render(request, 'index.html', {'user_settings': user_settings})
 
 
 def calculate_age(birth_date):
@@ -21,27 +26,67 @@ def calculate_age(birth_date):
 
 
 def get_profiles(request):
-    profiles = User.objects.exclude(id=7).values(
-        'id', 'name', 'bidth', 'about', 'gender', 'city', 'orientation', 'relationship', 'childrens', 'languages', 'personality', 'zodiac', 'education', 'work', 'gallery'
+    # Получение фильтров для пользователя с id=7
+    user_filters = UserFilters.objects.get(user=7)
+    
+    # Определение фильтров
+    gender_filter = user_filters.gender
+    min_age = user_filters.min_age
+    max_age = user_filters.max_age
+    city_filter = user_filters.city
+    min_bidth_date = datetime.now() - relativedelta(years=max_age)
+    max_bidth_date = datetime.now() - relativedelta(years=min_age)
+    
+    # Базовый запрос для фильтрации профилей
+    base_query = User.objects.exclude(id=7).filter(
+        Q(bidth__gte=min_bidth_date) &
+        Q(bidth__lte=max_bidth_date)
     )
+    
+    # Фильтрация по городу
+    if gender_filter == 'A':
+        profiles = base_query.filter(
+            Q(city=city_filter)
+        ).values(
+            'id', 'name', 'bidth', 'about', 'gender', 'city', 'orientation', 'relationship', 'childrens', 'languages', 'personality', 'zodiac', 'education', 'work', 'gallery'
+        )
+    else:
+        profiles = base_query.filter(
+            Q(gender=gender_filter) &
+            Q(city=city_filter)
+        ).values(
+            'id', 'name', 'bidth', 'about', 'gender', 'city', 'orientation', 'relationship', 'childrens', 'languages', 'personality', 'zodiac', 'education', 'work', 'gallery'
+        )
+    
+    # Проверка, если профилей недостаточно, расширяем поиск на все города
+    if not profiles.exists():
+        if gender_filter == 'A':
+            profiles = base_query.values(
+                'id', 'name', 'bidth', 'about', 'gender', 'city', 'orientation', 'relationship', 'childrens', 'languages', 'personality', 'zodiac', 'education', 'work', 'gallery'
+            )
+        else:
+            profiles = base_query.filter(
+                Q(gender=gender_filter)
+            ).values(
+                'id', 'name', 'bidth', 'about', 'gender', 'city', 'orientation', 'relationship', 'childrens', 'languages', 'personality', 'zodiac', 'education', 'work', 'gallery'
+            )
     
     # Список профилей для отправки на фронтенд
     profiles_list = []
 
     for profile in profiles:
-        birth_date = profile.get('bidth')
-        if birth_date:
-            profile['age'] = calculate_age(birth_date)
-        
+        bidth = profile.get('bidth')
+        if bidth:
+            profile['age'] = calculate_age(bidth)
+
         gallery = profile.get('gallery')
         if gallery:
             images = GalleryImage.objects.filter(gallery=gallery)
             image_urls = [img.image.url for img in images]
             profile['images'] = image_urls if image_urls else ['https://via.placeholder.com/800x600']
-        else:
-            profile['images'] = ['https://via.placeholder.com/800x600']
+        
 
-        profiles_list.append(profile)
+            profiles_list.append(profile)
 
     return JsonResponse(profiles_list, safe=False)
 
@@ -107,4 +152,28 @@ def detail_mulally(request, user_id):
 def detail_likes(request, user_id):
     user = get_object_or_404(User, id=user_id)
     return render(request, 'profile_detail_likes.html', context={'user': user})
+
+
+@csrf_exempt
+def update_settings(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        gender = data.get('gender')
+        min_age = data.get('min_age', 18)
+        max_age = data.get('max_age', 60)
+        print(gender)
+
+        if min_age > max_age:
+            return JsonResponse({'success': False, 'error': 'Минимальный возраст не может быть больше максимального.'})
+
+        # Assume `request.user` is the current logged-in user
+        user_filter, created = UserFilters.objects.get_or_create(user=7)
+        user_filter.gender = gender
+        user_filter.min_age = min_age
+        user_filter.max_age = max_age
+        user_filter.save()
+
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
     

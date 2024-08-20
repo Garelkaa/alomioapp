@@ -15,11 +15,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
 </head>
 <body>
-    <header>
-        alamio
-        <div class="lang-or-theme">
-            
-            <button class="theme-button" id="theme-button">
+    <header class="d-flex justify-content-between align-items-center">
+        <div class="lang-or-theme d-flex">
+            <button class="theme-button light-theme" id="theme-button">
                 <i class="bi bi-cloud-moon"></i>
             </button>
         </div>
@@ -35,7 +33,6 @@
         </div>
         <div class='container-button'>
             <input type="file" id="image-input" style="display: none;">
-            <button class='add-photo' id="add-photo">Добавить</button>
             <button class='skip-photo'>Позже</button>
         </div>
     </main>
@@ -96,13 +93,21 @@
 
             $('#theme-button').click(function() {
                 if (isDarkTheme) {
+                    $('body').removeClass('dark-theme').addClass('light-theme');
                     $('body').css('background-color', '');
                     $('header').css('background-color', '');
                     $('main').css('background-color', '');
+                    $('#photo-upload').css('background-color', '#fff');
+                    $('.skip-photo').css('color', '#fff');
+                    $('#theme-button i').removeClass('bi-cloud-moon').addClass('bi-cloud-moon'); // Замените иконку на светлую
                 } else {
+                    $('body').removeClass('light-theme').addClass('dark-theme');
                     $('body').css('background-color', '#282E33');
                     $('main').css('background-color', '#282E33');
                     $('header').css('background-color', '#18191D');
+                    $('#photo-upload').css('background-color', '#3a3b3c');
+                    $('.skip-photo').css('color', '#000');
+                    $('#theme-button i').removeClass('bi-cloud-moon').addClass('bi-cloud-moon'); // Замените иконку на темную
                 }
                 isDarkTheme = !isDarkTheme;
             });

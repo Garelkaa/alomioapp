@@ -7,41 +7,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Подключение Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'style/style_reg.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
 </head>
 <body>
-    <header class="d-flex align-items-center justify-content-between">
-        <div class="ml-4 ml-md-5">alamio</div>
-        
+    <header class="d-flex align-items-center justify-content-between px-15 px-md-10">
+        <div class="logo text-left">
+            alamio
+        </div>
+        <div class="lang-or-theme-reg d-flex ml-auto">
+            <button class="theme-button-reg" id="theme-button">
+                <i class="bi bi-cloud-moon"></i>
+            </button>
+        </div>
     </header>
+
     <main class="content container">
         <h2 class="registration-title">Регистрация</h2>
-        <form method='post' class="w-100">
+        <form id="registration-form" method="post" class="w-100">
             {% csrf_token %}
-            <div class="form-container">
+            <div class="form-container mx-auto">
                 <div class="form-group">
                     <label for="email-or-phone" class="form-label">Email</label>
-                    <input type="text" id="email-or-phone" class="form-input" name='email_or_phone'>
+                    <input type="text" id="email-or-phone" class="form-input" name="email_or_phone" placeholder='alomio@gmail.com'>
+                    <small id="email-error" class="text-danger d-none">Введите email</small>
                 </div>
                 <div class="form-group">
                     <label for="password" class="form-label">Пароль</label>
-                    <input type="password" id="password" class="form-input" name='password'>
+                    <input type="password" id="password" class="form-input" name="password" placeholder='Ваш пароль'>
+                    <small id="password-error" class="text-danger d-none">Введите пароль</small>
                 </div>
-                <button type='submit' class="submit-button">Зарегистрироваться</button>
+                <button type="submit" id="submit-button" class="submit-button">Зарегистрироваться</button>
             </div>
         </form>
-        {% if form.errors %}
-            <div class="alert alert-danger mt-3">
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        {% endif %}
     </main>
+
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Get the email and password input fields
+            const emailInput = document.getElementById('email-or-phone');
+            const passwordInput = document.getElementById('password');
+
+            // Get the error message elements
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
+
+            // Validate email input
+            if (emailInput.value.trim() === '') {
+                emailError.classList.remove('d-none');
+                isValid = false;
+            } else {
+                emailError.classList.add('d-none');
+            }
+
+            // Validate password input
+            if (passwordInput.value.trim() === '') {
+                passwordError.classList.remove('d-none');
+                isValid = false;
+            } else {
+                passwordError.classList.add('d-none');
+            }
+
+            // If either input is invalid, prevent the form from submitting
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -52,6 +52,11 @@
     justify-content: center;
 }
 
+.input-container-about:focus {
+    outline: none;
+    border: 3px solid #A1BDFF;
+}
+
 .input-container-about {
     width: 100%;
     max-width: 650px;

@@ -11,237 +11,18 @@
     <!-- Подключение Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Подключение вашего стиля -->
-    <link rel="stylesheet" href="{% static 'style/style_city.css' %}">
+    <link rel="stylesheet" href="{% static 'style/style_goal.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
     <!-- Подключение jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Подключение Popper.js, Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #E2E4FF;
-        }
-
-        header {
-            font-size: 30px;
-            font-family: 'Comfortaa', sans-serif;
-            width: 100%;
-            height: 80px;
-            color: transparent;
-            text-align: left;
-            padding-left: 20px;
-            line-height: 80px;
-            box-shadow: 0 2px 4px rgba(5, 0, 8, 0.1);
-            box-sizing: border-box;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        header::before {
-            content: 'alamio';
-            font-size: 30px;
-            font-family: 'Comfortaa', sans-serif;
-            color: transparent;
-            background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            position: absolute;
-            left: 20px;
-            top: 0;
-            height: 80px;
-            line-height: 80px;
-        }
-
-        .lang-or-theme {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            padding-right: 20px;
-        }
-
-        .language-button {
-            background: white;
-            border: 2px solid #5C61A9;
-            font-size: 15px;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 28px;
-            outline: none;
-            transition: background 0.3s, color 0.3s;
-            position: relative;
-        }
-
-        .language-button i {
-            margin-left: 5px;
-        }
-
-        .language-button:hover {
-            background: black;
-            color: white;
-        }
-
-        .theme-button {
-            background: none;
-            border: none;
-            font-size: 25px;
-            cursor: pointer;
-            transition: color 0.3s;
-            outline: none;
-            margin-left: 5px;
-        }
-
-        .registration-title {
-            padding-top: 90px;
-            font-family: 'Comfortaa', sans-serif;
-            font-size: 30px;
-            text-align: center;
-            color: #5C61A9;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .code-title {
-            padding-top: 20px;
-            color: #5C61A9;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .form-group {
-            padding-top: 30px;
-            display: flex;
-            flex-direction: column;
-            max-width: 90%;
-            margin: 0 auto;
-        }
-
-        .square-one, .square-two {
-            position: relative;
-            color: #5C61A9;
-            height: 75px;
-            background-color: white;
-            border: 2px solid #8E76F2;
-            border-radius: 20px;
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            padding: 15px;
-        }
-
-        .text-one, .text-two {
-            margin: 0;
-        }
-
-        .text-one {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .text-two {
-            font-size: 14px;
-        }
-
-        .circle-true {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 30px;
-            background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .circle-false {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 30px;
-            color: #8E76F2;
-        }
-
-        .next-page {
-            background: linear-gradient(100deg, #8E76F2 13.39%, #A1BDFF 78.57%);
-            color: white;
-            font-size: 16px;
-            padding: 10px 50px;
-            border: none;
-            border-radius: 28px;
-            cursor: pointer;
-            transition: background 0.3s;
-            display: block;
-            margin: 10px auto;
-        }
-
-        .next-page:focus {
-            border-color: #8E76F2;
-            outline: none;
-        }
-
-        @media (max-width: 480px) {
-            header {
-                font-size: 25px;
-                height: 60px;
-                line-height: 60px;
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            header::before {
-                font-size: 25px;
-                left: 10px;
-                height: 60px;
-                line-height: 60px;
-            }
-
-            .lang-or-theme {
-                padding-right: 10px;
-            }
-
-            .language-button {
-                font-size: 10px;
-                padding: 8px 5px;
-            }
-
-            .theme-button {
-                font-size: 20px;
-            }
-
-            .registration-title {
-                font-size: 25px;
-                padding-top: 70px;
-            }
-
-            .code-title {
-                font-size: 9px;
-            }
-
-            .form-group {
-                padding-top: 15px;
-                max-width: 95%;
-            }
-
-            .next-page {
-                font-size: 14px;
-                padding: 8px 30px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <header>
-        alamio
-        <div class="lang-or-theme">
-            <button class="language-button">
-                ru <i class="bi bi-caret-down-fill"></i>
-            </button>
-            <button class="theme-button" id="theme-button">
+    <header class="d-flex justify-content-between align-items-center">
+        <div class="lang-or-theme d-flex">
+            <button class="theme-button light-theme" id="theme-button">
                 <i class="bi bi-cloud-moon"></i>
             </button>
         </div>
@@ -252,7 +33,7 @@
         <form method='post' action='{% url "users:goal" %}'>
             {% csrf_token %}
             <input type="hidden" name="selected_goal" id="selected_goal" value="L">
-            <div class="form-group">
+            <div class="form-group d-flex justify-content-center align-items-center">
                 <div id="square-one" class="square-one">
                     <h2 class="text-one">Найти любовь</h2>
                     <h2 class="text-two">Хочу серьезные отношения</h2>
@@ -277,7 +58,8 @@
             var isDarkTheme = false;
             const squares = document.querySelectorAll('.form-group > div');
             const hiddenInput = document.getElementById('selected_goal');
-            
+            const themeButton = $('#theme-button');
+
             squares.forEach(square => {
                 square.addEventListener('click', function() {
                     squares.forEach(sq => {
@@ -286,12 +68,12 @@
                         sq.querySelector('i').classList.remove('bi-circle-fill', 'circle-true');
                         sq.querySelector('i').classList.add('bi-circle', 'circle-false');
                     });
-                    
+
                     this.classList.remove('square-two');
                     this.classList.add('square-one');
                     this.querySelector('i').classList.remove('bi-circle', 'circle-false');
                     this.querySelector('i').classList.add('bi-circle-fill', 'circle-true');
-                    
+
                     // Обновление значения скрытого поля
                     if (this.id === 'square-one') {
                         hiddenInput.value = 'L';
@@ -303,15 +85,19 @@
                 });
             });
 
-            $('#theme-button').click(function() {
+            themeButton.click(function() {
                 if (isDarkTheme) {
-                    $('body').css('background-color', '');
-                    $('main').css('background-color', '');
-                    $('header').css('background-color', '');
+                    $('body').removeClass('dark-theme');
+                    $('main').removeClass('dark-theme');
+                    $('header').removeClass('dark-theme');
+                    $('header').css('background-color', 'white');
+                    themeButton.removeClass('dark-mode'); // Удаляем класс для светлого значка
                 } else {
-                    $('main').css('background-color', '#282E33');
-                    $('body').css('background-color', '#282E33');
+                    $('body').addClass('dark-theme');
+                    $('main').addClass('dark-theme');
+                    $('header').addClass('dark-theme');
                     $('header').css('background-color', '#18191D');
+                    themeButton.addClass('dark-mode'); // Добавляем класс для белого значка
                 }
                 isDarkTheme = !isDarkTheme;
             });

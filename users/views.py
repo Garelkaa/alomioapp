@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from users.tasks import send_verification_email
 
-from .models import User
+from .models import Interest, User, UserInterest
 from gallery.models import Gallery, GalleryImage
 from .forms import UsersForm
 
@@ -54,7 +54,7 @@ def regestration(request):
             )
             user.save()
             
-            return render(request, 'success.html')
+            return redirect('users:verify_email')
         else:
             print(form.errors)
     
@@ -70,9 +70,9 @@ def verify_email(request):
         code = int(request.POST.get('code'))
         code_user = int(user.code)        
         if code == code_user:
-            print('success')
+            return redirect('users:personal_info')
         else:
-            print('net')
+            pass
     
     return render(request, 'verify_email.html')
 
@@ -98,7 +98,7 @@ def personal_info(request):
         user.gender = selected_gender
         user.interest_gender = selected_interest
         user.save()
-        return render(request, 'success.html')
+        return redirect('users:goal')
     return render(request, 'personal_info.html')
 
 
@@ -108,7 +108,7 @@ def goal(request):
         user = User.objects.get(pk=7)
         user.goal = selected_goal
         user.save()
-        return render(request, 'success.html')
+        return redirect('users:choice_your_city')
     return render(request, 'goal.html')
 
 
@@ -118,7 +118,7 @@ def choice_your_city(request):
         user = User.objects.get(pk=7)
         user.city = selected_city
         user.save()
-        return render(request, 'success.html')
+        return redirect('users:add_photo')
     return render(request, 'choice_your_city.html')
 
 
@@ -161,24 +161,37 @@ def delete_photo(request):
         return JsonResponse({'success': False, 'error': str(e)})
 
 
-@csrf_exempt 
+@csrf_exempt
 def update_info_user(request):
     if request.method == 'POST':
         try:
             # Получаем данные из запроса
             data = json.loads(request.POST.get('user_data', '{}'))
             user = User.objects.get(pk=7)
+
+            # Обновляем имя пользователя
             user.name = data.get('name')
-            user.bidth = data.get('age')
+
+            # Преобразуем дату из d.m.Y в Y-m-d
+            age_str = data.get('age')
+            if age_str:
+                user.bidth = datetime.strptime(age_str, '%d.%m.%Y').strftime('%Y-%m-%d')
+
+            # Обновляем пол пользователя
             if data.get('gender') == 'Женский':
                 user.gender = 'F'
             else:
                 user.gender = 'M'
+
+            # Обновляем город пользователя
             user.city = data.get('city')
-            print(data.get('goal'))
+
+            # Обновляем цель пользователя
             user.goal = data.get('goal')
+
+            # Сохраняем изменения в базе данных
             user.save()
-            
+
             return JsonResponse({'status': 'success'})
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)})
@@ -435,3 +448,30 @@ def detail_profile(request):
     age = calculate_age(user.bidth) if user.bidth else None
     bidth = user.bidth
     return render(request, 'detail_profile.html', {'user': user, 'gallery': gallery, 'age': age, 'bidth': bidth})
+
+
+def search_interests(request):
+    if request.is_ajax() and request.method == "GET":
+        query = request.GET.get('query', '')
+        interests = Interest.objects.filter(title__icontains=query)[:5]
+        interest_list = [interest.title for interest in interests]
+        return JsonResponse(interest_list, safe=False)
+
+def save_user_interest(request):
+    if request.is_ajax() and request.method == "POST":
+        user = request.user
+        interests = request.POST.getlist('interests[]')
+        if len(interests) <= 5:
+            UserInterest.objects.filter(user=user).delete()
+            for interest in interests:
+                interest_obj = Interest.objects.get(title=interest)
+                UserInterest.objects.create(user=user, interest=interest_obj)
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Maximum 5 interests allowed.'})
+
+def get_user_interests(request):
+    if request.is_ajax() and request.method == "GET":
+        user = request.user
+        user_interests = UserInterest.objects.filter(user=user).values_list('interest__title', flat=True)
+        return JsonResponse({'saved_interests': list(user_interests)})

@@ -1,3 +1,9 @@
+body.no-scroll {
+    overflow: hidden; /* Отключаем прокрутку */
+    position: fixed; /* Устанавливаем фиксированное положение */
+    width: 100%; /* Устанавливаем ширину в 100% */
+}
+
 .height-user-container {
     color: #5C61A9;
     background: #FFFFFF;
@@ -12,7 +18,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
+    overflow: hidden; /* Предотвращает прокрутку внутри контейнера */
 }
+
 
 .header-height-user-container {
     width: 100%;

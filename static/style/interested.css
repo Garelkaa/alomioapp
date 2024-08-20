@@ -1,3 +1,10 @@
+body.no-scroll {
+    overflow: hidden; /* Отключаем прокрутку */
+    position: fixed; /* Устанавливаем фиксированное положение */
+    width: 100%; /* Устанавливаем ширину в 100% */
+}
+
+
 .interested-user-account-container {
     color: #5C61A9;
     background: #FFFFFF;
@@ -132,3 +139,38 @@
     outline: none;
     border: none;
 }
+
+.input-container-interested {
+    position: relative;
+}
+
+.suggestions-container {
+    display: none; /* Изначально скрыт */
+    border: 1px solid #ccc;
+    max-height: 100px;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute;
+    width: 90%; /* Занимает всю ширину родительского контейнера */
+    top: 100%; /* Поместить сразу под полем ввода */
+    z-index: 1000;
+    margin-top: 5px; /* Отступ сверху для видимости */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+
+
+

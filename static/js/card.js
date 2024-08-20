@@ -320,15 +320,48 @@ function closeSettings() {
 
 // Set gender filter
 function setGender(gender, element) {
+    if (!gender || !element) {
+        console.error('Отсутствует значение gender или элемент.');
+        return;
+    }
+
+    console.log(`Переданное значение gender: ${gender}`); // Отладка
+
     const allOptions = document.querySelectorAll('.gender-option');
+    
     allOptions.forEach(option => {
+        option.classList.remove('active');
         option.querySelector('.circle-g').style.backgroundColor = 'transparent';
     });
+    
+    element.classList.add('active');
     element.querySelector('.circle-g').style.backgroundColor = '#5C61A9';
+    
+    const genderInput = document.getElementById('gender-input');
+    if (genderInput) {
+        switch (gender) {
+            case 'all':
+                genderInput.value = '';
+                break;
+            case 'male':
+                genderInput.value = 'M';
+                break;
+            case 'female':
+                genderInput.value = 'F';
+                break;
+            default:
+                genderInput.value = '';
+                break;
+        }
+        console.log(`Скрытое поле ввода обновлено на: ${genderInput.value}`);
+    } else {
+        console.error('Не удалось найти скрытое поле ввода с ID gender-input.');
+    }
+    
     console.log(`Выбран пол: ${gender}`);
 }
 
-// Update age text
+
 function updateAgeText() {
     const minAge = document.getElementById('minAgeRange').value;
     const maxAge = document.getElementById('maxAgeRange').value;
@@ -338,13 +371,39 @@ function updateAgeText() {
 
 // Apply settings
 function applySettings() {
-    const selectedGender = document.querySelector('.gender-option .circle-g').style.backgroundColor === 'rgb(92, 97, 169)' ? 'F' : 'A'; // Example logic
     const minAge = document.getElementById('minAgeRange').value;
     const maxAge = document.getElementById('maxAgeRange').value;
-    console.log(`Применены настройки: Пол ${selectedGender}, Возраст ${minAge}-${maxAge}`);
-    // Apply filter logic here
-}
+    const gender =document.getElementById('gender-input').value || 'A';
 
+    if (minAge > maxAge) {
+      alert('Минимальный возраст не может быть больше максимального.');
+      return;
+    }
+
+    // Отправка AJAX-запроса
+    fetch('/card/update-settings/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        gender: gender,
+        min_age: minAge,
+        max_age: maxAge
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        
+        closeSettings();
+        location.reload(true);
+      } else {
+        alert(`Ошибка: ${data.error}`);
+      }
+    })
+    .catch(error => console.error('Ошибка при отправке данных:', error));
+  }
 // Initialize
 // Initialize event listeners and other setup tasks
 document.addEventListener('DOMContentLoaded', () => {

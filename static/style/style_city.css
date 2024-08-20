@@ -9,12 +9,11 @@ header {
     font-family: 'Comfortaa', sans-serif;
     position: fixed;
     width: 100%;
-    max-width: 1920px;
     height: 100px;
     color: transparent; /* Текст невидим, пока не применен фон */
     text-align: left;
     padding: 0 1rem;
-    padding-left: 200px;
+    padding-left: 20px; /* Уменьшен отступ для мобильных устройств */
     line-height: 100px;
     box-shadow: 0 2px 4px rgba(5, 0, 8, 0.1);
     box-sizing: border-box;
@@ -22,19 +21,18 @@ header {
     display: flex; /* Включает Flexbox */
     align-items: center; /* Вертикальное выравнивание */
     justify-content: space-between; /* Распределяет элементы по краям */
-    position: relative; /* Для псевдоэлемента */
 }
 
 header::before {
     content: 'alamio'; /* Или другой текст, который вы хотите отобразить */
-    font-size: 50px;
+    font-size: 40px; /* Размер шрифта уменьшен для мобильных устройств */
     font-family: 'Comfortaa', sans-serif;
     color: transparent;
     background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
     -webkit-background-clip: text;
     background-clip: text;
     position: absolute;
-    left: 200px;
+    left: 20px; /* Уменьшен отступ для мобильных устройств */
     top: 0;
     height: 100px;
     line-height: 100px;
@@ -43,42 +41,21 @@ header::before {
 main {
     background-color: #E2E4FF; /* Светло-серый фон для основного содержимого */
     padding: 20px; /* Отступы внутри основного содержимого */
+    padding-top: 120px; /* Увеличен верхний отступ */
+    text-align: center; /* Центровка текста */
 }
 
 .lang-or-theme {
     display: flex; /* Размещаем элементы в строку */
     align-items: center; /* Вертикальное выравнивание */
     margin-left: auto; /* Перемещает контейнер вправо */
-    padding-right: 200px; /* Дополнительное пространство справа */
-}
-
-.language-button {
-    background: white; /* Заливка внутри кнопки */
-    border: 2px solid #5C61A9;
-    font-size: 15px; /* Размер шрифта */
-    padding: 15px 10px; /* Размеры кнопки */
-    cursor: pointer; /* Курсор указывает на кнопку */
-    border-radius: 28px; /* Закругление углов */
-    outline: none; /* Убирает стандартное обводку при фокусе */
-    transition: background 0.3s, color 0.3s; /* Плавный переход для эффектов */
-    padding-left: 15px;
-    line-height: 1; /* Исправлено значение line-height */
-    position: relative; /* Для позиционирования псевдоэлемента */
-}
-
-.language-button i {
-    margin-left: 30px; /* Перемещает кнопку вправо */
-}
-
-.language-button:hover {
-    background: black; /* Фон кнопки при наведении */
-    color: white; /* Цвет текста при наведении */
+    padding-right: 20px; /* Уменьшен отступ для мобильных устройств */
 }
 
 .theme-button {
     background: none; /* Убираем фон */
     border: none; /* Убираем границу */
-    font-size: 35px; /* Размер шрифта для иконки */
+    font-size: 40px; /* Размер шрифта уменьшен для мобильных устройств */
     cursor: pointer; /* Курсор указывает на кнопку */
     transition: color 0.3s; /* Плавный переход для изменения цвета */
     outline: none; /* Убираем обводку при фокусе */
@@ -90,9 +67,9 @@ main {
 }
 
 .registration-title {
-    padding-top: 80px;
+    padding-top: 50px;
     font-family: 'Comfortaa', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 52.41px;
     text-align: center;
     color: #5C61A9;
@@ -115,79 +92,44 @@ main {
     margin: 0 auto; /* Центрирование по горизонтали */
 }
 
-.square-one {
-    position: relative; /* Для абсолютного позиционирования круга */
+.form-group label {
     color: #5C61A9;
-    height: 75px; /* Высота квадрата */
-    background-color: white; /* Цвет фона квадрата */
+    font-size: 14px;
+}
+
+.input-container {
+    position: relative; /* Позиционирование для дочерних элементов */
+    width: 100%; /* Ширина контейнера по ширине родительского элемента */
+}
+
+.form-input {
+    padding: 8px; /* Отступ справа для значка */
     border: 2px solid #8E76F2;
-    border-radius: 20px;
-    width: 100%; /* Ширина квадрата */
+    border-radius: 8px;
+    font-size: 16px; /* Увеличение размера шрифта для лучшего чтения */
+    width: 100%; /* Ширина поля ввода в пределах родительского контейнера */
     box-sizing: border-box; /* Учитывает границы и отступы в ширину элемента */
-    margin-bottom: 20px; /* Отступ снизу */
+    margin-bottom: 10px; /* Отступ между полями ввода */
+    padding-right: 35px; /* Дополнительный отступ для значка */
 }
 
-.text-one, .text-two {
-    margin: 0; /* Убираем стандартные отступы */
-    padding-left: 15px; /* Отступ слева для смещения текста вправо */
+.form-input::placeholder {
+    color: #9B9B9B; /* Цвет текста в placeholder */
 }
 
-.text-one {
-    font-size: 16px; /* Размер шрифта */
-    padding-top: 10px; /* Отступ сверху */
-    font-weight: bold; /* Жирный текст */
+.form-input:focus {
+    border-color: #8E76F2; /* Цвет обводки при фокусе */
+    outline: none; /* Убирает стандартную обводку при фокусе */
 }
 
-.text-two {
-    font-size: 14px; /* Размер шрифта */
-    padding-top: 0; /* Отступ сверху */
-    margin-top: 14px; /* Отрицательный отступ сверху */
+.location-icon {
+    position: absolute; /* Абсолютное позиционирование относительно контейнера */
+    right: 10px; /* Отступ справа от границы поля ввода */
+    top: 45%; /* Вертикальное центрирование */
+    transform: translateY(-50%); /* Центрирование по вертикали */
+    font-size: 17px; /* Размер значка */
+    color: #8E76F2; /* Цвет значка */
 }
-
-.square-one {
-    position: relative;
-    color: #5C61A9;
-    height: 75px;
-    background-color: white;
-    border: 2px solid #8E76F2;
-    border-radius: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-
-.square-two {
-    position: relative;
-    color: #5C61A9;
-    height: 75px;
-    background-color: white;
-    border: 2px solid #8E76F2;
-    border-radius: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-
-.circle-true {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 30px;
-    background: linear-gradient(180deg, #8E76F2 13.39%, #A1BDFF 78.57%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.circle-false {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 30px;
-    color: #8E76F2;
-}
-
-
 
 .next-page {
     background: #5C61A9; /* Фон кнопки */
@@ -199,8 +141,10 @@ main {
     cursor: pointer; /* Курсор указывает на кнопку */
     transition: background 0.3s; /* Плавный переход для эффектов */
     background: linear-gradient(100deg, #8E76F2 13.39%, #A1BDFF 78.57%);
-    display: block; /* Устанавливаем кнопку как блочный элемент */
+    display: flex; /* Устанавливаем кнопку как блочный элемент */
     margin: 10px auto; /* Выровнять по центру с меньшим отступом сверху */
+    justify-content: center;
+    align-items: center;
 }
 
 .next-page:focus {
@@ -208,101 +152,64 @@ main {
     outline: none; /* Убирает стандартную обводку при фокусе */
 }
 
-
-@media (max-width: 768px) {
-    header {
-        font-size: 30px;
-        height: 80px;
-        line-height: 80px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    header::before {
-        font-size: 30px;
-        left: 20px;
-        height: 80px;
-        line-height: 80px;
-    }
-
-    .lang-or-theme {
-        padding-right: 20px;
-    }
-
-    .language-button {
-        font-size: 12px;
-        padding: 10px 8px;
-    }
-
-    .theme-button {
-        font-size: 25px;
-    }
-
-    .registration-title {
-        font-size: 30px;
-        padding-top: 90px;
-    }
-
-    .code-title {
-        font-size: 11px;
-    }
-
-    .form-group {
-        padding-top: 20px;
-        max-width: 90%;
-    }
-
-    .next-page {
-        font-size: 16px;
-        padding: 10px 50px;
-    }
+.suggestions-container {
+    position: absolute;
+    z-index: 1000; /* Выше других элементов */
+    background: white;
+    border-radius: 4px;
+    width: calc(100% - 20px); /* Ширина с учетом отступов */
+    max-height: 200px; /* Максимальная высота */
+    overflow-y: auto; /* Вертикальная прокрутка при переполнении */
 }
 
-@media (max-width: 480px) {
-    header {
-        font-size: 25px;
-        height: 60px;
-        line-height: 60px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    header::before {
-        font-size: 25px;
-        left: 10px;
-        height: 60px;
-        line-height: 60px;
-    }
-
-    .lang-or-theme {
-        padding-right: 10px;
-    }
-
-    .language-button {
-        font-size: 10px;
-        padding: 8px 5px;
-    }
-
-    .theme-button {
-        font-size: 20px;
-    }
-
-    .registration-title {
-        font-size: 25px;
-        padding-top: 70px;
-    }
-
-    .code-title {
-        font-size: 9px;
-    }
-
-    .form-group {
-        padding-top: 15px;
-        max-width: 95%;
-    }
-
-    .next-page {
-        font-size: 14px;
-        padding: 8px 30px;
-    }
+.suggestions-container a {
+    display: block;
+    padding: 8px;
+    color: #333;
+    text-decoration: none;
 }
+
+.suggestions-container a:hover {
+    background: #f5f5f5;
+}
+
+#auto-fill-button {
+    margin-top: 10px; /* Отступ сверху */
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 2px solid #8E76F2;
+}
+
+#auto-fill-button i {
+    font-size: 20px; /* Размер иконки */
+}
+
+.page-container {
+    padding-top: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стили для светлой темы */
+.light-theme .theme-button i {
+    color: #000; /* Черный цвет для светлой темы */
+}
+
+/* Стили для темной темы */
+.dark-theme .theme-button i {
+    color: #fff; /* Белый цвет для темной темы */
+}
+
+.form-input.error {
+    border: 2px solid red;
+}
+
+.form-group .error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+ 
