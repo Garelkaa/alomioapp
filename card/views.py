@@ -9,7 +9,7 @@ from card.models import Likes
 from gallery.models import GalleryImage
 from users.models import User, UserFilters
 
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 
 from dateutil.relativedelta import relativedelta
 
@@ -37,8 +37,11 @@ def get_profiles(request):
     min_bidth_date = datetime.now() - relativedelta(years=max_age)
     max_bidth_date = datetime.now() - relativedelta(years=min_age)
     
+    # Получение списка пользователей, которых уже лайкнули
+    liked_user_ids = Likes.objects.filter(user=7).values_list('liked_user', flat=True)
+    
     # Базовый запрос для фильтрации профилей
-    base_query = User.objects.exclude(id=7).filter(
+    base_query = User.objects.exclude(id=7).exclude(id__in=liked_user_ids).filter(
         Q(bidth__gte=min_bidth_date) &
         Q(bidth__lte=max_bidth_date)
     )

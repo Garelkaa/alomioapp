@@ -1321,6 +1321,7 @@ function displaySuggestions() {
                 input.value = suggestion;  // Устанавливаем значение в поле ввода
                 suggestionsContainer.innerHTML = '';  // Очищаем рекомендации после выбора
                 hideSuggestions(); // Скрываем контейнер
+                addInterestToContainer(suggestion); // Добавляем интерес в контейнер
             };
             suggestionsContainer.appendChild(suggestionElement);
         });
@@ -1331,11 +1332,6 @@ function displaySuggestions() {
         hideSuggestions(); // Если нет совпадений, скрываем контейнер
     }
 }
-
-function hideSuggestions() {
-    document.getElementById('suggestions-container').style.display = 'none';
-}
-
 
 function initializeEvents() {
     const input = document.getElementById('interests-input');
@@ -1363,8 +1359,66 @@ function initializeEvents() {
     });
 }
 
+function hideSuggestions() {
+    document.getElementById('suggestions-container').style.display = 'none';
+}
 
 
+function isInterestAlreadyAdded(interest) {
+    const container = document.querySelector('.user-actual-search-container');
+    const existingInterests = Array.from(container.children).map(span => span.textContent.trim().toLowerCase());
+    return existingInterests.includes(interest.toLowerCase());
+}
+
+// Функция для добавления выбранного интереса
+function addInterestToContainer(interest) {
+    const container = document.querySelector('.user-actual-search-container');
+    
+    // Проверяем количество элементов
+    if (container.children.length >= 3) {
+        alert('Вы можете добавить не более 3 интересов.');
+        return;
+    }
+
+    // Проверяем, добавлен ли уже интерес
+    if (isInterestAlreadyAdded(interest)) {
+        alert('Этот интерес уже добавлен.');
+        return;
+    }
+
+    // Создаем новый элемент span для интереса
+    const interestElement = document.createElement('span');
+    interestElement.className = 'selected-interest';
+    interestElement.textContent = interest;
+
+    // Добавляем новый элемент в контейнер
+    container.appendChild(interestElement);
+}
 
 
+function saveInterests() {
+    const container = document.querySelector('.user-actual-search-container');
+    const interests = Array.from(container.children).map(span => span.textContent.trim());
+
+    // Отправка данных на сервер
+    fetch('/user/save-interests/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify({ interests })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Интересы успешно сохранены!');
+        } else {
+            alert('Ошибка при сохранении интересов.');
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Ошибка при сохранении интересов.');
+    });
+}
 

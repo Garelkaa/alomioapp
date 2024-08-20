@@ -14,15 +14,13 @@
     <link rel="stylesheet" href="{% static 'style/style_photo.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
 </head>
-<body>
-    <header class="d-flex justify-content-between align-items-center">
+<body {% if user.theme %}style='background: #282E33;'{% endif %}>
+    <header class="d-flex justify-content-between align-items-center" {% if user.theme %}style='background: #18191D;'{% endif %}>
         <div class="lang-or-theme d-flex">
-            <button class="theme-button light-theme" id="theme-button">
-                <i class="bi bi-cloud-moon"></i>
-            </button>
+            
         </div>
     </header>
-    <main class="content container">
+    <main class="content container" {% if user.theme %}style='background: #282E33;'{% endif %}>
         <h2 class="registration-title">Добавить фото</h2>
         <h2 class="code-title">Добавьте фото и свою улыбку в профиль - это поможет создать приятное первое впечатление!</h2>
         <div class="form-group">

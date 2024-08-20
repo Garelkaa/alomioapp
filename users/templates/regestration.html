@@ -11,19 +11,14 @@
     <link rel="stylesheet" href="{% static 'style/style_reg.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
 </head>
-<body>
-    <header class="d-flex align-items-center justify-content-between px-15 px-md-10">
+<body {% if user.theme %}style='background: #282E33;'{% endif %}>
+    <header class="d-flex align-items-center justify-content-between px-15 px-md-10" {% if user.theme %}style='background: #18191D;'{% endif %}>
         <div class="logo text-left">
             alamio
         </div>
-        <div class="lang-or-theme-reg d-flex ml-auto">
-            <button class="theme-button-reg" id="theme-button">
-                <i class="bi bi-cloud-moon"></i>
-            </button>
-        </div>
     </header>
 
-    <main class="content container">
+    <main class="content container" {% if user.theme %}style='background: #282E33;'{% endif %}>
         <h2 class="registration-title">Регистрация</h2>
         <form id="registration-form" method="post" class="w-100">
             {% csrf_token %}

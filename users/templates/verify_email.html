@@ -14,16 +14,12 @@
     <link rel="stylesheet" href="{% static 'style/style_email.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
 </head>
-<body>
-    <header class="d-flex justify-content-between align-items-center">
+<body {% if user.theme %}style='background: #282E33;'{% endif %}>
+    <header class="d-flex justify-content-between align-items-center" {% if user.theme %}style='background: #18191D;'{% endif %}>
         alamio
-        <div class="lang-or-theme d-flex">
-            <button class="theme-button" id="theme-button">
-                <i class="bi bi-cloud-moon"></i>
-            </button>
-        </div>
+        
     </header>
-    <main class="container">
+    <main class="container" {% if user.theme %}style='background: #282E33;'{% endif %}>
         <h2 class="registration-title">Проверь свою почту</h2>
         <h2 class="code-title">Введите пятизначный код подтверждения из письма, который мы отправили на вашу почту</h2>
         <form id="verification-form" method='post'>

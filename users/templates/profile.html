@@ -468,6 +468,8 @@
                 document.getElementById('interested-user-popup').innerHTML = data;
                 hideSuggestions();  // Скрываем контейнер с рекомендациями после загрузки данных
                 initializeEvents(); // Вызов функции для инициализации событий
+                document.querySelector('.save-interested-user').addEventListener('click', saveInterests());
+
             })
         .catch(error => console.error('Ошибка при получении данных:', error));
         

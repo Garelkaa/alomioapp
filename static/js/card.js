@@ -145,12 +145,17 @@ function updateProfileInfo() {
     }
 }
 
+function getChoiceText(choice, choices) {
+    return choices[choice] || "Не указано";
+}
+
 
 // Update additional profile information
 function updateAdditionalInfo() {
     const profile = profiles[currentIndex];
     if (profile) {
         document.querySelector('.text-container').textContent = profile.about || "Нет информации";
+
         const userItems = document.querySelector('.user-items-container');
         userItems.innerHTML = '';
         if (profile.interests) {
@@ -161,10 +166,20 @@ function updateAdditionalInfo() {
                 userItems.appendChild(itemDiv);
             });
         }
-        // Update additional info...
+
+        // Обновление дополнительной информации
+        document.getElementById('gender').textContent = getChoiceText(profile.gender, genderLabels);
+        document.getElementById('city').textContent = profile.city || "Не указан";
+        document.getElementById('orientation').textContent = getChoiceText(profile.orientation, orientationLabels);
+        document.getElementById('relationship').textContent = getChoiceText(profile.relationship, relationshipLabels);
+        document.getElementById('children').textContent = getChoiceText(profile.childrens, childrensLabels);
+        document.getElementById('languages').textContent = profile.languages ? profile.languages.split(',').map(lang => languageLabels[lang] || lang).join(', ') : "Не указано";
+        document.getElementById('personality').textContent = getChoiceText(profile.personality, personalityLabels);
+        document.getElementById('zodiac').textContent = getChoiceText(profile.zodiac, zodiacLabels);
+        document.getElementById('education').textContent = getChoiceText(profile.education, educationLabels);
+        document.getElementById('work').textContent = profile.work || "Не указано";
     }
 }
-
 // Handle touch events for swiping
 function handleTouchStart(event) {
     if (!swipeEnabled) return;

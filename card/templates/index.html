@@ -73,12 +73,12 @@
             <div class="col">
               <label for="minAgeRange" style="color: #5C61A9;">Минимальный возраст:</label>
               <div id="minAgeText" class="age-text">От: 18</div>
-              <input type="range" id="minAgeRange" class="form-control-range age-range" min="18" max="60" value="18" oninput="updateAgeText()">
+              <input type="range" id="minAgeRange" class="form-control-range age-range" min="18" max="60" value="{{ user_settings.min_age }}" oninput="updateAgeText()">
             </div>
             <div class="col">
               <label for="maxAgeRange" style="color: #5C61A9;">Максимальный возраст:</label>
               <div id="maxAgeText" class="age-text">До: 60</div>
-              <input type="range" id="maxAgeRange" class="form-control-range age-range" min="18" max="60" value="60" oninput="updateAgeText()">
+              <input type="range" id="maxAgeRange" class="form-control-range age-range" min="18" max="60" value="{{ user_settings.max_age }}" oninput="updateAgeText()">
             </div>
           </div>
           <br>
@@ -109,8 +109,8 @@
       </div>
 
       <div id="nameContainer" class="name-container">
-        <span class="user-name">Диана, </span>
-        <span class="user-age"> 20</span>
+        <span class="user-name">Нету анкет для показа, </span>
+        <span class="user-age"></span>
       </div>
       <button id="settingsButton" class="btn btn-link text-white open-settings" onclick="openSettings()">
         <i class="bi bi-sliders"></i>
@@ -122,12 +122,12 @@
     <div class="info-content">
       <div class="user-goal">
         <i class="bi bi-emoji-smile-fill smile-icon"></i>
-        <span>Свидание и романтика</span>
+        <span>Нет информации</span>
       </div>
       <div class="user-about-container">
         <label for="text" class="about-label">Обо мне</label>
         <div class="text-container">
-          sososoosososososososososososososoossxxxxxxxxxxxxxxxxxxx
+          Нет информации
         </div>
       </div>
       <div class="user-intreresteds-container">
@@ -138,46 +138,47 @@
       </div>
       <div class="user-personal-info-container p-3">
         <div class="into-item">
-          <label for="text">Пол</label>
-          <span>Мужской</span>
+            <label for="gender">Пол</label>
+            <span id="gender">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Город</label>
-          <span>Киев</span>
+            <label for="city">Город</label>
+            <span id="city">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Ориентация</label>
-          <span>Гетеросексуал</span>
+            <label for="orientation">Ориентация</label>
+            <span id="orientation">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Отношения</label>
-          <span>Не в Отношениях</span>
+            <label for="relationship">Отношения</label>
+            <span id="relationship">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Дети</label>
-          <span>Нет</span>
+            <label for="children">Дети</label>
+            <span id="children">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Языки</label>
-          <span>Русский</span>
+            <label for="languages">Языки</label>
+            <span id="languages">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Тип личности</label>
-          <span>Экстраверт</span>
+            <label for="personality">Тип личности</label>
+            <span id="personality">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Знак зодиака</label>
-          <span>Рак</span>
+            <label for="zodiac">Знак зодиака</label>
+            <span id="zodiac">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Образование</label>
-          <span>Высшее</span>
+            <label for="education">Образование</label>
+            <span id="education">Нет информации</span>
         </div>
         <div class="into-item">
-          <label for="text">Работа</label>
-          <span>Маркетолог</span>
+            <label for="work">Работа</label>
+            <span id="work">Нет информации</span>
         </div>
       </div>
+    
     </div>
   </div>
 

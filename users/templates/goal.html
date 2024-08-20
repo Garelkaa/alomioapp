@@ -19,15 +19,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
-    <header class="d-flex justify-content-between align-items-center">
+<body {% if user.theme %}style='background: #282E33;'{% endif %}>
+    <header class="d-flex justify-content-between align-items-center" {% if user.theme %}style='background: #18191D;'{% endif %}>
         <div class="lang-or-theme d-flex">
-            <button class="theme-button light-theme" id="theme-button">
-                <i class="bi bi-cloud-moon"></i>
-            </button>
+            
         </div>
     </header>
-    <main class="content">
+    <main class="content" {% if user.theme %}style='background: #282E33;'{% endif %}>
         <h2 class="registration-title">Какова твоя цель здесь?</h2>
         <h2 class="code-title">Расскажи о своих целях и познакомься с людьми, которые имеют такие же намерения</h2>
         <form method='post' action='{% url "users:goal" %}'>

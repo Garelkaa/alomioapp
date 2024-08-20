@@ -475,3 +475,25 @@ def get_user_interests(request):
         user = request.user
         user_interests = UserInterest.objects.filter(user=user).values_list('interest__title', flat=True)
         return JsonResponse({'saved_interests': list(user_interests)})
+    
+    
+@csrf_exempt
+def save_interests(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            user_id = data.get('userId')
+            interests = data.get('interests', [])
+
+            # Удалите существующие интересы для пользователя
+            UserInterest.objects.filter(user_id=user_id).delete()
+
+            # Сохраните новые интересы
+            for title in interests:
+                UserInterest.objects.create(user_id=user_id, title=title)
+
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
