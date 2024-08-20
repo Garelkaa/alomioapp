@@ -2,7 +2,7 @@ body, html {
       height: 100%;
       margin: 0;
       padding: 0;
-      background-color: rgb(28, 42, 60);
+      background-color: #E2E4FF;
       overflow-x: hidden;
     }
     .container-fluid {
@@ -87,7 +87,7 @@ body, html {
       width: 100%;
       z-index: 1000;
       margin-bottom: 0;
-      background-color: rgb(35, 45, 58);
+      background-color: rgb(255, 255, 255);
     }
     body {
       overflow-y: hidden;

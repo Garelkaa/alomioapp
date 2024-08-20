@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from users.tasks import send_verification_email
 
-from .models import Interest, User, UserInterest
+from .models import User, UserInterest
 from gallery.models import Gallery, GalleryImage
 from .forms import UsersForm
 
@@ -188,6 +188,8 @@ def update_info_user(request):
 
             # Обновляем цель пользователя
             user.goal = data.get('goal')
+            
+            print(data.get('goal'))
 
             # Сохраняем изменения в базе данных
             user.save()
@@ -396,7 +398,11 @@ def about(request):
     return render(request, 'about.html', {'user': user, 'is_dark_mode': is_dark_mode,})
 
 def interested(request):
-    return render(request, 'interested.html')
+    # Предполагается, что у пользователя может быть несколько интересов
+    user_interests = UserInterest.objects.filter(user=7)
+    interests = [interest.title for interest in user_interests]
+    return render(request, 'interested.html', {"interests": interests})
+
 
 def user_gender(request):
     user = get_object_or_404(User, id=7)
@@ -449,27 +455,6 @@ def detail_profile(request):
     bidth = user.bidth
     return render(request, 'detail_profile.html', {'user': user, 'gallery': gallery, 'age': age, 'bidth': bidth})
 
-
-def search_interests(request):
-    if request.is_ajax() and request.method == "GET":
-        query = request.GET.get('query', '')
-        interests = Interest.objects.filter(title__icontains=query)[:5]
-        interest_list = [interest.title for interest in interests]
-        return JsonResponse(interest_list, safe=False)
-
-def save_user_interest(request):
-    if request.is_ajax() and request.method == "POST":
-        user = request.user
-        interests = request.POST.getlist('interests[]')
-        if len(interests) <= 5:
-            UserInterest.objects.filter(user=user).delete()
-            for interest in interests:
-                interest_obj = Interest.objects.get(title=interest)
-                UserInterest.objects.create(user=user, interest=interest_obj)
-            return JsonResponse({'status': 'success'})
-        else:
-            return JsonResponse({'status': 'error', 'message': 'Maximum 5 interests allowed.'})
-
 def get_user_interests(request):
     if request.is_ajax() and request.method == "GET":
         user = request.user
@@ -482,7 +467,7 @@ def save_interests(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
-            user_id = data.get('userId')
+            user_id = 7
             interests = data.get('interests', [])
 
             # Удалите существующие интересы для пользователя

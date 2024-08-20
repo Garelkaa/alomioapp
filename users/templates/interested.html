@@ -12,10 +12,13 @@
             <div id="suggestions-container" class="suggestions-container"></div>
         </div>
         <div class="user-actual-search-container">
-            
+            {% for interest in interests %}
+                <span>{{ interest }}</span>
+            {% endfor %}
         </div>
+        
     </div>
     <div class="save-user-interesteds-container">
-        <button class="save-interested-user">Сохранить</button>
+        <button class="save-interested-user" id='save-interested-user'>Сохранить</button>
     </div>
 </div>

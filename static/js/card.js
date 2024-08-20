@@ -180,6 +180,7 @@ function updateAdditionalInfo() {
         document.getElementById('work').textContent = profile.work || "Не указано";
     }
 }
+
 // Handle touch events for swiping
 function handleTouchStart(event) {
     if (!swipeEnabled) return;

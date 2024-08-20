@@ -151,12 +151,16 @@ function setupAutoSaveUserInfo(url) {
 
     function showError(inputId) {
         const inputContainer = document.querySelector(`#${inputId}`).closest('.input-container');
-        inputContainer.classList.add('error');
+        if (inputContainer) {
+            inputContainer.classList.add('error');
+        }
     }
 
     function removeError(inputId) {
         const inputContainer = document.querySelector(`#${inputId}`).closest('.input-container');
-        inputContainer.classList.remove('error');
+        if (inputContainer) {
+            inputContainer.classList.remove('error');
+        }
     }
 
     function setupAutoSaveUserInfo() {
@@ -165,6 +169,7 @@ function setupAutoSaveUserInfo(url) {
         const gender = $('#gender').val();
         const city = $('#city').val();
         const goal = $('#goal').val();
+        console.log(goal);
 
         let isValid = true;
 
@@ -199,7 +204,6 @@ function setupAutoSaveUserInfo(url) {
             url: url,
             type: 'POST',
             data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}',
                 user_data: JSON.stringify(userData)
             },
             success: function(response) {
@@ -221,12 +225,13 @@ function setupAutoSaveUserInfo(url) {
     });
 
     $('.goal-option').on('click', function() {
-        const selectedGoal = $('#goal').val();
-        
+        const selectedGoal = $(this).data('value'); // Исправлено: получение значения из data-value
         $('#goal').val(selectedGoal);
+        console.log(selectedGoal);
         setupAutoSaveUserInfo();
     });
 }
+
 
 function saveUserAbout(url) {
     var userAboutText = $('#about').val();
@@ -1396,15 +1401,19 @@ function addInterestToContainer(interest) {
 }
 
 
-function saveInterests() {
+function saveInterests(url) {
     const container = document.querySelector('.user-actual-search-container');
     const interests = Array.from(container.children).map(span => span.textContent.trim());
 
+    // Получите идентификатор пользователя (это пример, замените на актуальный метод получения ID)
+    
+
     // Отправка данных на сервер
-    fetch('/user/save-interests/', {
+    fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken()  // Если используете Django или другой фреймворк с CSRF токеном
         },
         body: JSON.stringify({ interests })
     })
@@ -1420,5 +1429,11 @@ function saveInterests() {
         console.error('Ошибка:', error);
         alert('Ошибка при сохранении интересов.');
     });
+}
+
+// Функция для получения CSRF токена (если используется Django)
+function getCSRFToken() {
+    const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+    return csrfTokenElement ? csrfTokenElement.getAttribute('content') : '';
 }
 

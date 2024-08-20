@@ -48,20 +48,21 @@
     <div class="user-target-container">
         <label for="text">Цель</label>
         <input type='hidden' id='goal' name='goal' value="{{ user.goal }}">
-        <div class="user-target goal-option change-love">
+        <div class="user-target goal-option change-love" data-value="L">
             <h2>Найти любовь</h2>
             <span>Хочу серьезные отношения</span>
             <div class="change-icon-target {% if user.goal == 'L' %}active{% endif %}"></div>
         </div>
-        <div class="user-target goal-option change-romance">
+        <div class="user-target goal-option change-romance" data-value="R">
             <h2>Свидание и романтика</h2>
             <span>Мне достаточно только приятных встреч.</span>
             <div class="change-icon-target {% if user.goal == 'R' %}active{% endif %}"></div>
         </div>
-        <div class="user-target goal-option change-communication">
+        <div class="user-target goal-option change-communication" data-value="O">
             <h2>Общение</h2>
             <span>Хочу найти интересных собеседников</span>
             <div class="change-icon-target {% if user.goal == 'O' %}active{% endif %}"></div>
         </div>
+        
     </div>
 </div>

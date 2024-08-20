@@ -121,18 +121,9 @@ class User(AbstractUser):
     theme = models.BooleanField(null=True, blank=True, default=False)
     
 
-class Interest(models.Model):
-    title = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.title
-
 class UserInterest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.user.username} - {self.interest.title}'
+    title = models.TextField(null=True, blank=True)
 
 
 class UserFilters(models.Model):

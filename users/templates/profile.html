@@ -5,11 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{% csrf_token %}">
+
     <title>Регистрация</title>
     <!-- Подключение Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Подключение Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    
     <!-- Подключение вашего стиля -->
     <link rel="stylesheet" href="{% static "style/style-profile.css" %}">
     <link rel="stylesheet" href="{% static "style/style_premium_page.css" %}">
@@ -243,7 +246,7 @@
         </div>
     </div>
 
-    <div class="footer bg-white d-flex justify-content-center align-items-center fixed-bottom shadow">
+    <div class="footer d-flex justify-content-center align-items-center fixed-bottom shadow" {% if user.theme %}style='background: #333;'{% endif %}>
         <div class="container d-flex justify-content-around">
             <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Path for the first SVG -->
@@ -468,8 +471,9 @@
                 document.getElementById('interested-user-popup').innerHTML = data;
                 hideSuggestions();  // Скрываем контейнер с рекомендациями после загрузки данных
                 initializeEvents(); // Вызов функции для инициализации событий
-                document.querySelector('.save-interested-user').addEventListener('click', saveInterests());
-
+                $('#save-interested-user').click(function() {
+                    saveInterests('{% url "users:save_interests" %}'); // Убедитесь, что функция вызывается только при клике на кнопку
+                }); 
             })
         .catch(error => console.error('Ошибка при получении данных:', error));
         

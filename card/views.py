@@ -7,7 +7,7 @@ from django.db.models import Q
 
 from card.models import Likes
 from gallery.models import GalleryImage
-from users.models import User, UserFilters
+from users.models import User, UserFilters, UserInterest
 
 from datetime import date, datetime
 
@@ -16,7 +16,8 @@ from dateutil.relativedelta import relativedelta
 
 def main(request):
     user_settings, created = UserFilters.objects.get_or_create(user=7)
-    return render(request, 'index.html', {'user_settings': user_settings})
+    user = User.objects.get(pk=7)
+    return render(request, 'index.html', {'user_settings': user_settings, 'user': user})
 
 
 def calculate_age(birth_date):
@@ -88,11 +89,13 @@ def get_profiles(request):
             image_urls = [img.image.url for img in images]
             profile['images'] = image_urls if image_urls else ['https://via.placeholder.com/800x600']
         
-
-            profiles_list.append(profile)
+        # Добавление интересов в профиль
+        interests = UserInterest.objects.filter(user=profile['id']).values_list('title', flat=True)
+        profile['interests'] = ', '.join(interests)
+        
+        profiles_list.append(profile)
 
     return JsonResponse(profiles_list, safe=False)
-
 
 @csrf_exempt
 def add_like(request):
